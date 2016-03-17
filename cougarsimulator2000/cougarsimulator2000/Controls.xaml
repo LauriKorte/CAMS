@@ -16,9 +16,9 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Name="btnN" Grid.Row="0" Grid.Column="1" Content="N" Click="Button_Click_N"/>
-        <Button Name="btnW" Grid.Row="1" Grid.Column="0" Content="W" Click="Button_Click_W"/>
-        <Button Name="btnS" Grid.Row="1" Grid.Column="1" Content="S" Click="Button_Click_S"/>
-        <Button Name="btnE" Grid.Row="1" Grid.Column="2" Content="E" Click="Button_Click_E"/>
+        <Button Name="btnN" Grid.Row="0" Grid.Column="1" Content="Up" Click="Button_Click_N"/>
+        <Button Name="btnW" Grid.Column="0" Content="Left" Click="Button_Click_W" Grid.Row="1"/>
+        <Button Name="btnS" Grid.Row="1" Grid.Column="1" Content="Down" Click="Button_Click_S"/>
+        <Button Name="btnE" Grid.Column="2" Content="Right" Click="Button_Click_E" Grid.Row="1"/>
     </Grid>
 </Window>
