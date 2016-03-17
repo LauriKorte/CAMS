@@ -28,26 +28,22 @@ namespace cougarsimulator2000
 
         private void Button_Click_N(object sender, RoutedEventArgs e)
         {
-            main.cougarPosY--;
-            main.UpdateCougar();
+            main.passInput(Input.North);
         }
 
         private void Button_Click_W(object sender, RoutedEventArgs e)
         {
-            main.cougarPosX--;
-            main.UpdateCougar();
+            main.passInput(Input.West);
         }
 
         private void Button_Click_S(object sender, RoutedEventArgs e)
         {
-            main.cougarPosY++;
-            main.UpdateCougar();
+            main.passInput(Input.South);
         }
 
         private void Button_Click_E(object sender, RoutedEventArgs e)
         {
-            main.cougarPosX++;
-            main.UpdateCougar();
+            main.passInput(Input.East);
         }
     }
 }

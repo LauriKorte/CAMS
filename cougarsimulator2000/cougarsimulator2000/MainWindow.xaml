@@ -5,13 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Closing="Window_Closing">
-    <Window.Resources>
-        <BitmapImage x:Key="bg_grass1" UriSource="pack://application:,,,/Resources/grass1.png" />
-        <BitmapImage x:Key="ac_cougar" UriSource="pack://application:,,,/Resources/cougar.png" />
-        <BitmapImage x:Key="bg_box" UriSource="pack://application:,,,/Resources/box.png" />
-    </Window.Resources>
-
-    <Grid x:Name="TileMap">
+        Title="MainWindow" Height="300" Width="300">
+    <Grid>
+        
     </Grid>
 </Window>
