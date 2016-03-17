@@ -6,6 +6,7 @@
     <Application.Resources>
         <BitmapImage x:Key="bg_grass1" UriSource="pack://application:,,,/Resources/grass1.png" />
         <BitmapImage x:Key="ac_cougar" UriSource="pack://application:,,,/Resources/cougar.png" />
+        <BitmapImage x:Key="ac_tex" UriSource="pack://application:,,,/Resources/tex.png" />
         <BitmapImage x:Key="bg_box" UriSource="pack://application:,,,/Resources/box.png" />
         
     </Application.Resources>
