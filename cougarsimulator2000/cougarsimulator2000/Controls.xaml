@@ -1,0 +1,24 @@
+﻿<Window x:Class="cougarsimulator2000.Controls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:cougarsimulator2000"
+        mc:Ignorable="d"
+        Title="Controls" Height="300" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button Name="btnN" Grid.Row="0" Grid.Column="1" Content="N" Click="Button_Click_N"/>
+        <Button Name="btnW" Grid.Row="1" Grid.Column="0" Content="W" Click="Button_Click_W"/>
+        <Button Name="btnS" Grid.Row="1" Grid.Column="1" Content="S" Click="Button_Click_S"/>
+        <Button Name="btnE" Grid.Row="1" Grid.Column="2" Content="E" Click="Button_Click_E"/>
+    </Grid>
+</Window>
