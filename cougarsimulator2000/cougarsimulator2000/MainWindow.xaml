@@ -5,8 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="300" Width="300" Closing="Window_Closing">
+
+    <StackPanel>
+        <Menu IsMainMenu="True">
+            <MenuItem Header="_Window">
+                <MenuItem x:Name="menuchkShowGameView" Header="Game view" IsCheckable="True" Checked="menuchkShowGameView_Checked" Unchecked="menuchkShowGameView_Unchecked" />
+                <MenuItem x:Name="menuchkShowControls" Header="Controls" IsCheckable="True" Checked="menuchkShowControls_Checked" Unchecked="menuchkShowControls_Unchecked" />
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="Sod off"/>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <TextBlock Text="Insert cool main menu stuff here or something i guess..." />
+        </Grid>
+    </StackPanel>
 </Window>

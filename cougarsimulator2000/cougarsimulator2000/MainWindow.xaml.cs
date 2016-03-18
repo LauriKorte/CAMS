@@ -22,23 +22,92 @@ namespace cougarsimulator2000
         GameLogic gameLogic;
         GameView gameView;
         Controls controls;
+        Assets assets;
+
+
+        private void constructGameView()
+        {
+            gameView = new GameView(assets, gameLogic);
+            gameView.Show();
+            gameView.Closing += GameView_Closing;
+            menuchkShowGameView.IsChecked = true;
+        }
+
+        private void constructControls()
+        {
+            controls = new Controls(this);
+            controls.Show();
+            controls.Closing += Controls_Closing;
+            menuchkShowControls.IsChecked = true;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
-            Assets assets = new Assets();
-            
+            assets = new Assets();
+
             gameLogic = new GameLogic();
 
-            controls = new Controls(this);
-            controls.Show();
-            gameView = new GameView(assets, gameLogic);
-            gameView.Show();
+            constructGameView();
+            constructControls();
+
+        }
+
+        private void Controls_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            menuchkShowControls.IsChecked = false;
+        }
+
+        private void GameView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            menuchkShowGameView.IsChecked = false;
         }
 
         public void passInput(Input i)
         {
             gameLogic.enterInput(i);
             gameView.update();
+        }
+
+        private void menuchkShowControls_Checked(object sender, RoutedEventArgs e)
+        {
+            if (controls.IsLoaded)
+                controls.Show();
+            else
+            {
+                constructControls();
+            }
+        }
+
+        private void menuchkShowGameView_Checked(object sender, RoutedEventArgs e)
+        {
+            if (gameView.IsLoaded)
+                gameView.Show();
+            else
+            {
+                constructGameView();
+            }
+        }
+
+        private void menuchkShowGameView_Unchecked(object sender, RoutedEventArgs e)
+        {
+            gameView.Hide();
+
+        }
+
+        private void menuchkShowControls_Unchecked(object sender, RoutedEventArgs e)
+        {
+            controls.Hide();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            
+            if (gameView.IsLoaded)
+                gameView.Close();
+            if (controls.IsLoaded)
+                controls.Close();
+            
         }
     }
 }
