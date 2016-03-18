@@ -44,7 +44,7 @@ namespace cougarsimulator2000
             tileMap.initialize(new Vector2(17, 17));
 
             //otherwise the maze generator makes a mess
-            MazeGenerator.Generate(tileMap,25);
+            MazeGenerator.Generate(tileMap,25,25);
 
             /*
             //Fill with empty prairie

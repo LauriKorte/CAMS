@@ -8,7 +8,7 @@ namespace cougarsimulator2000
 {
     public class MazeGenerator
     {
-        public static void Generate(TileMap tm, int interconnectedness)
+        public static void Generate(TileMap tm, int interconnectedness, int openSpots)
         {
             /*
                 We generate an x by x maze,
@@ -83,6 +83,14 @@ namespace cougarsimulator2000
                 }
             };
             drunkenWalk(new Vector2(1, 1));
+            for (int i = 0; i < openSpots; i++)
+            {
+                Vector2 rpos;
+                rpos.x = 1 + random.Next(size.x - 2);
+                rpos.y = 1 + random.Next(size.y - 2);
+                maze[rpos.x][rpos.y] = true;
+            }
+
             for (int i = 0; i < size.x; i++)
                 for (int j = 0; j < size.x; j++)
                 {
