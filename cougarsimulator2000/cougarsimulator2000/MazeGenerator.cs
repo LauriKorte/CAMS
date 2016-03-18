@@ -31,19 +31,27 @@ namespace cougarsimulator2000
             }
             Random random = new Random();
 
+            //A recursive algorithm to emulate walk of a drunk
+            //because that's the best way to generate mazes
+
             Action<Vector2> drunkenWalk = null;
             drunkenWalk = (Vector2 pos) =>
             {
+                //Set current position to open
                 maze[pos.x][pos.y] = true;
 
-                //0 = Y-, 1 = X+, 2 = Y+, 3 = X-
+                //Array of four cardinal directions
                 int[] directions = new int[4];
+                //0 = Y-, 1 = X+, 2 = Y+, 3 = X-
                 for (int i = 0; i < 4; i++)
                     directions[i] = i;
                 
 
                 //Randomize possible directions
                 int[] arr = directions.OrderBy(x => random.Next()).ToArray();
+
+
+                //Walk to every direction (in random order)
                 for (int i = 0; i < 4; i++)
                 {
                     Vector2 target = new Vector2(0,0);
@@ -63,38 +71,59 @@ namespace cougarsimulator2000
                             target.x -= 1;
                             break;
                     }
+
                     //The wall between current position and walk target
                     Vector2 wall = pos + target;
                     //Walk target
                     Vector2 jump = pos + target + target;
+
+                    //If the target is out of bounds
+                    //try the next direction
                     if (jump.x < 1 || jump.y < 1)
                         continue;
                     if (jump.x >= size.x - 1 || jump.y >= size.y - 1)
                         continue;
+
+                    //If the target is already walked once
                     if (maze[jump.x][jump.y] == true)
                     {
+                        //We open the way there anyway, if dice rolls right
                         if (random.Next(interconnectedness) == 0)
                             maze[wall.x][wall.y] = true;
-                        else
-                            continue;
+
+                        //then try the next direction
+                        continue;
                     }
+
+                    //If all's good, open the way to there
+                    //and continue the walk
                     maze[wall.x][wall.y] = true;       
                     drunkenWalk(jump);
+
+                    //then try the next direction
                 }
             };
+
+            //Start the walk from the cell (1,1)
             drunkenWalk(new Vector2(1, 1));
+
+            //After generating a maze, spice thing up a bit
             for (int i = 0; i < openSpots; i++)
             {
                 Vector2 rpos;
                 rpos.x = 1 + random.Next(size.x - 2);
                 rpos.y = 1 + random.Next(size.y - 2);
+
+                //by randomly opening spots in the maze
                 maze[rpos.x][rpos.y] = true;
             }
 
+            //Then write the maze to the TileMap
             for (int i = 0; i < size.x; i++)
                 for (int j = 0; j < size.y; j++)
                 {
                     Tile t = tm.getTile(new Vector2(i, j));
+                    //TODO maze tile types
                     if (maze[i][j])
                         t.type = 1;
                     else
