@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="Controls" Height="300" Width="300">
+        Title="Controls" Height="300" Width="300" Icon="{StaticResource ac_tex}">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
