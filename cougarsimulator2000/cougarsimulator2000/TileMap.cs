@@ -24,6 +24,7 @@ namespace cougarsimulator2000
         {
             return new Vector2(c1.x - c2.x, c1.y - c2.y);
         }
+
     }
 
 
@@ -34,29 +35,27 @@ namespace cougarsimulator2000
 
     public class TileMap
     {
-        private int width = 16;
-        private int height = 16;
-        private List<Tile> tiles;
-
-        public Vector2 getSize()
+        public Vector2 size
         {
-            return new Vector2(width, height);
+            get;
+            private set;
         }
+        private List<Tile> tiles;
+        
 
         public void initialize(Vector2 size)
         {
-            width = size.x;
-            height = size.y;
+            this.size = size;
             tiles = new List<Tile>();
             
-            for (int i = 0; i < width; i++)
-                for (int j = 0; j < width; j++)
+            for (int i = 0; i < size.x; i++)
+                for (int j = 0; j < size.y; j++)
                     tiles.Add(new Tile());
         }
 
         public Tile getTile(Vector2 pos)
         {
-            int vpos = pos.x + pos.y * width;
+            int vpos = pos.x + pos.y * size.x;
             if (vpos < 0 || vpos >= tiles.Count)
                 throw new IndexOutOfRangeException();
             return tiles[vpos];

@@ -34,8 +34,8 @@ namespace cougarsimulator2000
                 gridTileMap.Children.Remove(im);
             tileMapImages = new List<Image>();
 
-            int tileMapWidth = tileMap.getSize().x;
-            int tileMapHeight = tileMap.getSize().y;
+            int tileMapWidth = tileMap.size.x;
+            int tileMapHeight = tileMap.size.y;
 
             for (int i = 0; i < tileMapWidth; i++)
             {
@@ -59,8 +59,10 @@ namespace cougarsimulator2000
                     im.Source = assets.getTileImageSource(tileMap.getTile(new Vector2(i, j)));
 
                     gridTileMap.Children.Add(im);
-                    Grid.SetRow(im, i);
-                    Grid.SetColumn(im, j);
+                    
+                    Grid.SetColumn(im, i);
+                    Grid.SetRow(im, j);
+
                     Grid.SetZIndex(im, -1);
                     tileMapImages.Add(im);
                 }
@@ -81,6 +83,7 @@ namespace cougarsimulator2000
                 im.Source = assets.getTextureImageSource(a.image);
                 if (a.position.x >= 0)
                     Grid.SetColumn(im, a.position.x);
+
                 if (a.position.y >= 0)
                     Grid.SetRow(im, a.position.y);
 
