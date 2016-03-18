@@ -18,7 +18,10 @@
             </MenuItem>
         </Menu>
         <Grid>
-            <TextBlock Text="Insert cool main menu stuff here or something i guess..." />
+            <StackPanel>
+                <TextBlock Text="Insert cool main menu stuff here or something i guess..." />
+                <Button x:Name="btnDebugReroll" Content="Reroll" Click="btnDebugReroll_Click" />
+            </StackPanel>
         </Grid>
     </StackPanel>
 </Window>

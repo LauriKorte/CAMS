@@ -109,5 +109,11 @@ namespace cougarsimulator2000
                 controls.Close();
             
         }
+
+        private void btnDebugReroll_Click(object sender, RoutedEventArgs e)
+        {
+            gameLogic.start();
+            gameView.update();
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace cougarsimulator2000
             for (int i = 0; i < size.x; i++)
             {
                 List<bool> mcol = new List<bool>();
-                for (int j = 0; j < size.x; j++)
+                for (int j = 0; j < size.y; j++)
                     mcol.Add(false);
                 maze.Add(mcol);
             }
@@ -92,7 +92,7 @@ namespace cougarsimulator2000
             }
 
             for (int i = 0; i < size.x; i++)
-                for (int j = 0; j < size.x; j++)
+                for (int j = 0; j < size.y; j++)
                 {
                     Tile t = tm.getTile(new Vector2(i, j));
                     if (maze[i][j])

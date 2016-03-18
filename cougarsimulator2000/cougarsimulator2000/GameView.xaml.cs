@@ -22,7 +22,6 @@ namespace cougarsimulator2000
     public partial class GameView : Window
     {
         private GameLogic gameLogic;
-        private TileMap tileMap;
         private Assets assets;
         private List<Image> tileMapImages = new List<Image>();
         private List<Image> actorImages = new List<Image>();
@@ -30,12 +29,16 @@ namespace cougarsimulator2000
 
         private void updateTileMap()
         {
+            TileMap tileMap = gameLogic.tileMap;
             foreach (var im in tileMapImages)
                 gridTileMap.Children.Remove(im);
             tileMapImages = new List<Image>();
 
             int tileMapWidth = tileMap.size.x;
             int tileMapHeight = tileMap.size.y;
+
+            gridTileMap.ColumnDefinitions.Clear();
+            gridTileMap.RowDefinitions.Clear();
 
             for (int i = 0; i < tileMapWidth; i++)
             {
@@ -102,7 +105,6 @@ namespace cougarsimulator2000
         public GameView(Assets ass, GameLogic gl)
         {
             InitializeComponent();
-            tileMap = gl.tileMap;
             assets = ass;
             gameLogic = gl;
 
