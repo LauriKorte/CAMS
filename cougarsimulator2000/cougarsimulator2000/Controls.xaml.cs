@@ -45,5 +45,30 @@ namespace cougarsimulator2000
         {
             main.passInput(Input.East);
         }
+
+        private void Button_Click_NE(object sender, RoutedEventArgs e)
+        {
+            main.passInput(Input.NorthEast);
+        }
+
+        private void Button_Click_NW(object sender, RoutedEventArgs e)
+        {
+            main.passInput(Input.NorthWest);
+        }
+
+        private void Button_Click_SE(object sender, RoutedEventArgs e)
+        {
+            main.passInput(Input.SouthEast);
+        }
+
+        private void Button_Click_SW(object sender, RoutedEventArgs e)
+        {
+            main.passInput(Input.SouthWest);
+        }
+
+        private void Button_Click_star(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("DO YOU FEEL LUCKY, PUNK? WELL, DO YOU?");
+        }
     }
 }

@@ -102,11 +102,25 @@ namespace cougarsimulator2000
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            
-            if (gameView.IsLoaded)
+            // create messagebox
+            string messageboxAlert = "Are you sure you want to quit?";
+            string messageboxTitle = "Achtung!";
+            MessageBoxButton btn = MessageBoxButton.YesNo;
+            MessageBoxImage icon = MessageBoxImage.Stop;
+
+            // show the messagebox
+            MessageBoxResult answer = MessageBox.Show(messageboxAlert, messageboxTitle, btn, icon);
+
+            if (answer == MessageBoxResult.Yes)
+            {
                 gameView.Close();
-            if (controls.IsLoaded)
                 controls.Close();
+            }
+            else
+            {
+                e.Cancel = true; // some lifehacks
+            }
+
             
         }
 
@@ -114,6 +128,11 @@ namespace cougarsimulator2000
         {
             gameLogic.start();
             gameView.update();
+        }
+
+        private void btnQuit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
