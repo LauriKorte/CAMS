@@ -12,5 +12,6 @@
         <Image x:Key="arrow_down" Source="pack://application:,,,/Resources/arrow_down.png" />
         <Image x:Key="arrow_left" Source="pack://application:,,,/Resources/arrow_left.png" />
         <Image x:Key="arrow_right" Source="pack://application:,,,/Resources/arrow_right.png" />
+        <XmlDataProvider x:Key="items_data"  Source="items.xml" XPath="/" />
     </Application.Resources>
 </Application>

@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace cougarsimulator2000
 {
@@ -18,9 +22,24 @@ namespace cougarsimulator2000
         SouthWest = South|West
     }
 
+
+    [XmlRoot("game")]
+    public class GameDefinitions
+    {
+        [XmlElement("defaultPlayerWeapon")]
+        public string defaultPlayerWeapon
+        {
+            get;
+            set;
+        }
+    }
+
     public class GameLogic
     {
         public Actor player;
+        public ItemList items;
+        public GameDefinitions gameDefinitions;
+        private Assets assets;
 
         public TileMap tileMap
         {
@@ -35,10 +54,16 @@ namespace cougarsimulator2000
         //Will be removed in the future, probably
         private List<Actor> cougars = new List<Actor>();
 
-        public GameLogic()
+        public GameLogic(Assets ass)
         {
             actors = new List<Actor>();
             tileMap = new TileMap();
+            assets = ass;
+
+            gameDefinitions = assets.loadGameDefinitions();
+
+            items = assets.loadItems();
+
             start();
         }       
 
@@ -74,6 +99,19 @@ namespace cougarsimulator2000
                 off.y++;
 
             Vector2 trypos = player.position + off;
+            //Get a list of actors in the tile we're trying to move to
+            /*
+            var e = tileContainsActor(trypos);
+            
+            foreach (var actor in e)
+            {
+                if (actor.isEnemy)
+                {
+                    updateActors();
+                    return;
+                }
+            }
+            */
             if (!isTileBlocking(trypos))
                 player.position += off;
             updateActors();
@@ -81,6 +119,7 @@ namespace cougarsimulator2000
 
         public void start()
         {
+
             //Clear the actors and cougars
             actors.Clear();
             cougars.Clear();
@@ -134,9 +173,29 @@ namespace cougarsimulator2000
                 return true;
             //Otherwise measure tile type
 
+            foreach (var a in tileContainsActor(trypos))
+            {
+                if (a.isBlocking == true)
+                    return true;
+            }
+
             if (tileMap.getTile(trypos).type == 1)
                 return false;
+
+            
             return true;
+        }
+        public List<Actor> tileContainsActor(Vector2 trypos)
+        {
+            List<Actor> acts = new List<Actor>();
+            foreach (Actor actor in actors)
+            {
+                if (actor.position == trypos)
+                {
+                    acts.Add(actor);
+                }
+            }
+            return acts;
         }
     }
 }

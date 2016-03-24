@@ -25,6 +25,15 @@ namespace cougarsimulator2000
             return new Vector2(c1.x - c2.x, c1.y - c2.y);
         }
 
+        public static bool operator == (Vector2 c1, Vector2 c2)
+        {
+            return (c1.x == c2.x) && (c1.y == c2.y);
+        }
+        public static bool operator !=(Vector2 c1, Vector2 c2)
+        {
+            return !(c1 == c2);
+        }
+
     }
 
 

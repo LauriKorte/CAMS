@@ -46,7 +46,7 @@ namespace cougarsimulator2000
             InitializeComponent();
             assets = new Assets();
 
-            gameLogic = new GameLogic();
+            gameLogic = new GameLogic(assets);
 
             constructGameView();
             constructControls();

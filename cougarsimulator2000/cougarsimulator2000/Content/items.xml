@@ -1,0 +1,16 @@
+<items>
+	<weapon>
+		<name>stick</name>
+		<description>fsdlkjksdfoidjf </description>
+		<dieCount>3</dieCount>
+		<dieSize>4</dieSize>
+		<bonus>5</bonus>
+	</weapon>
+	<weapon>
+		<name>supa dupa wappet</name>
+		<description>its a wappet </description>
+		<dieCount>23</dieCount>
+		<dieSize>34</dieSize>
+		<bonus>45</bonus>
+	</weapon>
+</items>

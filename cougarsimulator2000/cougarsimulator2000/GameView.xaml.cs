@@ -29,37 +29,56 @@ namespace cougarsimulator2000
 
         private void updateTileMap()
         {
+            //Tells the size of a singular cell in our tilemap
+            int gridCellW = 32;
+            int gridCellH = 32;
+
+            //Remove all the images which 
             TileMap tileMap = gameLogic.tileMap;
             foreach (var im in tileMapImages)
                 gridTileMap.Children.Remove(im);
+
             tileMapImages = new List<Image>();
 
             int tileMapWidth = tileMap.size.x;
             int tileMapHeight = tileMap.size.y;
 
-            gridTileMap.ColumnDefinitions.Clear();
-            gridTileMap.RowDefinitions.Clear();
+            SizeToContent = SizeToContent.WidthAndHeight;
 
-            for (int i = 0; i < tileMapWidth; i++)
+            //If our tilemap has been resized...
+            if (gridTileMap.ColumnDefinitions.Count != tileMapWidth
+                || gridTileMap.RowDefinitions.Count != tileMapHeight)
             {
-                ColumnDefinition ra = new ColumnDefinition();
-                ra.Width = new GridLength(32);
-                gridTileMap.ColumnDefinitions.Add(ra);
-            }
-            for (int j = 0; j < tileMapHeight; j++)
-            {
-                RowDefinition rt = new RowDefinition();
-                rt.Height = new GridLength(32);
-                gridTileMap.RowDefinitions.Add(rt);
-            }
+                //We just clear everything out
 
+                //Clear all grid column and row definitions
+                gridTileMap.ColumnDefinitions.Clear();
+                gridTileMap.RowDefinitions.Clear();
+
+                //Fill them with new column and row defintions
+                for (int i = 0; i < tileMapWidth; i++)
+                {
+                    ColumnDefinition ra = new ColumnDefinition();
+                    ra.Width = new GridLength(gridCellW);
+                    gridTileMap.ColumnDefinitions.Add(ra);
+                }
+                for (int j = 0; j < tileMapHeight; j++)
+                {
+                    RowDefinition rt = new RowDefinition();
+                    rt.Height = new GridLength(gridCellH);
+                    gridTileMap.RowDefinitions.Add(rt);
+                }
+            }
+            //Fill the grid with tilemap data
             for (int i = 0; i < tileMapWidth; i++)
             {
 
                 for (int j = 0; j < tileMapHeight; j++)
                 {
+                    //Every cell in the tilemap/grid has a single image
                     Image im = new Image();
                     im.Source = assets.getTileImageSource(tileMap.getTile(new Vector2(i, j)));
+                    
 
                     gridTileMap.Children.Add(im);
                     
@@ -74,22 +93,30 @@ namespace cougarsimulator2000
 
         private void updateActors()
         {
+            //Remove the actor images
             foreach (var im in actorImages)
                 gridTileMap.Children.Remove(im);
             actorImages = new List<Image>();
 
+            //Get all of the game actors
             List<Actor> actors = gameLogic.actors;
             foreach (var a in actors)
             {
+                //Create images for them
                 Image im = new Image();
                 gridTileMap.Children.Add(im);
+                //Load correct image
                 im.Source = assets.getTextureImageSource(a.image);
+
+                //In case something is wrong in the game side
+                //we don't want crashes
                 if (a.position.x >= 0)
                     Grid.SetColumn(im, a.position.x);
 
                 if (a.position.y >= 0)
                     Grid.SetRow(im, a.position.y);
 
+                //Set the "depth"
                 Grid.SetZIndex(im, a.depth);
 
                 actorImages.Add(im);
