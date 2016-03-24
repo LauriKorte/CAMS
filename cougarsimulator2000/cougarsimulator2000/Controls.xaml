@@ -10,15 +10,69 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Button Name="btnN" Grid.Row="0" Grid.Column="1" Content="{StaticResource arrow_up}" Click="Button_Click_N"/>
-        <Button Name="btnW" Grid.Column="0" Content="{StaticResource arrow_left}" Click="Button_Click_W" Margin="0,66,0,68" Grid.RowSpan="2"/>
-        <Button Name="btnS" Grid.Row="1" Grid.Column="1" Content="{StaticResource arrow_down}" Click="Button_Click_S"/>
-        <Button Name="btnE" Grid.Column="2" Content="{StaticResource arrow_right}" Click="Button_Click_E" Margin="0,66,0,68" Grid.RowSpan="2"/>
+        <Button>
+            <Image Source="{StaticResource arrow}"  RenderTransformOrigin="0.5,0.5" MouseDown="Button_Click_NW">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="-45"></RotateTransform>
+                </Image.RenderTransform>
+            </Image>
+        </Button>
+        <Button Grid.Column="1">
+            <Image Source="{StaticResource arrow}"  RenderTransformOrigin="0.5,0.5" MouseDown="Button_Click_N">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="0"></RotateTransform>
+                </Image.RenderTransform>
+            </Image>
+        </Button>
+        <Button Grid.Column="2" Grid.Row="0">
+            <Image Source="{StaticResource arrow}"  RenderTransformOrigin="0.5,0.5" MouseDown="Button_Click_NE">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="45"></RotateTransform>
+                </Image.RenderTransform>
+            </Image>
+        </Button>
+        <Button Grid.Column="2" Grid.Row="1">
+            <Image Source="{StaticResource arrow}"  RenderTransformOrigin="0.5,0.5" MouseDown="Button_Click_E">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="90"></RotateTransform>
+                </Image.RenderTransform>
+            </Image>
+        </Button>
+        <Button Grid.Column="2" Grid.Row="2">
+            <Image Source="{StaticResource arrow}"  RenderTransformOrigin="0.5,0.5" MouseDown="Button_Click_SE">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="135"></RotateTransform>
+                </Image.RenderTransform>
+            </Image>
+        </Button>
+        <Button Grid.Column="1" Grid.Row="2" >
+            <Image Source="{StaticResource arrow}"  RenderTransformOrigin="0.5,0.5" MouseDown="Button_Click_S">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="180"></RotateTransform>
+                </Image.RenderTransform>
+            </Image>
+        </Button>
+        <Button  Grid.Row="3">
+            <Image Source="{StaticResource arrow}"  RenderTransformOrigin="0.5,0.5" MouseDown="Button_Click_SW">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="-135"></RotateTransform>
+                </Image.RenderTransform>
+            </Image>
+        </Button>
+        <Button Grid.Row="1">
+            <Image Source="{StaticResource arrow}"  RenderTransformOrigin="0.5,0.5" MouseDown="Button_Click_W">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="-90"></RotateTransform>
+                </Image.RenderTransform>
+            </Image>
+        </Button>
+        <Image Source="{StaticResource sheriff_star}" Grid.Column="1" Grid.Row="1" MouseDown="Button_Click_star"/>
     </Grid>
 </Window>

@@ -64,6 +64,11 @@ namespace cougarsimulator2000
 
             items = assets.loadItems();
 
+            foreach (var v in items.weapons)
+            {
+                Console.Write(v.name + " " + v.description);
+            }
+
             start();
         }       
 

@@ -129,16 +129,10 @@
     <Resource Include="Resources\tex.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\arrow_down.png" />
+    <Resource Include="Resources\arrow.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\arrow_left.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\arrow_right.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\arrow_up.png" />
+    <Resource Include="Resources\sheriff_star.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\game.xml">
