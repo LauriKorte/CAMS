@@ -68,14 +68,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Assets.cs" />
-    <Compile Include="Actor.cs" />
-    <Compile Include="Attack.cs" />
+    <Compile Include="Game\Actor.cs" />
+    <Compile Include="Game\Attack.cs" />
+    <Compile Include="Game\Enemy.cs" />
     <Compile Include="GameLogic.cs" />
-    <Compile Include="Item.cs" />
+    <Compile Include="Game\Item.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MazeGenerator.cs" />
+    <Compile Include="PathFinding.cs" />
     <Compile Include="TileMap.cs" />
     <Compile Include="Controls.xaml.cs">
       <DependentUpon>Controls.xaml</DependentUpon>

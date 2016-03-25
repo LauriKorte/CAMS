@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cougarsimulator2000
 {
-    public class MazeGenerator
+    public static class MazeGenerator
     {
         public static void Generate(TileMap tm, int interconnectedness, int openSpots)
         {

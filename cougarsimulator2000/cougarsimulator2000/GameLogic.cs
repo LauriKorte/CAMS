@@ -74,16 +74,9 @@ namespace cougarsimulator2000
 
         private void updateActors()
         {
-            Random r = new Random();
             foreach (var cugar in cougars)
             {
-                //Cougars are chaotic creatures
-                Vector2 trypos = cugar.position;
-                trypos.x += r.Next(3) - 1;
-                trypos.y += r.Next(3) - 1;
-
-                if (!isTileBlocking(trypos))
-                    cugar.position = trypos;
+                cugar.Update(this);
             }
         }
 
@@ -159,9 +152,10 @@ namespace cougarsimulator2000
             Random r = new Random();
             for (int i = 0; i < 16; i++)
             {
-                Actor a = new Actor();
+                Enemy a = new Enemy();
                 a.image = "ac_cougar";
                 a.depth = 1;
+                
                 //TODO add check for tile collision here
                 a.position.x = r.Next(tileMap.size.x - 2) + 1;
                 a.position.y = r.Next(tileMap.size.y - 2) + 1;
@@ -171,25 +165,48 @@ namespace cougarsimulator2000
             }
         }
 
-        private bool isTileBlocking(Vector2 trypos)
+      
+        public bool isTileBlockingNoActors(Vector2 trypos)
         {
-            //If the desired tile is out of tile map, it is blocking
+            //Just test the tilemap collision parameters
             if (trypos.x < 0 || trypos.y < 0 || trypos.x >= tileMap.size.x || trypos.y >= tileMap.size.y)
                 return true;
-            //Otherwise measure tile type
 
+            if (tileMap.getTile(trypos).type == 1)
+                return false;
+
+            return true;
+        }
+
+        public bool isTileBlocking(Vector2 trypos)
+        {
+            //Go through actors in the tile
             foreach (var a in tileContainsActor(trypos))
             {
                 if (a.isBlocking == true)
                     return true;
             }
 
-            if (tileMap.getTile(trypos).type == 1)
-                return false;
-
-            
-            return true;
+            return isTileBlockingNoActors(trypos);
         }
+
+
+        public bool isTileBlockingExclude(Vector2 trypos, List<Actor> actors)
+        {
+            //Same thing as above, except we exclude a list of actors from the check
+
+            foreach (var a in tileContainsActor(trypos))
+            {
+                if (actors.Contains(a))
+                    continue;
+
+                if (a.isBlocking == true)
+                    return true;
+            }
+
+            return isTileBlockingNoActors(trypos);
+        }
+
         public List<Actor> tileContainsActor(Vector2 trypos)
         {
             List<Actor> acts = new List<Actor>();
