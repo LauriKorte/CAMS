@@ -23,8 +23,51 @@ namespace cougarsimulator2000
         GameView gameView;
         Controls controls;
         Assets assets;
+        bool gameIsRunning = false;
 
+        // create mainwindow
+        public MainWindow()
+        {
+            InitializeComponent();
+            assets = new Assets();
 
+            gameLogic = new GameLogic(assets);
+        }
+
+        // start the game
+        private void btnStartGame_Click(object sender, RoutedEventArgs e)
+        {
+            if (gameIsRunning == false)
+            {
+                constructGameView();
+                constructControls();
+                gameIsRunning = true;
+            }
+            else if (gameView.IsLoaded == true || controls.IsLoaded == true)
+            {
+                string messageboxTitle = "Achtung!";
+                string messageboxAlert = "This will start a new game. Are you sure you want to do this?";
+                MessageBoxButton btn = MessageBoxButton.YesNo;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+
+                // show the messagebox
+                MessageBoxResult answer = MessageBox.Show(messageboxAlert, messageboxTitle, btn, icon);
+
+                if (answer == MessageBoxResult.Yes)
+                {
+                    gameLogic.start();
+                    gameView.update();
+                }
+                else
+                {
+                    // DO NOTHING
+                }
+
+            }
+
+        }
+
+        // create gameview
         private void constructGameView()
         {
             gameView = new GameView(assets, gameLogic);
@@ -33,6 +76,7 @@ namespace cougarsimulator2000
             menuchkShowGameView.IsChecked = true;
         }
 
+        // create controls
         private void constructControls()
         {
             controls = new Controls(this);
@@ -41,17 +85,6 @@ namespace cougarsimulator2000
             menuchkShowControls.IsChecked = true;
         }
 
-        public MainWindow()
-        {
-            InitializeComponent();
-            assets = new Assets();
-
-            gameLogic = new GameLogic(assets);
-
-            constructGameView();
-            constructControls();
-
-        }
 
         private void Controls_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -103,8 +136,8 @@ namespace cougarsimulator2000
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             // create messagebox
-            string messageboxAlert = "Are you sure you want to quit?";
             string messageboxTitle = "Achtung!";
+            string messageboxAlert = "Are you sure you want to quit?";
             MessageBoxButton btn = MessageBoxButton.YesNo;
             MessageBoxImage icon = MessageBoxImage.Stop;
 
@@ -120,14 +153,18 @@ namespace cougarsimulator2000
             {
                 e.Cancel = true; // some lifehacks
             }
-
-            
+          
         }
 
         private void btnDebugReroll_Click(object sender, RoutedEventArgs e)
         {
             gameLogic.start();
             gameView.update();
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void btnQuit_Click(object sender, RoutedEventArgs e)
