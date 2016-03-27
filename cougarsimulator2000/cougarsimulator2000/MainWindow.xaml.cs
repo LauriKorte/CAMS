@@ -22,6 +22,7 @@ namespace cougarsimulator2000
         GameLogic gameLogic;
         GameView gameView;
         Controls controls;
+        Settings settings;
         Assets assets;
         bool gameIsRunning = false;
 
@@ -102,10 +103,15 @@ namespace cougarsimulator2000
             gameView.update();
         }
 
+/********************************************************************************************/
+
+            // In this section there are some errors which shall be sorted out later
         private void menuchkShowControls_Checked(object sender, RoutedEventArgs e)
         {
             if (controls.IsLoaded)
+            {
                 controls.Show();
+            }
             else
             {
                 constructControls();
@@ -115,7 +121,9 @@ namespace cougarsimulator2000
         private void menuchkShowGameView_Checked(object sender, RoutedEventArgs e)
         {
             if (gameView.IsLoaded)
+            {
                 gameView.Show();
+            }
             else
             {
                 constructGameView();
@@ -125,13 +133,13 @@ namespace cougarsimulator2000
         private void menuchkShowGameView_Unchecked(object sender, RoutedEventArgs e)
         {
             gameView.Hide();
-
         }
 
         private void menuchkShowControls_Unchecked(object sender, RoutedEventArgs e)
         {
             controls.Hide();
         }
+/*******************************************************************************************/
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -164,7 +172,8 @@ namespace cougarsimulator2000
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-
+            settings = new Settings();
+            settings.Show();
         }
 
         private void btnQuit_Click(object sender, RoutedEventArgs e)
