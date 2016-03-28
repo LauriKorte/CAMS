@@ -1,10 +1,10 @@
 <items>
 	<weapon>
-		<name>stick</name>
-		<description>fsdlkjksdfoidjf </description>
-		<dieCount>3</dieCount>
-		<dieSize>4</dieSize>
-		<bonus>5</bonus>
+		<name>Colt M1860</name>
+		<description>Colt Army Model 1860. It fires a .44 cartridge, but is quite slow to use.</description>
+		<dieCount>16</dieCount>
+		<dieSize>20</dieSize>
+		<bonus>3</bonus>
 	</weapon>
 	<weapon>
 		<name>supa dupa wappet</name>

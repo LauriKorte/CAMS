@@ -5,11 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="Inventory" Height="300" Width="300">
-    <Grid>
+        Title="Inventory" Height="400" Width="500">
+    <Grid Margin="10" Height="250" VerticalAlignment="Top">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <StackPanel>
-            <Image Source="{StaticResource M1860}" Margin="50,20"/>
-            <Button x:Name="btnReturn" Content="Return" Click="btnReturn_Click" />
+            <Image Source="{StaticResource M1860}" Height="122" Width="126" HorizontalAlignment="Left" MouseDown="M1860_MouseDown"/>
         </StackPanel>
+        <Border BorderBrush="Black" BorderThickness="2" Height="250" VerticalAlignment="Top" Grid.ColumnSpan="4" Grid.RowSpan="2" />
+        <Button x:Name="btnReturn" Content="Return" Click="btnReturn_Click" Height="20" Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Margin="0,0,80,-69" Grid.Row="1" Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

@@ -28,5 +28,10 @@ namespace cougarsimulator2000
         {
             Close();
         }
+
+        private void M1860_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Hasta la vista, baby!");
+        }
     }
 }
