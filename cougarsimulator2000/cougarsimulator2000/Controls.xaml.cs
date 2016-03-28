@@ -19,6 +19,8 @@ namespace cougarsimulator2000
     /// </summary>
     public partial class Controls : Window
     {
+        Inventory inventory;
+
         MainWindow main;
         public Controls(MainWindow mw)
         {
@@ -68,7 +70,9 @@ namespace cougarsimulator2000
 
         private void Button_Click_star(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("DO YOU FEEL LUCKY, PUNK? WELL, DO YOU?");
+            //MessageBox.Show("DO YOU FEEL LUCKY, PUNK? WELL, DO YOU?");
+            inventory = new Inventory();
+            inventory.Show();
         }
     }
 }

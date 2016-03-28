@@ -15,28 +15,18 @@ using System.Windows.Shapes;
 namespace cougarsimulator2000
 {
     /// <summary>
-    /// Interaction logic for Settings.xaml
+    /// Interaction logic for Inventory.xaml
     /// </summary>
-    public partial class Settings : Window
+    public partial class Inventory : Window
     {
-        public Settings()
+        public Inventory()
         {
             InitializeComponent();
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnSaveSettings_Click(object sender, RoutedEventArgs e)
-        {
-            // SAVE THE SETTINGS
-        }
-
-        private void btnCancel_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Close();
+            Close();
         }
     }
 }

@@ -23,6 +23,7 @@ namespace cougarsimulator2000
         GameView gameView;
         Controls controls;
         Settings settings;
+        Inventory inventory;
         Assets assets;
         bool gameIsRunning = false;
 
@@ -154,8 +155,11 @@ namespace cougarsimulator2000
 
             if (answer == MessageBoxResult.Yes)
             {
-                gameView.Close();
-                controls.Close();
+                if (gameIsRunning == true)
+                {
+                    gameView.Close();
+                    controls.Close();
+                }
             }
             else
             {

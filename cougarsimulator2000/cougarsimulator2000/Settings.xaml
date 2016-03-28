@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="Settings" Height="300" Width="400">
+        Title="Settings" Height="300" Width="400" Icon="{StaticResource ac_tex}">
     <Grid>
         <StackPanel Orientation="Horizontal">
             <Label Content="Game volume" Margin="20" />
             <Slider x:Name="sldrVolume" Width="150" Margin="20" />
         </StackPanel>
+        <Label Content="Some cool settings stuff will be here..." Margin="0,52,0,-52"/>
+        <Button x:Name="btnCancel" Content="Cancel" Margin="0,0,15,15" HorizontalAlignment="Right" Width="75" Height="30" VerticalAlignment="Bottom" Click="btnCancel_Click_1" />
+        <Button x:Name="btnSaveSettings" Content="Save" Margin="0,0,110,15" Width="75" HorizontalAlignment="Right" Height="30" VerticalAlignment="Bottom" Click="btnSaveSettings_Click"/>
+        <Calendar Margin="-95,90,95,-90" DisplayDateStart="1/1/1865" DisplayDate="4/6/1880" SelectedDate="4/6/1880" DisplayDateEnd="12/31/1899"/>
     </Grid>
 </Window>
