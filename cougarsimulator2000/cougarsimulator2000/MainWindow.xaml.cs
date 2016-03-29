@@ -23,7 +23,6 @@ namespace cougarsimulator2000
         GameView gameView;
         Controls controls;
         Settings settings;
-        Inventory inventory;
         Assets assets;
         bool gameIsRunning = false;
 
@@ -34,6 +33,9 @@ namespace cougarsimulator2000
             assets = new Assets();
 
             gameLogic = new GameLogic(assets);
+            gameView = new GameView(assets, gameLogic);
+            controls = new Controls(this);
+            settings = new Settings();
         }
 
         // start the game
@@ -115,6 +117,12 @@ namespace cougarsimulator2000
             }
             else
             {
+                if (gameIsRunning == false)
+                {
+                    MessageBox.Show("You need to start the game first!");
+                    menuchkShowControls.IsChecked = false;
+                }
+                else
                 constructControls();
             }
         }
@@ -127,6 +135,12 @@ namespace cougarsimulator2000
             }
             else
             {
+                if (gameIsRunning == false)
+                {
+                    MessageBox.Show("You need to start the game first!");
+                    menuchkShowGameView.IsChecked = false;
+                }
+                else
                 constructGameView();
             }
         }
@@ -177,7 +191,7 @@ namespace cougarsimulator2000
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
             settings = new Settings();
-            settings.Show();
+            settings.ShowDialog();
         }
 
         private void btnQuit_Click(object sender, RoutedEventArgs e)
