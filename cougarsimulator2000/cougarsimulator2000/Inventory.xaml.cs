@@ -31,7 +31,15 @@ namespace cougarsimulator2000
 
         private void M1860_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show("Hasta la vista, baby!");
+            MessageBox.Show("Colt Army Model 1860");
+        }
+        private void M1873_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Colt Model 1873 'Peacemaker'");
+        }
+        private void Winchester_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Winchester Model 1873");
         }
     }
 }
