@@ -6,23 +6,23 @@
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
         Title="Inventory" Height="400" Width="500" Icon="{StaticResource ac_tex}">
-    <Grid Margin="10" Height="250" VerticalAlignment="Top">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        
-        <Image Source="{StaticResource M1860}" Height="122" Width="126" HorizontalAlignment="Left" MouseDown="M1860_MouseDown" Grid.Column="0"/>
-        <Image Source="{StaticResource M1873}" Height="122" Width="126" HorizontalAlignment="Left" MouseDown="M1873_MouseDown" Grid.Column="1"/>
-        <Image Source="{StaticResource Winchester}" Height="122" Width="126" HorizontalAlignment="Left" MouseDown="Winchester_MouseDown" Grid.Column="2"/>
-        
-        <Border BorderBrush="Black" BorderThickness="2" Height="250" VerticalAlignment="Top" Grid.ColumnSpan="4" Grid.RowSpan="2" />
-        <Button x:Name="btnReturn" Content="Return" Click="btnReturn_Click" Height="20" Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Column="1" Margin="0,0,80,-69" Grid.Row="1" Grid.ColumnSpan="2"/>
+    <Grid>
+        <ListBox x:Name="lbWeapons" 
+         ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Deleteable, Mode=TwoWay}" />
+                        <Label Content="{Binding Name}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Image Source="{StaticResource M1860}" HorizontalAlignment="Left" MouseDown="M1860_MouseDown" Grid.Column="0" Margin="157,181,0,66"/>
+        <Image Source="{StaticResource M1873}"  HorizontalAlignment="Left" MouseDown="M1873_MouseDown" Margin="84,31,0,216"/>
+        <Image Source="{StaticResource Winchester}" HorizontalAlignment="Left" MouseDown="Winchester_MouseDown" Margin="265,54,0,193"/>
+
+        <Button x:Name="btnReturn" Content="Return" Click="btnReturn_Click" Height="20" Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
     </Grid>
 </Window>

@@ -169,12 +169,7 @@ namespace cougarsimulator2000
 
             if (answer == MessageBoxResult.Yes)
             {
-                if (gameIsRunning == true)
-                {
-                    gameView.Close();
-                    controls.Close();
-                    App.Current.Shutdown();
-                }
+                App.Current.Shutdown();
             }
             else
             {
@@ -191,13 +186,23 @@ namespace cougarsimulator2000
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-            settings = new Settings();
-            settings.ShowDialog();
+            //settings = new Settings();
+            // settings.ShowDialog();
+            logText("joo", "asd");
         }
 
         private void btnQuit_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        public void logText(params Object[] log)
+        {
+            foreach (var a in log)
+            {
+                controls.txtLog.Text += a;
+            }
+            controls.txtLog.Text += "\n";
         }
     }
 }
