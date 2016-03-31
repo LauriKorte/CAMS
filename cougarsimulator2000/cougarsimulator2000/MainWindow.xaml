@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="MainWindow" x:Name="mainWindow" Height="400" Width="500" Closing="Window_Closing" Icon="{StaticResource ac_tex}">
+        Title="MainWindow" x:Name="mainWindow" Height="400" Width="500" Closing="Window_Closing" Icon="{StaticResource ac_tex}"
+        FontFamily="Comic Sans MS" FontSize="20">
 
     <StackPanel>
         <Menu IsMainMenu="True">
@@ -17,9 +18,8 @@
                 <MenuItem Header="Sod off"/>
             </MenuItem>
         </Menu>
-        <Grid>
-        </Grid>
-        <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Left" Margin="20">
+        <Label Content="Cougar ate my stallion!" HorizontalAlignment="Center" Margin="0,10,0,10" FontSize="30"/>
+        <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Center">
             <StackPanel>
                 <Button x:Name="btnStartGame" Content="Play" Margin="0,0,0,10" Height="30" Click="btnStartGame_Click" />
             </StackPanel>
@@ -30,7 +30,7 @@
                 <Button x:Name="btnQuit" Content="Quit" Height="30" Click="btnQuit_Click" />
             </StackPanel>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Image Source="{StaticResource ac_tex}" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         </StackPanel>
     </StackPanel>

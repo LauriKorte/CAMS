@@ -205,7 +205,8 @@ namespace cougarsimulator2000
                 return;
             foreach (var a in log)
             {
-                controls.txtLog.Text += a.ToString();
+                if (a != null)
+                    controls.txtLog.Text += a.ToString();
             }
             controls.txtLog.Text += "\n";
             controls.scrLog.ScrollToBottom();

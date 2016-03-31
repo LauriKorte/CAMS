@@ -22,6 +22,7 @@
                                 ToolTipService.ShowDuration="5000" ToolTipService.BetweenShowDelay="1" 
                                 ToolTip="{Binding definition.description}" >
                         <Label Content="{Binding definition.name}"/>
+                        <Label Content="{Binding count}"/>
                         <Image Source="{Binding definition.image}" />
                     </StackPanel>
                 </DataTemplate>
