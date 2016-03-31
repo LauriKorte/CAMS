@@ -15,7 +15,7 @@ namespace cougarsimulator2000
         {
             get { return _health; }
 
-            set { _health = value; NotifyPropertyChanged("name"); }
+            set { _health = value; NotifyPropertyChanged("health"); }
         }
 
         public int depth = 0;
@@ -59,6 +59,8 @@ namespace cougarsimulator2000
         {
             isBlocking = true;
             isEnemy = false;
+            health = 10;
+            name = "nameless";
         }
 
         virtual public bool attack(GameLogic gl, Actor ac)

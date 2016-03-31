@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -149,24 +150,35 @@ namespace cougarsimulator2000
         }
     }
 
-    public class Item
+    public class Item : INotifyPropertyChanged
     {
         public ItemDefinition definition
         {
             get;
-            set;
         }
-        public int count
-        {
-            get;
-            set;
-        }
-
+      
 
         public Item(ItemDefinition def, int cnt = 1)
         {
             definition = def;
             count = cnt;
+        }
+
+        private int _count;
+        public int count
+        {
+            get { return _count; }
+            set { _count = value; NotifyPropertyChanged("count"); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
     }
