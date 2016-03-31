@@ -5,8 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="Controls" Height="300" Width="300" Icon="{StaticResource ac_tex}">
-    <Grid>
+        Title="Controls" Height="450" Width="300" Icon="{StaticResource ac_tex}">
+<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Row="1">
+            <TextBlock x:Name="txtLog" Text="This shall contain info about everything, all text of the game and stuff..." TextWrapping="Wrap" Grid.Row="1" />
+        </ScrollViewer>
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
@@ -73,6 +84,7 @@
                 </Image.RenderTransform>
             </Image>
         </Button>
-        <Image Source="{StaticResource sheriff_star}" Grid.Column="1" Grid.Row="1" MouseDown="Button_Click_star"/>
-    </Grid>
+            <Image Source="{StaticResource sheriff_star}" Grid.Column="1" Grid.Row="1" MouseDown="Button_Click_star"/>
+        </Grid>
+</Grid>
 </Window>

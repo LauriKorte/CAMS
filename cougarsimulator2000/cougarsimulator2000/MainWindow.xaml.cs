@@ -173,6 +173,7 @@ namespace cougarsimulator2000
                 {
                     gameView.Close();
                     controls.Close();
+                    App.Current.Shutdown();
                 }
             }
             else

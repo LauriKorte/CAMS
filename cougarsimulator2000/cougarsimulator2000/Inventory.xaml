@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="Inventory" Height="400" Width="500" >
+        Title="Inventory" Height="400" Width="500" Icon="{StaticResource ac_tex}">
     <Grid Margin="10" Height="250" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
