@@ -74,7 +74,7 @@ namespace cougarsimulator2000
             if (inventory.IsLoaded == false)
             {
                 Inventory inv2 = new Inventory();
-                inv2.lbWeapons.ItemsSource = inventory.lbWeapons.ItemsSource;
+                inv2.DataContext = inventory.DataContext;
                 inventory = inv2;
             }
             inventory.Show();
