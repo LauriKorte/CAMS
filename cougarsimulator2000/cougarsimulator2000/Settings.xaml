@@ -5,15 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="Settings" Height="300" Width="400" Icon="{StaticResource ac_tex}">
+        Title="Settings" Height="300" Width="400" Icon="{StaticResource ac_tex}" FontFamily="Papyrus" FontSize="16" Topmost="True">
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Game volume" Margin="20" />
-            <Slider x:Name="sldrVolume" Width="150" Margin="20" />
+            <Label Content="Game volume" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,20,20,0" Height="30"/>
+            
+            <Slider x:Name="sldrVolume" Width="150" Height="30" Maximum="100" Minimum="0" TickFrequency="10" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,22,0,0" 
+                    TickPlacement="BottomRight" Ticks="0,10,20,30,40,50,60,70,80,90,100" IsSnapToTickEnabled="True" ValueChanged="sldrVolume_ValueChanged" Cursor="Hand"/>
         </StackPanel>
-        <Label Content="Some cool settings stuff will be here..." Margin="0,52,0,-52"/>
+        <Label Content="Some cool settings stuff will be here... at some point..." HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button x:Name="btnCancel" Content="Cancel" Margin="0,0,15,15" HorizontalAlignment="Right" Width="75" Height="30" VerticalAlignment="Bottom" Click="btnCancel_Click_1" />
-        <Button x:Name="btnSaveSettings" Content="Save" Margin="0,0,110,15" Width="75" HorizontalAlignment="Right" Height="30" VerticalAlignment="Bottom" Click="btnSaveSettings_Click"/>
-        <Calendar Margin="-95,90,95,-90" DisplayDateStart="1/1/1865" DisplayDate="4/6/1880" SelectedDate="4/6/1880" DisplayDateEnd="12/31/1899"/>
+        <Button x:Name="btnSaveSettings" Content="Apply" Margin="0,0,110,15" Width="75" HorizontalAlignment="Right" Height="30" VerticalAlignment="Bottom" Click="btnSaveSettings_Click"/>
+        <!--<Calendar Margin="-95,90,95,-90" DisplayDateStart="1/1/1865" DisplayDate="4/6/1880" SelectedDate="4/6/1880" DisplayDateEnd="12/31/1899"/>-->
     </Grid>
 </Window>

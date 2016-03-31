@@ -8,8 +8,8 @@
         Title="Inventory" Height="500" Width="500" Icon="{StaticResource ac_tex}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -23,7 +23,7 @@
                                 ToolTip="{Binding definition.description}" >
                         <Label Content="{Binding definition.name}"/>
                         <Label Content="{Binding count}"/>
-                        <Image Source="{Binding definition.image}" />
+                        <Image Source="{Binding definition.image}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -32,6 +32,6 @@
             <Label Content="{Binding name, Mode=TwoWay}"/>
             <Label Content="{Binding health , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
-        <Button x:Name="btnReturn" Content="Return" Click="btnReturn_Click" Height="20" Width="75" Grid.Row="1"/>
+        <Button x:Name="btnReturn" Content="Return" Click="btnReturn_Click" Height="20" Width="75" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,20"/>
     </Grid>
 </Window>

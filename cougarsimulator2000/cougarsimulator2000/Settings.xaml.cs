@@ -24,11 +24,6 @@ namespace cougarsimulator2000
             InitializeComponent();
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void btnSaveSettings_Click(object sender, RoutedEventArgs e)
         {
             // SAVE THE SETTINGS
@@ -37,6 +32,11 @@ namespace cougarsimulator2000
         private void btnCancel_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void sldrVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
         }
     }
 }

@@ -9,15 +9,18 @@
     <icon>M1860</icon>
 	</weapon>
 	<weapon>
-		<name>supa dupa wappet</name>
-		<description>its a wappet </description>
+		<name>Winchester M1873</name>
+		<description>Winchester Model 1873. It fires a .44 rifle cartridge.</description>
 		<dieCount>23</dieCount>
 		<dieSize>34</dieSize>
 		<bonus>45</bonus>
+    <ammunition>.44 WCF cartridge</ammunition>
+    <icon>Winchester</icon>
 	</weapon>
 
   <other>
     <name>.44 paper cartridge</name>
     <description>A primitive form of ammunition.</description>
+    <icon>Revolver_ammo</icon>
   </other>
 </items>

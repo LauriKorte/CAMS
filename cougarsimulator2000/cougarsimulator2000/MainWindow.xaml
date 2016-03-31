@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="MainWindow" x:Name="mainWindow" Height="400" Width="500" Closing="Window_Closing" Icon="{StaticResource ac_tex}"
-        FontFamily="Comic Sans MS" FontSize="20">
+        Title="MainWindow" x:Name="mainWindow" Height="500" Width="600" Closing="Window_Closing" Icon="{StaticResource ac_tex}"
+        FontFamily="Papyrus" FontSize="20">
 
     <StackPanel>
         <Menu IsMainMenu="True">
@@ -18,16 +18,16 @@
                 <MenuItem Header="Sod off"/>
             </MenuItem>
         </Menu>
-        <Label Content="Cougar ate my stallion!" HorizontalAlignment="Center" Margin="0,10,0,10" FontSize="30"/>
+        <Label Content="Cougar ate my stallion!" HorizontalAlignment="Center" Margin="0,10,0,10" FontSize="35"/>
         <StackPanel Orientation="Vertical" Width="200" HorizontalAlignment="Center">
             <StackPanel>
-                <Button x:Name="btnStartGame" Content="Play" Margin="0,0,0,10" Height="30" Click="btnStartGame_Click" />
+                <Button x:Name="btnStartGame" Content="Play" Margin="0,0,0,10" Height="40" Click="btnStartGame_Click" />
             </StackPanel>
             <StackPanel>
-                <Button x:Name="btnSettings" Content="Settings" Margin="0,0,0,10" Height="30" Click="btnSettings_Click" />
+                <Button x:Name="btnSettings" Content="Settings" Margin="0,0,0,10" Height="40" Click="btnSettings_Click" />
             </StackPanel>
             <StackPanel>
-                <Button x:Name="btnQuit" Content="Quit" Height="30" Click="btnQuit_Click" />
+                <Button x:Name="btnQuit" Content="Quit" Height="40" Click="btnQuit_Click" />
             </StackPanel>
         </StackPanel>
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">

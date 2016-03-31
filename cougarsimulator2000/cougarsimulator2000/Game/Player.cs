@@ -74,7 +74,7 @@ namespace cougarsimulator2000
                 }
                 gl.logGameMessage("Ya shot some of them ", it.definition.name);
                 changeItemCount(it, -1);
-                gl.logGameMessage("Ya got only ", it.count, "left");
+                gl.logGameMessage("Ya got only ", it.count, " left.");
             }
             gl.logGameMessage("");
             int dam = weapon.damageBonus;
