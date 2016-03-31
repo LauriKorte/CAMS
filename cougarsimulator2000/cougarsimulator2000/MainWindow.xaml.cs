@@ -70,7 +70,7 @@ namespace cougarsimulator2000
 
             }
             if (controls.inventory != null)
-                controls.inventory.lbWeapons.ItemsSource = gameLogic.player.inventory; // Listboxin itemit pelaajan inventorysta
+                controls.inventory.DataContext = gameLogic.player; // Listboxin itemit pelaajan inventorysta
 
         }
 
@@ -91,7 +91,7 @@ namespace cougarsimulator2000
             controls.Closing += Controls_Closing;
             menuchkShowControls.IsChecked = true;
             if (controls.inventory != null)
-                controls.inventory.lbWeapons.ItemsSource = gameLogic.player.inventory; // Listboxin itemit pelaajan inventorysta
+                controls.inventory.DataContext = gameLogic.player; // Listboxin itemit pelaajan inventorysta
         }
 
 

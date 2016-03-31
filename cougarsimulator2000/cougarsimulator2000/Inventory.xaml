@@ -15,7 +15,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <ListBox x:Name="lbWeapons" 
-         ScrollViewer.VerticalScrollBarVisibility="Auto" >
+         ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding inventory}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Height="96" ToolTipService.InitialShowDelay="500" 
@@ -27,6 +27,10 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <StackPanel Grid.Row="1">
+            <Label Content="{Binding name, Mode=TwoWay}"/>
+            <Label Content="{Binding health , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
         <Button x:Name="btnReturn" Content="Return" Click="btnReturn_Click" Height="20" Width="75" Grid.Row="1"/>
     </Grid>
 </Window>
