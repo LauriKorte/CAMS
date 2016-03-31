@@ -47,6 +47,13 @@ namespace cougarsimulator2000
             set;
         }
 
+        [XmlElement("playerGoryDeathMessage")]
+        public string playerGoryDeathMessage
+        {
+            get;
+            set;
+        }
+
         [XmlElement("playerImage")]
         public string playerImage
         {
@@ -198,6 +205,7 @@ namespace cougarsimulator2000
             player.postMortem = gameDefinitions.playerDeathMessage;
             player.nameArticle = "";
             player.nameDefArticle = "";
+            player.goryPostMortem = gameDefinitions.playerGoryDeathMessage;
             player.image =  gameDefinitions.playerImage; //give it a fancy hat
 
             player.depth = 2;
@@ -230,6 +238,7 @@ namespace cougarsimulator2000
                 Enemy a = new Enemy();
                 a.image = "ac_cougar";
                 a.postMortem = "Evil glow fades from the cougar's eyes.";
+                a.goryPostMortem = "The cougar is obliterated.";
                 a.depth = 1;
                 
                 //TODO add check for tile collision here

@@ -34,6 +34,7 @@ namespace cougarsimulator2000
         }
 
         public string postMortem = "da ding is dead";
+        public string goryPostMortem = "da ding is really dead";
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
@@ -80,7 +81,10 @@ namespace cougarsimulator2000
             if (health <= 0)
             {
                 isDead = true;
-                gl.logGameMessage(postMortem);
+                if (health <= 10)
+                    gl.logGameMessage(goryPostMortem);
+                else
+                    gl.logGameMessage(postMortem);
                 gl.removeActor(this);
             }
         }

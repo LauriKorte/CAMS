@@ -3,5 +3,6 @@
   <defaultPlayerAmmo>24</defaultPlayerAmmo>
   <playerName>Gunpowder Tex</playerName>
   <playerDeathMessage>Gunpowder Tex lies dead.</playerDeathMessage>
+  <playerGoryDeathMessage>Gunpowder Tex is torn to pieces.</playerGoryDeathMessage>
   <playerImage>ac_tex</playerImage>
 </game>
