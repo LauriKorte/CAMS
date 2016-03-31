@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,8 +10,14 @@ namespace cougarsimulator2000
 {
     public class Player : Actor
     {
-        public ObservableCollection<Item> inventory = new ObservableCollection<Item>();
+        public ObservableCollection<Item> inventory
+        {
+            get;
+            set;
+        }
         public WeaponDefinition weapon = null;
+
+
 
         public Item getItemByName(string name)
         {
@@ -42,6 +49,7 @@ namespace cougarsimulator2000
 
         public Player()
         {
+            inventory = new ObservableCollection<Item>();
         }
 
         override public void update(GameLogic gl)

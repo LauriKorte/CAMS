@@ -85,9 +85,7 @@ namespace cougarsimulator2000
         {
             logger(args);
         }
-
-        //Will be removed in the future, probably
-        private List<Actor> cougars = new List<Actor>();
+        
         private GameLogDelegate logger;
 
         private List<Actor> actorsToDelete = new List<Actor>();
@@ -175,9 +173,8 @@ namespace cougarsimulator2000
         public void start()
         {
 
-            //Clear the actors and cougars
+            //Clear the actors
             actors.Clear();
-            cougars.Clear();
 
             Random rand = new Random();
             //Map size should be uneven, odd (11,13,15,17)
@@ -238,8 +235,7 @@ namespace cougarsimulator2000
                 //TODO add check for tile collision here
                 a.position.x = r.Next(tileMap.size.x - 2) + 1;
                 a.position.y = r.Next(tileMap.size.y - 2) + 1;
-
-                cougars.Add(a);
+                
                 actors.Add(a);
             }
         }

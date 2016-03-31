@@ -69,7 +69,6 @@
     </Compile>
     <Compile Include="Assets.cs" />
     <Compile Include="Game\Actor.cs" />
-    <Compile Include="Game\Attack.cs" />
     <Compile Include="Game\Enemy.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="Game\Item.cs" />

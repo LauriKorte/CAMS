@@ -1,23 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace cougarsimulator2000
 {
-    public class Actor
+    public class Actor : INotifyPropertyChanged
     {
         public Vector2 position;
-        public int health = 10;
+        private int _health;
+        public int health
+        {
+            get { return _health; }
+
+            set { _health = value; NotifyPropertyChanged("name"); }
+        }
+
         public int depth = 0;
         public bool isDead = false;
         public string image;
 
         public string nameArticle = "a ";
         public string nameDefArticle = "the ";
-        public string name = "cougar";
+
+        private string _name;
+        public string name
+        {
+            get { return _name; }
+            
+            set { _name = value; NotifyPropertyChanged("name"); }
+        }
+
         public string postMortem = "da ding is dead";
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         public bool isBlocking
         {
             get;
