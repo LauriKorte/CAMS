@@ -73,6 +73,7 @@
     <Compile Include="Game\Enemy.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="Game\Item.cs" />
+    <Compile Include="Game\Player.cs" />
     <Compile Include="Inventory.xaml.cs">
       <DependentUpon>Inventory.xaml</DependentUpon>
     </Compile>

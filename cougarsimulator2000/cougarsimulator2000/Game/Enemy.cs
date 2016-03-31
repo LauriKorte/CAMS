@@ -13,7 +13,7 @@ namespace cougarsimulator2000
             this.isEnemy = true;
         }
 
-        override public void Update(GameLogic gl) 
+        override public void update(GameLogic gl) 
         {
             //Cougars smell the fear of a man
 

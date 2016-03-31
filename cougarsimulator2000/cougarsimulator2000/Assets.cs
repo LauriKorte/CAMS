@@ -20,6 +20,8 @@ namespace cougarsimulator2000
         }
         public ImageSource getTextureImageSource(string t)
         {
+            if (t == null)
+                return null;
             return (ImageSource)Application.Current.Resources[t];
         }
 
@@ -31,6 +33,7 @@ namespace cougarsimulator2000
                 using (var xmlReader = XmlReader.Create(Application.GetContentStream(new Uri("content/items.xml", UriKind.Relative)).Stream))
                 {
                     var items = (ItemList)ser.Deserialize(xmlReader);
+                    items.loadItemImages(this);
                     return items;
                 }
             }

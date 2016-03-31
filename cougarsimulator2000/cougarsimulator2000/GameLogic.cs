@@ -32,11 +32,17 @@ namespace cougarsimulator2000
             get;
             set;
         }
+        [XmlElement("defaultPlayerAmmo")]
+        public int defaultPlayerAmmo
+        {
+            get;
+            set;
+        }
     }
 
     public class GameLogic
     {
-        public Actor player;
+        public Player player;
         public ItemList items;
         public GameDefinitions gameDefinitions;
         private Assets assets;
@@ -49,6 +55,13 @@ namespace cougarsimulator2000
         public List<Actor> actors
         {
             get;
+        }
+
+        public void logGameMessage(params Object[] args)
+        {
+            foreach (var v in args)
+                Console.Write(v.ToString());
+            Console.WriteLine();
         }
 
         //Will be removed in the future, probably
@@ -74,9 +87,9 @@ namespace cougarsimulator2000
 
         private void updateActors()
         {
-            foreach (var cugar in cougars)
+            foreach (var actor in actors)
             {
-                cugar.Update(this);
+                actor.update(this);
             }
         }
 
@@ -98,18 +111,21 @@ namespace cougarsimulator2000
 
             Vector2 trypos = player.position + off;
             //Get a list of actors in the tile we're trying to move to
-            /*
-            var e = tileContainsActor(trypos);
             
+            var e = tileContainsActor(trypos);
             foreach (var actor in e)
             {
                 if (actor.isEnemy)
                 {
-                    updateActors();
-                    return;
+                    if (player.attack(this, actor))
+                    {
+                        updateActors();
+                        return;
+                    }
+                    break;
                 }
             }
-            */
+            
             if (!isTileBlocking(trypos))
                 player.position += off;
             updateActors();
@@ -139,11 +155,32 @@ namespace cougarsimulator2000
                     tileMap.getTile(new Vector2(i,j)).type = 1;
             */
             //Make a new player
-            player = new Actor();
+            player = new Player();
             player.image = "ac_tex"; //give it a fancy hat
             player.depth = 2;
             player.position.x = 1;
             player.position.y = 1;
+            Console.WriteLine(gameDefinitions.defaultPlayerWeapon);
+            ItemDefinition idef = items.getItemDefinition(gameDefinitions.defaultPlayerWeapon);
+            if (idef != null)
+            {
+                player.inventory.Add(new Item(idef));
+                WeaponDefinition wdef = idef as WeaponDefinition;
+                if (wdef != null)
+                {
+                    ItemDefinition adef = items.getItemDefinition(wdef.ammunitionType);
+                    if (adef != null)
+                    {
+                        player.inventory.Add(new Item(adef, gameDefinitions.defaultPlayerAmmo));
+                    }
+                }
+            }
+
+            logGameMessage(player.inventory.Count);
+            foreach (var v in player.inventory)
+            {
+                logGameMessage(v.definition.name);
+            }
 
             actors.Add(player);
 

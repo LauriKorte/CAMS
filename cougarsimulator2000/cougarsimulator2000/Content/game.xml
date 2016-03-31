@@ -1,5 +1,4 @@
 <game>
-	<defaultPlayerWeapon>
-		stick
-	</defaultPlayerWeapon>
+	<defaultPlayerWeapon>Colt M1860</defaultPlayerWeapon>
+  <defaultPlayerAmmo>84</defaultPlayerAmmo>
 </game>

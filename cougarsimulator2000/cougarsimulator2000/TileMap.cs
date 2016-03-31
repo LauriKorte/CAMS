@@ -33,6 +33,7 @@ namespace cougarsimulator2000
         {
             return !(c1 == c2);
         }
+        
 
     }
 

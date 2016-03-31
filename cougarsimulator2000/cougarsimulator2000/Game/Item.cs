@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Xml.Serialization;
 
 namespace cougarsimulator2000
@@ -21,10 +22,38 @@ namespace cougarsimulator2000
         public ItemList()
         {
             weapons = new List<WeaponDefinition>();
+            others = new List<ItemDefinition>();
+        }
+
+        public ItemDefinition getItemDefinition(string str)
+        {
+            foreach (var w in weapons)
+            {
+                if (w.name == str)
+                    return w;
+            }
+            foreach (var o in others)
+            {
+                if (o.name == str)
+                    return o;
+            }
+            return null;
+        }
+
+        public void loadItemImages(Assets ass)
+        {
+            foreach (var w in weapons)
+                w.image = ass.getTextureImageSource(w.icon);
+            foreach (var o in others)
+                o.image = ass.getTextureImageSource(o.icon);
+
         }
 
         [XmlElement("weapon")]
         public List<WeaponDefinition> weapons { get; set; }
+
+        [XmlElement("other")]
+        public List<ItemDefinition> others { get; set; }
     }
 
     public class ItemDefinition
@@ -43,6 +72,14 @@ namespace cougarsimulator2000
             set;
         }
 
+
+        [XmlElement("icon")]
+        public string icon { get; set; }
+
+
+        [XmlIgnore]
+        public ImageSource image;
+
         protected ItemType type;
         public ItemType itemType
         {
@@ -50,6 +87,11 @@ namespace cougarsimulator2000
             {
                 return type;
             }
+        }
+
+        public ItemDefinition()
+        {
+            type = ItemType.Other;
         }
     }
 
@@ -64,18 +106,25 @@ namespace cougarsimulator2000
         }
 
         [XmlElement("dieSize")]
-        int damageDieSize
+        public int damageDieSize
         {
             get;
             set;
         }
         [XmlElement("bonus")]
-        int damageBonus
+        public int damageBonus
         {
             get;
             set;
         }
-        WeaponDefinition()
+
+        [XmlElement("ammunition")]
+        public string ammunitionType
+        {
+            get;
+            set;
+        }
+        public WeaponDefinition()
         {
             type = ItemType.Weapon;
         }
@@ -83,7 +132,14 @@ namespace cougarsimulator2000
 
     public class Item
     {
-        ItemDefinition definition;
-        int count;
+        public ItemDefinition definition;
+        public int count;
+
+        public Item(ItemDefinition def, int cnt = 1)
+        {
+            definition = def;
+            count = cnt;
+        }
+
     }
 }

@@ -5,6 +5,8 @@
 		<dieCount>16</dieCount>
 		<dieSize>20</dieSize>
 		<bonus>3</bonus>
+    <ammunition>.44 paper cartridge</ammunition>
+    <icon>M1860</icon>
 	</weapon>
 	<weapon>
 		<name>supa dupa wappet</name>
@@ -13,4 +15,9 @@
 		<dieSize>34</dieSize>
 		<bonus>45</bonus>
 	</weapon>
+
+  <other>
+    <name>.44 paper cartridge</name>
+    <description>a primitive form of ammunition</description>
+  </other>
 </items>

@@ -28,9 +28,14 @@ namespace cougarsimulator2000
             isEnemy = false;
         }
 
-        virtual public void Update(GameLogic gl)
+        virtual public bool attack(GameLogic gl, Actor ac)
         {
+            return false;
         }
 
+        virtual public void update(GameLogic gl)
+        {
+
+        }
     }
 }
