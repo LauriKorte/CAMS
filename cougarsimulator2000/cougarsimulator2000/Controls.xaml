@@ -14,7 +14,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.Row="1">
+        <ScrollViewer Grid.Row="1" x:Name="scrLog">
             <TextBlock x:Name="txtLog" Text="This shall contain info about everything, all text of the game and stuff..." TextWrapping="Wrap" Grid.Row="1" />
         </ScrollViewer>
         <Grid>

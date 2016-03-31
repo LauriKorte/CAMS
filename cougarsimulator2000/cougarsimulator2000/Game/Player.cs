@@ -11,9 +11,37 @@ namespace cougarsimulator2000
     {
         public ObservableCollection<Item> inventory = new ObservableCollection<Item>();
         public WeaponDefinition weapon = null;
+
+        public Item getItemByName(string name)
+        {
+            foreach(var v in inventory)
+            {
+                if (v.definition.name == name)
+                    return v;
+            }
+            return null;
+        }
+        public Item getItemByDef(ItemDefinition idef)
+        {
+            foreach (var v in inventory)
+            {
+                if (v.definition == idef)
+                    return v;
+            }
+            return null;
+        }
+
+        public void changeItemCount(Item i, int change)
+        {
+            i.count += change;
+            if (i.count <= 0)
+            {
+                inventory.Remove(i);
+            }
+        }
+
         public Player()
         {
-
         }
 
         override public void update(GameLogic gl)
@@ -28,6 +56,27 @@ namespace cougarsimulator2000
                 return false;
             }
             gl.logGameMessage("Ya got a wappet son!");
+            if (weapon.ammunitionDefinition != null)
+            {
+                Item it = getItemByDef(weapon.ammunitionDefinition);
+                if (it == null)
+                {
+                    gl.logGameMessage("Ya got no ammo son!");
+                    return false;
+                }
+                gl.logGameMessage("Ya shot some of them ", it.definition.name);
+                changeItemCount(it, -1);
+                gl.logGameMessage("Ya got only ", it.count, "left");
+            }
+            gl.logGameMessage("");
+            int dam = weapon.damageBonus;
+            Random r = new Random();
+            for (int i = 0; i < weapon.damageDieCount; i++)
+            {
+                dam += r.Next(weapon.damageDieSize);
+            }
+            ac.damage(gl, dam, "was shot a bit");
+            
             return true;
         }
     }

@@ -9,9 +9,15 @@ namespace cougarsimulator2000
     public class Actor
     {
         public Vector2 position;
+        public int health = 10;
         public int depth = 0;
+        public bool isDead = false;
         public string image;
 
+        public string nameArticle = "a ";
+        public string nameDefArticle = "the ";
+        public string name = "cougar";
+        public string postMortem = "da ding is dead";
         public bool isBlocking
         {
             get;
@@ -36,6 +42,18 @@ namespace cougarsimulator2000
         virtual public void update(GameLogic gl)
         {
 
+        }
+
+        virtual public void damage(GameLogic gl, int dam, string message)
+        {
+            gl.logGameMessage(nameDefArticle, name, " ", message, " for ", dam, " damage");
+            health -= dam;
+            if (health <= 0)
+            {
+                isDead = true;
+                gl.logGameMessage(postMortem);
+                gl.removeActor(this);
+            }
         }
     }
 }

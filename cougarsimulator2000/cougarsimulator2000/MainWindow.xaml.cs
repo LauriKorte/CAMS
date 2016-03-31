@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace cougarsimulator2000
 {
+    public delegate void GameLogDelegate(params object[] logs);
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -32,7 +33,7 @@ namespace cougarsimulator2000
             InitializeComponent();
             assets = new Assets();
 
-            gameLogic = new GameLogic(assets);
+            gameLogic = new GameLogic(assets, logText);
             gameView = new GameView(assets, gameLogic);
             controls = new Controls(this);
             settings = new Settings();
@@ -198,11 +199,14 @@ namespace cougarsimulator2000
 
         public void logText(params Object[] log)
         {
+            if (controls == null)
+                return;
             foreach (var a in log)
             {
-                controls.txtLog.Text += a;
+                controls.txtLog.Text += a.ToString();
             }
             controls.txtLog.Text += "\n";
+            controls.scrLog.ScrollToBottom();
         }
     }
 }

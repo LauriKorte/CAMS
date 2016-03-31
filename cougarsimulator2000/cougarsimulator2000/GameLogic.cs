@@ -32,6 +32,27 @@ namespace cougarsimulator2000
             get;
             set;
         }
+
+        [XmlElement("playerName")]
+        public string playerName
+        {
+            get;
+            set;
+        }
+
+        [XmlElement("playerDeathMessage")]
+        public string playerDeathMessage
+        {
+            get;
+            set;
+        }
+
+        [XmlElement("playerImage")]
+        public string playerImage
+        {
+            get;
+            set;
+        }
         [XmlElement("defaultPlayerAmmo")]
         public int defaultPlayerAmmo
         {
@@ -44,6 +65,9 @@ namespace cougarsimulator2000
     {
         public Player player;
         public ItemList items;
+
+        
+
         public GameDefinitions gameDefinitions;
         private Assets assets;
 
@@ -59,16 +83,24 @@ namespace cougarsimulator2000
 
         public void logGameMessage(params Object[] args)
         {
-            foreach (var v in args)
-                Console.Write(v.ToString());
-            Console.WriteLine();
+            logger(args);
         }
 
         //Will be removed in the future, probably
         private List<Actor> cougars = new List<Actor>();
+        private GameLogDelegate logger;
 
-        public GameLogic(Assets ass)
+        private List<Actor> actorsToDelete = new List<Actor>();
+
+        public void removeActor(Actor actor)
         {
+            actorsToDelete.Add(actor);
+        }
+
+        public GameLogic(Assets ass, GameLogDelegate logger)
+        {
+
+            this.logger = logger;
             actors = new List<Actor>();
             tileMap = new TileMap();
             assets = ass;
@@ -87,6 +119,10 @@ namespace cougarsimulator2000
 
         private void updateActors()
         {
+            foreach (var del in actorsToDelete)
+            {
+                actors.Remove(del);
+            }
             foreach (var actor in actors)
             {
                 actor.update(this);
@@ -95,6 +131,11 @@ namespace cougarsimulator2000
 
         public void enterInput(Input input)
         {
+            if (player.isDead)
+            {
+                logGameMessage("Dead men do not move");
+                return;
+            }
             int i = (int)input;
             Vector2 off = new Vector2(0,0);
             if ((i & (int)Input.East) != 0)
@@ -156,11 +197,16 @@ namespace cougarsimulator2000
             */
             //Make a new player
             player = new Player();
-            player.image = "ac_tex"; //give it a fancy hat
+            player.name = gameDefinitions.playerName;
+            player.postMortem = gameDefinitions.playerDeathMessage;
+            player.nameArticle = "";
+            player.nameDefArticle = "";
+            player.image =  gameDefinitions.playerImage; //give it a fancy hat
+
             player.depth = 2;
             player.position.x = 1;
             player.position.y = 1;
-            Console.WriteLine(gameDefinitions.defaultPlayerWeapon);
+            
             ItemDefinition idef = items.getItemDefinition(gameDefinitions.defaultPlayerWeapon);
             if (idef != null)
             {
@@ -168,18 +214,13 @@ namespace cougarsimulator2000
                 WeaponDefinition wdef = idef as WeaponDefinition;
                 if (wdef != null)
                 {
+                    player.weapon = wdef;
                     ItemDefinition adef = items.getItemDefinition(wdef.ammunitionType);
                     if (adef != null)
                     {
                         player.inventory.Add(new Item(adef, gameDefinitions.defaultPlayerAmmo));
                     }
                 }
-            }
-
-            logGameMessage(player.inventory.Count);
-            foreach (var v in player.inventory)
-            {
-                logGameMessage(v.definition.name);
             }
 
             actors.Add(player);
@@ -191,6 +232,7 @@ namespace cougarsimulator2000
             {
                 Enemy a = new Enemy();
                 a.image = "ac_cougar";
+                a.postMortem = "Evil glow fades from the cougar's eyes.";
                 a.depth = 1;
                 
                 //TODO add check for tile collision here

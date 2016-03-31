@@ -13,6 +13,14 @@ namespace cougarsimulator2000
             this.isEnemy = true;
         }
 
+        public override bool attack(GameLogic gl, Actor ac)
+        {
+            Random r = new Random();
+            int dam = 1 + r.Next(5);
+            ac.damage(gl,dam,"is struck by the cougar's fierce claws");
+            return true;
+        }
+
         override public void update(GameLogic gl) 
         {
             //Cougars smell the fear of a man
@@ -27,9 +35,15 @@ namespace cougarsimulator2000
 
             if (pfr.foundPath)
             {
-                if (pfr.steps.Count > 1)
-                if (!gl.isTileBlocking(pfr.steps[1]))
-                    position = pfr.steps[1];
+                if (pfr.steps.Count > 2)
+                {
+                    if (!gl.isTileBlocking(pfr.steps[1]))
+                        position = pfr.steps[1];
+                }
+                else if (pfr.steps.Count == 2)
+                {
+                    attack(gl, gl.player);
+                }
             }
         }
     }

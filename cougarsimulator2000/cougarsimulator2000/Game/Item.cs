@@ -46,7 +46,14 @@ namespace cougarsimulator2000
                 w.image = ass.getTextureImageSource(w.icon);
             foreach (var o in others)
                 o.image = ass.getTextureImageSource(o.icon);
+        }
 
+        public void setupWeapons()
+        {
+            foreach(var w in weapons)
+            {
+                w.ammunitionDefinition = getItemDefinition(w.ammunitionType);
+            }
         }
 
         [XmlElement("weapon")]
@@ -124,6 +131,14 @@ namespace cougarsimulator2000
             get;
             set;
         }
+
+        [XmlIgnore]
+        public ItemDefinition ammunitionDefinition
+        {
+            get;
+            set;
+        }
+
         public WeaponDefinition()
         {
             type = ItemType.Weapon;

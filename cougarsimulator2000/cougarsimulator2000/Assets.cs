@@ -34,6 +34,7 @@ namespace cougarsimulator2000
                 {
                     var items = (ItemList)ser.Deserialize(xmlReader);
                     items.loadItemImages(this);
+                    items.setupWeapons();
                     return items;
                 }
             }
