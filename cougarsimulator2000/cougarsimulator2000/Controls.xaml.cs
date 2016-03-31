@@ -19,12 +19,13 @@ namespace cougarsimulator2000
     /// </summary>
     public partial class Controls : Window
     {
-        Inventory inventory;
+        public Inventory inventory;
 
         MainWindow main;
         public Controls(MainWindow mw)
         {
             main = mw;
+            inventory = new Inventory();
             InitializeComponent();
         }
 
@@ -70,8 +71,12 @@ namespace cougarsimulator2000
 
         private void Button_Click_star(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show("DO YOU FEEL LUCKY, PUNK? WELL, DO YOU?");
-            inventory = new Inventory();
+            if (inventory.IsLoaded == false)
+            {
+                Inventory inv2 = new Inventory();
+                inv2.lbWeapons.ItemsSource = inventory.lbWeapons.ItemsSource;
+                inventory = inv2;
+            }
             inventory.Show();
         }
     }

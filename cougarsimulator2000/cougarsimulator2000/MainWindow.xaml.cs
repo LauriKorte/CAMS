@@ -64,10 +64,12 @@ namespace cougarsimulator2000
                 }
                 else
                 {
-                    // DO NOTHING
+                    return;
                 }
 
             }
+            if (controls.inventory != null)
+                controls.inventory.lbWeapons.ItemsSource = gameLogic.player.inventory; // Listboxin itemit pelaajan inventorysta
 
         }
 
@@ -87,12 +89,16 @@ namespace cougarsimulator2000
             controls.Show();
             controls.Closing += Controls_Closing;
             menuchkShowControls.IsChecked = true;
+            if (controls.inventory != null)
+                controls.inventory.lbWeapons.ItemsSource = gameLogic.player.inventory; // Listboxin itemit pelaajan inventorysta
         }
 
 
         private void Controls_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             menuchkShowControls.IsChecked = false;
+            if (controls.inventory.IsLoaded)
+                controls.inventory.Close();
         }
 
         private void GameView_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -106,9 +112,6 @@ namespace cougarsimulator2000
             gameView.update();
         }
 
-/********************************************************************************************/
-
-            // In this section there are some errors which shall be sorted out later
         private void menuchkShowControls_Checked(object sender, RoutedEventArgs e)
         {
             if (controls.IsLoaded)
@@ -154,7 +157,6 @@ namespace cougarsimulator2000
         {
             controls.Hide();
         }
-/*******************************************************************************************/
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -186,9 +188,9 @@ namespace cougarsimulator2000
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-            //settings = new Settings();
-            // settings.ShowDialog();
-            logText("joo", "asd");
+            settings = new Settings();
+            settings.ShowDialog();
+            //logText("joo", "asd");
         }
 
         private void btnQuit_Click(object sender, RoutedEventArgs e)

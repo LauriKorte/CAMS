@@ -1,7 +1,7 @@
 <items>
 	<weapon>
 		<name>Colt M1860</name>
-		<description>Colt Army Model 1860. It fires a .44 cartridge, but is quite slow to use.</description>
+		<description>Colt Army Model 1860. It fires a .44 cartridge.</description>
 		<dieCount>16</dieCount>
 		<dieSize>20</dieSize>
 		<bonus>3</bonus>
@@ -18,6 +18,6 @@
 
   <other>
     <name>.44 paper cartridge</name>
-    <description>a primitive form of ammunition</description>
+    <description>A primitive form of ammunition.</description>
   </other>
 </items>

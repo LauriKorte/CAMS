@@ -78,7 +78,11 @@ namespace cougarsimulator2000
 
 
         [XmlIgnore]
-        public ImageSource image;
+        public ImageSource image
+        {
+            get;
+            set;
+        }
 
         protected ItemType type;
         public ItemType itemType
@@ -132,8 +136,17 @@ namespace cougarsimulator2000
 
     public class Item
     {
-        public ItemDefinition definition;
-        public int count;
+        public ItemDefinition definition
+        {
+            get;
+            set;
+        }
+        public int count
+        {
+            get;
+            set;
+        }
+
 
         public Item(ItemDefinition def, int cnt = 1)
         {

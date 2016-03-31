@@ -5,24 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="Inventory" Height="400" Width="500" Icon="{StaticResource ac_tex}">
+        Title="Inventory" Height="500" Width="500" Icon="{StaticResource ac_tex}">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
         <ListBox x:Name="lbWeapons" 
-         ScrollViewer.VerticalScrollBarVisibility="Auto">
+         ScrollViewer.VerticalScrollBarVisibility="Auto" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox IsChecked="{Binding Deleteable, Mode=TwoWay}" />
-                        <Label Content="{Binding Name}" />
+                    <StackPanel Orientation="Horizontal" Height="96" ToolTipService.InitialShowDelay="500" 
+                                ToolTipService.ShowDuration="5000" ToolTipService.BetweenShowDelay="1" 
+                                ToolTip="{Binding definition.description}" >
+                        <Label Content="{Binding definition.name}"/>
+                        <Image Source="{Binding definition.image}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-
-        <Image Source="{StaticResource M1860}" HorizontalAlignment="Left" MouseDown="M1860_MouseDown" Grid.Column="0" Margin="157,181,0,66"/>
-        <Image Source="{StaticResource M1873}"  HorizontalAlignment="Left" MouseDown="M1873_MouseDown" Margin="84,31,0,216"/>
-        <Image Source="{StaticResource Winchester}" HorizontalAlignment="Left" MouseDown="Winchester_MouseDown" Margin="265,54,0,193"/>
-
-        <Button x:Name="btnReturn" Content="Return" Click="btnReturn_Click" Height="20" Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20"/>
+        <Button x:Name="btnReturn" Content="Return" Click="btnReturn_Click" Height="20" Width="75" Grid.Row="1"/>
     </Grid>
 </Window>
