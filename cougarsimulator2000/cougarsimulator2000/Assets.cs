@@ -55,6 +55,7 @@ namespace cougarsimulator2000
                 using (var xmlReader = XmlReader.Create(Application.GetContentStream(new Uri("content/items.xml", UriKind.Relative)).Stream))
                 {
                     var items = (ItemList)ser.Deserialize(xmlReader);
+                    items.combine();
                     items.loadItemImages(this);
                     items.setupWeapons();
                     return items;

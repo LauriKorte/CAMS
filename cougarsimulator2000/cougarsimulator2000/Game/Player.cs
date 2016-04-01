@@ -46,9 +46,22 @@ namespace cougarsimulator2000
                 inventory.Remove(i);
             }
         }
+        public void addItem(Item i)
+        {
+            Item old = getItemByDef(i.definition);
+            if (old == null)
+            {
+                inventory.Add(i);
+            }
+            else
+            {
+                old.count += i.count;
+            }
+        }
 
         public Player()
         {
+            health = 25;
             inventory = new ObservableCollection<Item>();
         }
 
@@ -63,7 +76,6 @@ namespace cougarsimulator2000
                 gl.logGameMessage("Ya got no wappet son!");
                 return false;
             }
-            gl.logGameMessage("Ya got a wappet son!");
             if (weapon.ammunitionDefinition != null)
             {
                 Item it = getItemByDef(weapon.ammunitionDefinition);
@@ -72,11 +84,8 @@ namespace cougarsimulator2000
                     gl.logGameMessage("Ya got no ammo son!");
                     return false;
                 }
-                gl.logGameMessage("Ya shot some of them ", it.definition.name);
                 changeItemCount(it, -1);
-                gl.logGameMessage("Ya got only ", it.count, " left.");
             }
-            gl.logGameMessage("");
             int dam = weapon.damageBonus;
             Random r = new Random();
             for (int i = 0; i < weapon.damageDieCount; i++)

@@ -8,6 +8,7 @@ namespace cougarsimulator2000
 {
     public class Enemy : Actor
     {
+        int spotTimer = 0;
         public Enemy()
         {
             this.isEnemy = true;
@@ -23,28 +24,37 @@ namespace cougarsimulator2000
 
         override public void update(GameLogic gl) 
         {
-            //Cougars smell the fear of a man
-
-            //That's why they beeline for you
-            PathFindResult pfr = PathFinding.GetPath(
-                (Vector2 pos) =>
-                {
-                    return gl.isTileBlockingNoActors(pos);
-                }
-                , position, gl.player.position);
-
-            if (pfr.foundPath)
+            
+            if (spotTimer >= 0)
+            for (int i = 0; i < 2; i++) //Make cougars really spooky
             {
-                if (pfr.steps.Count > 2)
+                //Cougars smell the fear of a man
+
+                //That's why they beeline for you
+                PathFindResult pfr = PathFinding.GetPath(
+                    (Vector2 pos) =>
+                    {
+                        return gl.isTileBlockingNoActors(pos);
+                    }
+                    , position, gl.player.position);
+
+                if (pfr.foundPath)
                 {
-                    if (!gl.isTileBlocking(pfr.steps[1]))
-                        position = pfr.steps[1];
-                }
-                else if (pfr.steps.Count == 2)
-                {
-                    attack(gl, gl.player);
+                    if (pfr.steps.Count > 2)
+                    {
+                        if (!gl.isTileBlocking(pfr.steps[1]))
+                            position = pfr.steps[1];
+                    }
+                    else if (pfr.steps.Count == 2)
+                    {
+                        attack(gl, gl.player);
+                    }
                 }
             }
+            
+            if (gl.getLineOfSight(this, gl.player))
+                spotTimer = 3;
+            spotTimer--;
         }
     }
 }

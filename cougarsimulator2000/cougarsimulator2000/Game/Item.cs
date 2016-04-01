@@ -24,16 +24,12 @@ namespace cougarsimulator2000
         {
             weapons = new List<WeaponDefinition>();
             others = new List<ItemDefinition>();
+            all = new List<ItemDefinition>();
         }
 
         public ItemDefinition getItemDefinition(string str)
         {
-            foreach (var w in weapons)
-            {
-                if (w.name == str)
-                    return w;
-            }
-            foreach (var o in others)
+            foreach (var o in all)
             {
                 if (o.name == str)
                     return o;
@@ -43,9 +39,7 @@ namespace cougarsimulator2000
 
         public void loadItemImages(Assets ass)
         {
-            foreach (var w in weapons)
-                w.image = ass.getTextureImageSource(w.icon);
-            foreach (var o in others)
+            foreach (var o in all)
                 o.image = ass.getTextureImageSource(o.icon);
         }
 
@@ -62,6 +56,17 @@ namespace cougarsimulator2000
 
         [XmlElement("other")]
         public List<ItemDefinition> others { get; set; }
+
+        [XmlIgnore]
+        public List<ItemDefinition> all { get; set; }
+
+        public void combine()
+        {
+            foreach (var i in weapons)
+                all.Add(i);
+            foreach (var i in others)
+                all.Add(i); 
+        }
     }
 
     public class ItemDefinition

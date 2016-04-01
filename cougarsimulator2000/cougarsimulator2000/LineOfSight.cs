@@ -281,7 +281,7 @@ namespace cougarsimulator2000
 
             //And call the regular thingymabob
 
-            return GetLineOfSight(ibcd, dfrom, dto);
+            return GetLineOfSight(ibcd, dfrom, dto, targetDeltaX, targetDeltaY);
             //And it just werks
         }
     }
