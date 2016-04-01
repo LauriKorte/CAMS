@@ -19,6 +19,7 @@ namespace cougarsimulator2000
     /// </summary>
     public partial class Inventory : Window
     {
+        Item item;
         public Inventory()
         {
             InitializeComponent();
@@ -29,6 +30,9 @@ namespace cougarsimulator2000
             Close();
         }
 
-        
+        private void btnEquip_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
