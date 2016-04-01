@@ -4,10 +4,13 @@
              xmlns:local="clr-namespace:cougarsimulator2000"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <BitmapImage x:Key="bg_grass1" UriSource="pack://application:,,,/Resources/grass1.png" />
         <BitmapImage x:Key="ac_cougar" UriSource="pack://application:,,,/Resources/cougar.png" />
         <BitmapImage x:Key="ac_tex" UriSource="pack://application:,,,/Resources/tex.png" />
-        <BitmapImage x:Key="bg_box" UriSource="pack://application:,,,/Resources/box.png" />
+        
+        <BitmapImage x:Key="bg_wall" UriSource="pack://application:,,,/Resources/wall.png" />
+        <BitmapImage x:Key="bg_sand" UriSource="pack://application:,,,/Resources/sand.png" />
+        <BitmapImage x:Key="bg_dithering" UriSource="pack://application:,,,/Resources/dithering.png" />
+        
         <BitmapImage x:Key="arrow" UriSource="pack://application:,,,/Resources/arrow.png" />
         <BitmapImage x:Key="sheriff_star" UriSource="pack://application:,,,/Resources/sheriff_star.png" />
         <BitmapImage x:Key="M1860" UriSource="pack://application:,,,/Resources/M1860_colt.png" />

@@ -23,6 +23,7 @@ namespace cougarsimulator2000
     {
         private GameLogic gameLogic;
         private Assets assets;
+        
         private List<Image> tileMapImages = new List<Image>();
         private List<Image> actorImages = new List<Image>();
         
@@ -35,8 +36,8 @@ namespace cougarsimulator2000
 
             //Remove all the images which 
             TileMap tileMap = gameLogic.tileMap;
-            foreach (var im in tileMapImages)
-                gridTileMap.Children.Remove(im);
+
+            gridTileMap.Children.Clear();
 
             tileMapImages = new List<Image>();
 
@@ -55,38 +56,64 @@ namespace cougarsimulator2000
                 gridTileMap.ColumnDefinitions.Clear();
                 gridTileMap.RowDefinitions.Clear();
 
+                gridActors.ColumnDefinitions.Clear();
+                gridActors.RowDefinitions.Clear();
+
+
                 //Fill them with new column and row defintions
                 for (int i = 0; i < tileMapWidth; i++)
                 {
                     ColumnDefinition ra = new ColumnDefinition();
                     ra.Width = new GridLength(gridCellW);
                     gridTileMap.ColumnDefinitions.Add(ra);
+
+                    ra = new ColumnDefinition();
+                    ra.Width = new GridLength(gridCellW);
+                    gridActors.ColumnDefinitions.Add(ra);
                 }
                 for (int j = 0; j < tileMapHeight; j++)
                 {
                     RowDefinition rt = new RowDefinition();
                     rt.Height = new GridLength(gridCellH);
                     gridTileMap.RowDefinitions.Add(rt);
+
+                    rt = new RowDefinition();
+                    rt.Height = new GridLength(gridCellH);
+                    gridActors.RowDefinitions.Add(rt);
                 }
             }
+
+            //Hard coded darkness image
+            ImageSource darkened = assets.getTextureImageSource("bg_dithering");
+
             //Fill the grid with tilemap data
             for (int i = 0; i < tileMapWidth; i++)
             {
 
                 for (int j = 0; j < tileMapHeight; j++)
                 {
+                    Grid imContainer = new Grid();
+
+                    Tile t = tileMap.getTile(new Vector2(i, j));
+                    if (t.isVisible == false)
+                    {
+                        Image dkim = new Image();
+                        dkim.Source = darkened;
+                        imContainer.Children.Add(dkim);
+                        Grid.SetZIndex(dkim, 0);
+                    }
+
                     //Every cell in the tilemap/grid has a single image
                     Image im = new Image();
-                    im.Source = assets.getTileImageSource(tileMap.getTile(new Vector2(i, j)));
-                    
+                    im.Source = assets.getTileImageSource(t);
 
-                    gridTileMap.Children.Add(im);
-                    
-                    Grid.SetColumn(im, i);
-                    Grid.SetRow(im, j);
 
+                    imContainer.Children.Add(im);
                     Grid.SetZIndex(im, -1);
-                    tileMapImages.Add(im);
+
+                    gridTileMap.Children.Add(imContainer);
+                    Grid.SetColumn(imContainer, i);
+                    Grid.SetRow(imContainer, j);                  
                 }
             }
         }
@@ -94,17 +121,19 @@ namespace cougarsimulator2000
         private void updateActors()
         {
             //Remove the actor images
-            foreach (var im in actorImages)
-                gridTileMap.Children.Remove(im);
+            gridActors.Children.Clear();
+
             actorImages = new List<Image>();
 
             //Get all of the game actors
             List<Actor> actors = gameLogic.actors;
             foreach (var a in actors)
             {
+                if (!a.isVisible)
+                    continue;
                 //Create images for them
                 Image im = new Image();
-                gridTileMap.Children.Add(im);
+                gridActors.Children.Add(im);
                 //Load correct image
                 im.Source = assets.getTextureImageSource(a.image);
 

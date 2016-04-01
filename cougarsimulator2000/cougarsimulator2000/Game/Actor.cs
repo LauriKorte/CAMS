@@ -11,6 +11,9 @@ namespace cougarsimulator2000
     {
         public Vector2 position;
         private int _health;
+
+        public bool isVisible = true;
+
         public int health
         {
             get { return _health; }
@@ -81,7 +84,7 @@ namespace cougarsimulator2000
             if (health <= 0)
             {
                 isDead = true;
-                if (health <= 10)
+                if (health <= -10)
                     gl.logGameMessage(goryPostMortem);
                 else
                     gl.logGameMessage(postMortem);

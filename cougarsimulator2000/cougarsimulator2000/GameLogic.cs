@@ -132,6 +132,75 @@ namespace cougarsimulator2000
             {
                 actor.update(this);
             }
+
+            updateLineOfSight();
+        }
+
+        private void updateLineOfSight()
+        {
+            List<Vector2> points = LineOfSight.GetCellsOnRadius(player.position, 7);
+            
+            foreach (var t in tileMap.tiles)
+                t.isVisible = false;
+            foreach (var p in points)
+            {
+                IsBlockingCellDelegate ibcd = (x) =>
+                {
+                    try
+                    {
+                        Tile t = tileMap.getTile(x);
+                        t.isVisible = true;
+                    }
+                    catch (Exception)
+                    {
+                    }
+
+                    if (isTileBlockingNoActors(x))
+                        return true;
+                    return false;
+                };
+                LineOfSight.GetDiamondLineOfSight(
+                    ibcd,
+                    player.position, p);
+            }
+            foreach (var actor in actors)
+            {
+                if (actor == player)
+                    continue;
+
+                //Check the line of sight
+                bool los = getLineOfSight(player, actor);
+                
+                actor.isVisible = los;
+            }
+        }
+
+        public bool getLineOfSight(Actor from, Actor target)
+        {
+            //We check the line of sight 4 times
+            //because people aren't points in real life
+
+            //they're diamond shaped
+
+            bool los = LineOfSight.GetDiamondLineOfSight(
+                    (x) => (isTileBlockingNoActors(x)),
+                    from.position, target.position, 0.75, 0.5);
+
+            if (!los)
+                los = los || LineOfSight.GetDiamondLineOfSight(
+                    (x) => (isTileBlockingNoActors(x)),
+                    from.position, target.position, 0.25, 0.5);
+
+            if (!los)
+                los = los || LineOfSight.GetDiamondLineOfSight(
+                    (x) => (isTileBlockingNoActors(x)),
+                    from.position, target.position, 0.5, 0.75);
+
+            if (!los)
+                los = los || LineOfSight.GetDiamondLineOfSight(
+                    (x) => (isTileBlockingNoActors(x)),
+                    from.position, target.position, 0.5, 0.25);
+            return los;
         }
 
         public void enterInput(Input input)
@@ -247,6 +316,7 @@ namespace cougarsimulator2000
                 
                 actors.Add(a);
             }
+            updateLineOfSight();
         }
 
       

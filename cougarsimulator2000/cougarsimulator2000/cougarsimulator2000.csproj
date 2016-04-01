@@ -76,6 +76,7 @@
     <Compile Include="Inventory.xaml.cs">
       <DependentUpon>Inventory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LineOfSight.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -157,6 +158,9 @@
     <Content Include="Content\items.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\wall.png" />
+    <Resource Include="Resources\sand.png" />
+    <Resource Include="Resources\dithering.png" />
     <Resource Include="Resources\Winchester.png" />
     <Resource Include="Resources\M1873_colt.png" />
     <Resource Include="Resources\M1860_colt.png" />

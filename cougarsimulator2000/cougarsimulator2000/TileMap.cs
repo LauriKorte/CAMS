@@ -41,6 +41,8 @@ namespace cougarsimulator2000
     public class Tile
     {
         public int type = 0;
+        public bool isVisible = true;
+        public bool isDiscovered = false;
     }
 
     public class TileMap
@@ -50,7 +52,7 @@ namespace cougarsimulator2000
             get;
             private set;
         }
-        private List<Tile> tiles;
+        public List<Tile> tiles;
         
 
         public void initialize(Vector2 size)
