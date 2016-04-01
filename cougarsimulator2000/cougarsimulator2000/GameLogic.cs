@@ -311,10 +311,11 @@ namespace cougarsimulator2000
                 Enemy a = new Enemy();
                 a.image = "ac_cougar";
                 a.name = "cougar";
-                a.nameArticle = "a";
-                a.nameDefArticle = "the";
+                a.nameArticle = "a ";
+                a.nameDefArticle = "The ";
                 a.postMortem = "Evil glow fades from the cougar's eyes.";
                 a.goryPostMortem = "The cougar is obliterated.";
+                a.dodge = 3;
                 a.depth = 1;
                 
                 //TODO add check for tile collision here
@@ -392,6 +393,38 @@ namespace cougarsimulator2000
                 }
             }
             return acts;
+        }
+
+        public void interact(Actor a)
+        {
+            if (!getLineOfSight(player,a))
+            {
+                logGameMessage("You perceived the target with your sixth sense, and can't actually see it.");
+                return;
+            }
+            if (player.isDead)
+            {
+                logGameMessage("Dead men do not do things.");
+                return;
+            }
+            if (a.isEnemy)
+            {
+                if (player.attack(this, a))
+                {
+                    updateActors();
+                    return;
+                }
+            }
+            else if (a == player)
+            {
+                if (player.attack(this, a))
+                {
+                    updateActors();
+                    return;
+                }
+            }
+
+
         }
     }
 }

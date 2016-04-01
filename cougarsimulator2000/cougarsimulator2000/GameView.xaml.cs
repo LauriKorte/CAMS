@@ -22,11 +22,12 @@ namespace cougarsimulator2000
     public partial class GameView : Window
     {
         private GameLogic gameLogic;
+        private MainWindow mainWindow;
         private Assets assets;
-        
-        private List<Image> tileMapImages = new List<Image>();
-        private List<Image> actorImages = new List<Image>();
-        
+
+        //The ordering of these arrays are a bit important
+        private List<Image> tileMapTiles = new List<Image>();
+        private List<Image> tileMapVisibility = new List<Image>();
 
         private void updateTileMap()
         {
@@ -34,23 +35,21 @@ namespace cougarsimulator2000
             int gridCellW = 32;
             int gridCellH = 32;
 
-            //Remove all the images which 
             TileMap tileMap = gameLogic.tileMap;
-
-            gridTileMap.Children.Clear();
-
-            tileMapImages = new List<Image>();
 
             int tileMapWidth = tileMap.size.x;
             int tileMapHeight = tileMap.size.y;
 
             SizeToContent = SizeToContent.WidthAndHeight;
 
+            //Hard coded darkness image
+            ImageSource darkened = assets.getTextureImageSource("bg_dithering");
+
             //If our tilemap has been resized...
             if (gridTileMap.ColumnDefinitions.Count != tileMapWidth
                 || gridTileMap.RowDefinitions.Count != tileMapHeight)
             {
-                //We just clear everything out
+                //We just clear everything out and start over again
 
                 //Clear all grid column and row definitions
                 gridTileMap.ColumnDefinitions.Clear();
@@ -81,39 +80,65 @@ namespace cougarsimulator2000
                     rt.Height = new GridLength(gridCellH);
                     gridActors.RowDefinitions.Add(rt);
                 }
-            }
 
-            //Hard coded darkness image
-            ImageSource darkened = assets.getTextureImageSource("bg_dithering");
+                gridTileMap.Children.Clear();
+                tileMapTiles.Clear();
+                tileMapVisibility.Clear();
 
-            //Fill the grid with tilemap data
-            for (int i = 0; i < tileMapWidth; i++)
-            {
-
+                //Fill the grid with tilemap data
                 for (int j = 0; j < tileMapHeight; j++)
                 {
-                    Grid imContainer = new Grid();
-
-                    Tile t = tileMap.getTile(new Vector2(i, j));
-                    if (t.isVisible == false)
+                    for (int i = 0; i < tileMapWidth; i++)
                     {
+                        Grid imContainer = new Grid();
+
+                        Tile t = tileMap.getTile(new Vector2(i, j));
+                        //Create the overlaid darkness
                         Image dkim = new Image();
                         dkim.Source = darkened;
                         imContainer.Children.Add(dkim);
                         Grid.SetZIndex(dkim, 0);
+                        if (t.isVisible == true)
+                        {
+                            //If we see the cell, hide the darkness
+                            dkim.Visibility = Visibility.Hidden;
+                        }
+
+                        tileMapVisibility.Add(dkim);
+
+                        //Every cell in the tilemap/grid has a single image
+                        Image im = new Image();
+                        im.Source = assets.getTileImageSource(t);
+                        
+
+                        imContainer.Children.Add(im);
+                        Grid.SetZIndex(im, -1);
+
+                        tileMapTiles.Add(im);
+
+                        gridTileMap.Children.Add(imContainer);
+                        Grid.SetColumn(imContainer, i);
+                        Grid.SetRow(imContainer, j);
+
+                        
                     }
+                }
+            }
+            else
+            {
+                //If our tilemap is the same size,
+                //we can just update the old images instead of doing an expensive
+                //rebuilding of the map
 
-                    //Every cell in the tilemap/grid has a single image
-                    Image im = new Image();
-                    im.Source = assets.getTileImageSource(t);
-
-
-                    imContainer.Children.Add(im);
-                    Grid.SetZIndex(im, -1);
-
-                    gridTileMap.Children.Add(imContainer);
-                    Grid.SetColumn(imContainer, i);
-                    Grid.SetRow(imContainer, j);                  
+                //It doesn't really matter for a turn based game
+                
+                foreach (Tile t in tileMap.tiles)
+                {
+                    tileMapTiles[t.tileIndex].Source = assets.getTileImageSource(t);
+                    if (!t.isVisible)
+                        tileMapVisibility[t.tileIndex].Visibility = Visibility.Visible;
+                    else
+                        tileMapVisibility[t.tileIndex].Visibility = Visibility.Hidden;
                 }
             }
         }
@@ -123,32 +148,39 @@ namespace cougarsimulator2000
             //Remove the actor images
             gridActors.Children.Clear();
 
-            actorImages = new List<Image>();
-
             //Get all of the game actors
             List<Actor> actors = gameLogic.actors;
             foreach (var a in actors)
             {
+                Grid gr = new Grid();
                 if (!a.isVisible)
                     continue;
                 //Create images for them
                 Image im = new Image();
-                gridActors.Children.Add(im);
+                gr.Children.Add(im);
                 //Load correct image
                 im.Source = assets.getTextureImageSource(a.image);
+                im.ToolTip = a.nameArticle+a.name;
+
+                gridActors.Children.Add(gr);
 
                 //In case something is wrong in the game side
                 //we don't want crashes
                 if (a.position.x >= 0)
-                    Grid.SetColumn(im, a.position.x);
+                    Grid.SetColumn(gr, a.position.x);
 
                 if (a.position.y >= 0)
-                    Grid.SetRow(im, a.position.y);
+                    Grid.SetRow(gr, a.position.y);
 
+                
                 //Set the "depth"
-                Grid.SetZIndex(im, a.depth);
-
-                actorImages.Add(im);
+                Grid.SetZIndex(gr, a.depth);
+                im.Cursor = Cursors.Cross;
+                im.MouseDown += (ignore1, ignore2)
+                =>
+                {
+                    mainWindow.passInteraction(a);
+                };
             }
         }
 
@@ -158,9 +190,10 @@ namespace cougarsimulator2000
             updateTileMap();
         }
 
-        public GameView(Assets ass, GameLogic gl)
+        public GameView(MainWindow mw, Assets ass, GameLogic gl)
         {
             InitializeComponent();
+            mainWindow = mw;
             assets = ass;
             gameLogic = gl;
 

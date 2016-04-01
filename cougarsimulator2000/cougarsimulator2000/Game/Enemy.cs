@@ -18,7 +18,13 @@ namespace cougarsimulator2000
         {
             Random r = new Random();
             int dam = 1 + r.Next(5);
-            ac.damage(gl,dam,"is struck by the cougar's fierce claws");
+            Attack ak = new Attack();
+            ak.damage = dam;
+            ak.accuracy = 12;
+            ak.damageMessage = "is struck by the cougar's fierce claws";
+            ak.dodgeMessage = "skilfully evades the fierce blow";
+
+            ac.damage(gl,ak);
             return true;
         }
 

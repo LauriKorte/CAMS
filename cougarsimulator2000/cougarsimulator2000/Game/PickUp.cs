@@ -15,6 +15,8 @@ namespace cougarsimulator2000
             item = it;
             image = it.definition.icon;
             health = 5;
+            nameArticle = "";
+            nameDefArticle = "the ";
             postMortem = "The " + it.definition.name + " is destroyed.";
             goryPostMortem = postMortem;
             name = it.definition.name;

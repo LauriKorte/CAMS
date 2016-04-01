@@ -135,6 +135,13 @@ namespace cougarsimulator2000
             set;
         }
 
+        [XmlElement("accuracy")]
+        public int accuracy
+        {
+            get;
+            set;
+        }
+
         [XmlElement("ammunition")]
         public string ammunitionType
         {

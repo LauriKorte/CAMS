@@ -41,8 +41,14 @@ namespace cougarsimulator2000
     public class Tile
     {
         public int type = 0;
+        //Index of this tile in the tilemap array
+        public int tileIndex;
         public bool isVisible = true;
         public bool isDiscovered = false;
+        public Tile(int tileIndex)
+        {
+            this.tileIndex = tileIndex;
+        }
     }
 
     public class TileMap
@@ -59,10 +65,10 @@ namespace cougarsimulator2000
         {
             this.size = size;
             tiles = new List<Tile>();
-            
-            for (int i = 0; i < size.x; i++)
-                for (int j = 0; j < size.y; j++)
-                    tiles.Add(new Tile());
+
+            for (int j = 0; j < size.y; j++)
+                for (int i = 0; i < size.x; i++)
+                    tiles.Add(new Tile(i + j * size.x));
         }
 
         public Tile getTile(Vector2 pos)

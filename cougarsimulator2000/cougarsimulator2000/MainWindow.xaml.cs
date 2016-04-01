@@ -34,7 +34,7 @@ namespace cougarsimulator2000
             assets = new Assets();
 
             gameLogic = new GameLogic(assets, logText);
-            gameView = new GameView(assets, gameLogic);
+            gameView = new GameView(this, assets, gameLogic);
             controls = new Controls(this);
             settings = new Settings();
         }
@@ -77,7 +77,7 @@ namespace cougarsimulator2000
         // create gameview
         private void constructGameView()
         {
-            gameView = new GameView(assets, gameLogic);
+            gameView = new GameView(this, assets, gameLogic);
             gameView.Show();
             gameView.Closing += GameView_Closing;
             menuchkShowGameView.IsChecked = true;
@@ -110,6 +110,12 @@ namespace cougarsimulator2000
         public void passInput(Input i)
         {
             gameLogic.enterInput(i);
+            gameView.update();
+        }
+
+        public void passInteraction(Actor a)
+        {
+            gameLogic.interact(a);
             gameView.update();
         }
 

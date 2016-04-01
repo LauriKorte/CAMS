@@ -11,8 +11,15 @@ namespace cougarsimulator2000
     {
         public Vector2 position;
         private int _health;
-
+        private int _dodge;
         public bool isVisible = true;
+
+        public int dodge
+        {
+            get { return _dodge; } 
+
+            set { _dodge = value; NotifyPropertyChanged("dodge"); }
+        }
 
         public int health
         {
@@ -26,7 +33,7 @@ namespace cougarsimulator2000
         public string image;
 
         public string nameArticle = "a ";
-        public string nameDefArticle = "the ";
+        public string nameDefArticle = "The ";
 
         private string _name;
         public string name
@@ -64,6 +71,7 @@ namespace cougarsimulator2000
             isBlocking = true;
             isEnemy = false;
             health = 10;
+            dodge = 0;
             name = "nameless";
         }
 
@@ -77,10 +85,22 @@ namespace cougarsimulator2000
 
         }
 
-        virtual public void damage(GameLogic gl, int dam, string message)
+        virtual public void damage(GameLogic gl, Attack ak)
         {
-            gl.logGameMessage(nameDefArticle, name, " ", message, " for ", dam, " damage");
-            health -= dam;
+            Random r = new Random();
+            int dodgeDice = 1;
+            dodgeDice += r.Next(6);
+            dodgeDice += r.Next(6);
+            dodgeDice += r.Next(6);
+
+            int accuracy = ak.accuracy - dodge;
+            if (dodgeDice > accuracy)
+            {
+                gl.logGameMessage(nameDefArticle, name, " ", ak.dodgeMessage);
+                return;
+            }
+            gl.logGameMessage(nameDefArticle, name, " ", ak.damageMessage, " for ", ak.damage, " damage");
+            health -= ak.damage;
             if (health <= 0)
             {
                 isDead = true;

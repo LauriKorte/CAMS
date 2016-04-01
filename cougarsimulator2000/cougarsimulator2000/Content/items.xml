@@ -2,18 +2,20 @@
 	<weapon>
 		<name>Colt M1860</name>
 		<description>Colt Army Model 1860. It fires a .44 cartridge.</description>
-		<dieCount>16</dieCount>
-		<dieSize>20</dieSize>
-		<bonus>3</bonus>
+		<dieCount>2</dieCount>
+		<dieSize>6</dieSize>
+		<bonus>2</bonus>
+    <accuracy>15</accuracy>
     <ammunition>.44 paper cartridge</ammunition>
     <icon>M1860</icon>
 	</weapon>
 	<weapon>
 		<name>Winchester M1873</name>
 		<description>Winchester Model 1873. It fires a .44 rifle cartridge.</description>
-		<dieCount>23</dieCount>
-		<dieSize>34</dieSize>
-		<bonus>45</bonus>
+		<dieCount>3</dieCount>
+		<dieSize>6</dieSize>
+		<bonus>4</bonus>
+    <accuracy>25</accuracy>
     <ammunition>.44 WCF cartridge</ammunition>
     <icon>Winchester</icon>
 	</weapon>
