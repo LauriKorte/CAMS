@@ -129,6 +129,38 @@ namespace cougarsimulator2000
                     else
                         t.type = 0;
                 }
+            SpreadRandomRooms(tm, 6, 3, 6);
+        }
+
+        public static void SpreadRandomRooms(TileMap tm, int count, int minSize, int maxSize)
+        {
+            Vector2 size = tm.size;
+            size.x -= 2;
+            size.y -= 2;
+            Random r = new Random();
+            for (int i = 0; i < count; i++)
+            {
+                Vector2 soize;
+                soize.x = r.Next(maxSize-minSize)+minSize;
+                soize.y = r.Next(maxSize-minSize)+minSize;
+                Vector2 mpos;
+                mpos.x = r.Next(size.x)+1;
+                mpos.y = r.Next(size.y)+1;
+
+                Vector2 add;
+                add = mpos + soize;
+                if (add.x >= tm.size.x)
+                    add.x = tm.size.x - 1;
+                if (add.y >= tm.size.y)
+                    add.y = tm.size.y - 1;
+
+                for (int x = mpos.x; x < add.x; x++)
+                    for (int y = mpos.y; y < add.y; y++)
+                    {
+                        Tile t = tm.getTile(new Vector2(x, y));
+                        t.type = 1;
+                    }
+            }
         }
     }
 }

@@ -132,6 +132,10 @@ namespace cougarsimulator2000
             {
                 actor.update(this);
             }
+            foreach (var del in actorsToDelete)
+            {
+                actors.Remove(del);
+            }
 
             updateLineOfSight();
         }
@@ -306,6 +310,9 @@ namespace cougarsimulator2000
             {
                 Enemy a = new Enemy();
                 a.image = "ac_cougar";
+                a.name = "cougar";
+                a.nameArticle = "a";
+                a.nameDefArticle = "the";
                 a.postMortem = "Evil glow fades from the cougar's eyes.";
                 a.goryPostMortem = "The cougar is obliterated.";
                 a.depth = 1;
@@ -315,6 +322,19 @@ namespace cougarsimulator2000
                 a.position.y = r.Next(tileMap.size.y - 2) + 1;
                 
                 actors.Add(a);
+            }
+
+            for (int i = 0; i < 24; i++)
+            {
+                ItemDefinition def = items.all[r.Next(items.all.Count)];
+                int cnt = 1;
+                if (def.itemType == ItemType.Other)
+                    cnt = r.Next(12);
+                Item a = new Item(def, cnt);
+                PickUp p = new PickUp(a);
+                p.position.x = r.Next(tileMap.size.x - 2) + 1;
+                p.position.y = r.Next(tileMap.size.y - 2) + 1;
+                actors.Add(p);
             }
             updateLineOfSight();
         }
