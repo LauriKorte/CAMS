@@ -9,6 +9,16 @@
     <ammunition>.44 paper cartridge</ammunition>
     <icon>M1860</icon>
 	</weapon>
+  <weapon>
+		<name>Colt Peacemaker</name>
+		<description>The greatest handgun ever made. The Colt Single Action Army.</description>
+		<dieCount>3</dieCount>
+		<dieSize>4</dieSize>
+		<bonus>6</bonus>
+    <accuracy>20</accuracy>
+    <ammunition>.45 Long Colt</ammunition>
+    <icon>M1873</icon>
+	</weapon>
 	<weapon>
 		<name>Winchester M1873</name>
 		<description>Winchester Model 1873. It fires a .44 rifle cartridge.</description>
@@ -23,6 +33,11 @@
   <other>
     <name>.44 paper cartridge</name>
     <description>A primitive form of ammunition.</description>
+    <icon>Revolver_ammo</icon>
+  </other>
+  <other>
+    <name>.45 Long Colt</name>
+    <description>Powerful revolver cartridge.</description>
     <icon>Revolver_ammo</icon>
   </other>
 </items>
