@@ -123,7 +123,7 @@ namespace cougarsimulator2000
             //If the player is shooting themselves
             if (ac == this)
             {
-                ak.damageMessage = "took the cowards way out";
+                ak.damageMessage = "shot himself";
                 ak.dodgeMessage = "dodges the bullet. Maybe he isn't ready to leave this world.";
             }
             else

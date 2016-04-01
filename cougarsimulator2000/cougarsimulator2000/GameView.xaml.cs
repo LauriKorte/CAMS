@@ -96,6 +96,7 @@ namespace cougarsimulator2000
                         //Create the overlaid darkness
                         Image dkim = new Image();
                         dkim.Source = darkened;
+                        dkim.Opacity = 0.5;
                         imContainer.Children.Add(dkim);
                         Grid.SetZIndex(dkim, 0);
                         if (t.isVisible == true)
