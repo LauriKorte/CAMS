@@ -1,15 +1,21 @@
 <stories>
 	<prologue>
 		<one>
-		May 6th in the year 1880 of Our Lord. A lonely rider is riding with his trusty stallion to the sunset on a warm evening through the wastelands of Texas, where the bandits and cut-throats roam about.
+			May 6th in the year 1880 of Our Lord. A lonely rider is riding with his trusty stallion to the sunset on a warm evening through the wastelands of Texas, where the bandits and cut-throats roam about.
 		</one>
 		<two>
-		This one is different though.
-
-		He fought against the Confederate States in a bloody Civil War. After the war ended he had an opportunity to join the US Marshals. 
+			This one is different though.
+			He fought against the Confederate States in a bloody Civil War. After the war ended he had an opportunity to join the US Marshals. 
 		</two>
 		<three>
-		That was fifteen years ago. During those years he had caught many gunslingers and brought them to justice. He had even shot quite many of them and their faces still haunted his dreams.
+			That was fifteen years ago. During those years he had caught many gunslingers and brought them to justice. He had even shot quite many of them and their faces still haunted his dreams.
 		</three>
+		<four>
+			But on this very evening he is riding back to Austin from a hunt of an outlaw, who was the first that got away from this US Marshal in fifteen years.
+		</four>
 	</prologue>
+	
+	<start>
+		"It all happened too damn quick. I didn't even see it. It just came from the bushes, no warning at all. It took my trusty stallion right from under me. I will avenge you Archie Horsemeat... I will avenge you, for my name is... Gunpowder Tex.
+	</start>
 </stories>

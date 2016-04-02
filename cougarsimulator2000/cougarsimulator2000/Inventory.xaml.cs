@@ -19,7 +19,6 @@ namespace cougarsimulator2000
     /// </summary>
     public partial class Inventory : Window
     {
-        Item it;
         public Inventory()
         {
             InitializeComponent();
