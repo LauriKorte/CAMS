@@ -160,6 +160,7 @@
     <Content Include="Content\items.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Content\story.xml" />
     <Resource Include="Resources\wall.png" />
     <Resource Include="Resources\sand.png" />
     <Resource Include="Resources\dithering.png" />
