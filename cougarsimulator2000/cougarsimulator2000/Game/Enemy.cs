@@ -14,7 +14,7 @@ namespace cougarsimulator2000
             this.isEnemy = true;
         }
 
-        public override bool attack(GameLogic gl, Actor ac)
+        public override int attack(GameLogic gl, Actor ac)
         {
             Random r = new Random();
             int dam = 1 + r.Next(5);
@@ -25,15 +25,18 @@ namespace cougarsimulator2000
             ak.dodgeMessage = "skilfully evades the fierce blow";
 
             ac.damage(gl,ak);
-            return true;
+            return 14;
         }
 
-        override public void update(GameLogic gl) 
+        override public int update(GameLogic gl) 
         {
-            
-            if (spotTimer >= 0)
-            for (int i = 0; i < 2; i++) //Make cougars really spooky
+
+            if (gl.getLineOfSight(this, gl.player))
+                spotTimer = 3;
+
+            if (spotTimer > 0)
             {
+                spotTimer--;
                 //Cougars smell the fear of a man
 
                 //That's why they beeline for you
@@ -50,17 +53,17 @@ namespace cougarsimulator2000
                     {
                         if (!gl.isTileBlocking(pfr.steps[1]))
                             position = pfr.steps[1];
+                        return moveSpeed;
                     }
                     else if (pfr.steps.Count == 2)
                     {
-                        attack(gl, gl.player);
+                        return attack(gl, gl.player);
                     }
                 }
             }
             
-            if (gl.getLineOfSight(this, gl.player))
-                spotTimer = 3;
-            spotTimer--;
+            
+            return 5;
         }
     }
 }

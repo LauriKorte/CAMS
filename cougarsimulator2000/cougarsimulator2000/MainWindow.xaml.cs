@@ -74,6 +74,11 @@ namespace cougarsimulator2000
 
         }
 
+        public void passEquip(Item selitem)
+        {
+            gameLogic.equip(selitem);
+        }
+
         // create gameview
         private void constructGameView()
         {

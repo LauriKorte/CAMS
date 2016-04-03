@@ -25,7 +25,7 @@ namespace cougarsimulator2000
         public Controls(MainWindow mw)
         {
             main = mw;
-            inventory = new Inventory();
+            inventory = new Inventory(mw);
             InitializeComponent();
         }
 
@@ -73,7 +73,7 @@ namespace cougarsimulator2000
         {
             if (inventory.IsLoaded == false)
             {
-                Inventory inv2 = new Inventory();
+                Inventory inv2 = new Inventory(main);
                 inv2.DataContext = inventory.DataContext;
                 inventory = inv2;
             }

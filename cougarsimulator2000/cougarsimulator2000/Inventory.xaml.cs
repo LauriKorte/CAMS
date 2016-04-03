@@ -19,8 +19,10 @@ namespace cougarsimulator2000
     /// </summary>
     public partial class Inventory : Window
     {
-        public Inventory()
+        MainWindow mainWindow;
+        public Inventory(MainWindow mw)
         {
+            mainWindow = mw;
             InitializeComponent();
         }
 
@@ -31,7 +33,18 @@ namespace cougarsimulator2000
 
         private void btnEquip_Click(object sender, RoutedEventArgs e)
         {
-
+            Item selitem = lbWeapons.SelectedItem as Item;
+            if (selitem != null)
+            {
+                if (selitem.definition.itemType != ItemType.Weapon)
+                {
+                    MessageBox.Show("Ya dun know how to equip dat!");
+                }
+                else
+                {
+                    mainWindow.passEquip(selitem);
+                }
+            }
         }
     }
 }

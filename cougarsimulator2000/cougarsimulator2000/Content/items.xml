@@ -6,6 +6,7 @@
 		<dieSize>6</dieSize>
 		<bonus>2</bonus>
     <accuracy>15</accuracy>
+    <fireSpeed>9</fireSpeed>
     <ammunition>.44 paper cartridge</ammunition>
     <icon>M1860</icon>
 	</weapon>
@@ -16,6 +17,7 @@
 		<dieSize>4</dieSize>
 		<bonus>6</bonus>
     <accuracy>20</accuracy>
+    <fireSpeed>9</fireSpeed>
     <ammunition>.45 Long Colt</ammunition>
     <icon>M1873</icon>
 	</weapon>
@@ -26,6 +28,7 @@
 		<dieSize>6</dieSize>
 		<bonus>4</bonus>
     <accuracy>25</accuracy>
+    <fireSpeed>15</fireSpeed>
     <ammunition>.44 WCF cartridge</ammunition>
     <icon>Winchester</icon>
 	</weapon>

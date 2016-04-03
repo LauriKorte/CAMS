@@ -16,9 +16,6 @@ namespace cougarsimulator2000
             set;
         }
         public WeaponDefinition weapon = null;
-
-
-
         public Item getItemByName(string name)
         {
             foreach(var v in inventory)
@@ -28,6 +25,7 @@ namespace cougarsimulator2000
             }
             return null;
         }
+
         public Item getItemByDef(ItemDefinition idef)
         {
             foreach (var v in inventory)
@@ -65,16 +63,17 @@ namespace cougarsimulator2000
             inventory = new ObservableCollection<Item>();
         }
 
-        override public void update(GameLogic gl)
+        override public int update(GameLogic gl)
         {
+            return 10;
         }
 
-        public override bool attack(GameLogic gl, Actor ac)
+        public override int attack(GameLogic gl, Actor ac)
         {
             if (weapon == null)
             {
                 gl.logGameMessage("Ya got no wappet son!");
-                return false;
+                return 0;
             }
             if (weapon.ammunitionDefinition != null)
             {
@@ -82,7 +81,7 @@ namespace cougarsimulator2000
                 if (it == null)
                 {
                     gl.logGameMessage("Ya got no ammo son!");
-                    return false;
+                    return 0;
                 }
                 changeItemCount(it, -1);
             }
@@ -132,7 +131,20 @@ namespace cougarsimulator2000
                 ak.dodgeMessage = "dodges the bullet";
             }
             ac.damage(gl, ak);
-            return true;
+            return weapon.fireSpeed;
+        }
+
+        public void equip(GameLogic gl, Item selitem)
+        {
+            if (selitem.definition.itemType != ItemType.Weapon)
+            {
+                gl.logGameMessage("Ya can't equip that!");
+            }
+            else
+            {
+                gl.logGameMessage("Wielding ", selitem.definition.name);
+                weapon = selitem.definition as WeaponDefinition;
+            } 
         }
     }
 }

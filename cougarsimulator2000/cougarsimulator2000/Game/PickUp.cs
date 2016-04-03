@@ -24,7 +24,7 @@ namespace cougarsimulator2000
             isBlocking = false;
         }
 
-        public override void update(GameLogic gl)
+        public override int update(GameLogic gl)
         {
             if (gl.player.position == position)
             {
@@ -36,6 +36,7 @@ namespace cougarsimulator2000
                 gl.player.addItem(item);
                 gl.removeActor(this);
             }
+            return 1; 
         }
     }
 }

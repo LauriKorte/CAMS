@@ -9,6 +9,8 @@ namespace cougarsimulator2000
 {
     public class Actor : INotifyPropertyChanged
     {
+        public bool isRemoved = false;
+        public int moveSpeed = 10;
         public Vector2 position;
         private int _health;
         private int _dodge;
@@ -75,14 +77,14 @@ namespace cougarsimulator2000
             name = "nameless";
         }
 
-        virtual public bool attack(GameLogic gl, Actor ac)
+        virtual public int attack(GameLogic gl, Actor ac)
         {
-            return false;
+            return 0;
         }
-
-        virtual public void update(GameLogic gl)
+        
+        virtual public int update(GameLogic gl)
         {
-
+            return 1999;
         }
 
         virtual public void damage(GameLogic gl, Attack ak)

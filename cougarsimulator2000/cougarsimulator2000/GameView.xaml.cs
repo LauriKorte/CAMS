@@ -187,6 +187,7 @@ namespace cougarsimulator2000
 
         public void update()
         {
+            Title = "Turn " + gameLogic.currentTurn;
             updateActors();
             updateTileMap();
         }

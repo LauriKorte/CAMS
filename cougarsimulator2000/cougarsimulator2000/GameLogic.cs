@@ -22,6 +22,19 @@ namespace cougarsimulator2000
         SouthWest = South|West
     }
 
+    class DuplicateIntComparer : IComparer<int>
+    {
+        public int Compare(int x, int y)
+        {
+            int result = x.CompareTo(y);
+
+            if (result == 0)
+                return 1;
+            else
+                return result;
+        }
+    }
+
 
     [XmlRoot("game")]
     public class GameDefinitions
@@ -72,18 +85,24 @@ namespace cougarsimulator2000
     {
         public Player player;
         public ItemList items;
-
-        
-
         public GameDefinitions gameDefinitions;
         private Assets assets;
-
+        public int currentTurn
+        {
+            get;
+            set;
+        }
         public TileMap tileMap
         {
             get;
         }
 
         public List<Actor> actors
+        {
+            get;
+        }
+
+        public SortedList<int, Actor> actorTurns
         {
             get;
         }
@@ -99,6 +118,7 @@ namespace cougarsimulator2000
 
         public void removeActor(Actor actor)
         {
+            actor.isRemoved = true;
             actorsToDelete.Add(actor);
         }
 
@@ -108,19 +128,50 @@ namespace cougarsimulator2000
             this.logger = logger;
             actors = new List<Actor>();
             tileMap = new TileMap();
+            actorTurns = new SortedList<int, Actor>(new DuplicateIntComparer());
+
+            currentTurn = 0;
             assets = ass;
 
             gameDefinitions = assets.loadGameDefinitions();
 
             items = assets.loadItems();
 
-            foreach (var v in items.weapons)
+            start();
+        }
+
+        public void equip(Item selitem)
+        {
+            if (player.isDead)
             {
-                Console.Write(v.name + " " + v.description);
+                logGameMessage("Ya ain't equippin' nuthin, son, 'cos ya dead!");
+                return;
+            }
+            player.equip(this,selitem);
+        }
+
+        private void updatePlayerTurn(int time)
+        {
+            //This function assumes the player is next in the turn queue
+            //and updates it's position in the queue accordingly
+            Actor first = null;
+            if (actorTurns.Count > 0)
+            {
+                var kv = actorTurns.First();
+                first = kv.Value;
+                currentTurn = kv.Key;
             }
 
-            start();
-        }       
+            if (first is Player)
+            {
+                //Remove it from the first place
+                actorTurns.RemoveAt(0);
+                //And add it back
+                actorTurns.Add(currentTurn + time, first);
+            }
+            else
+                throw new Exception("updatePlayerTurn called when it isn't players turn");
+        }
 
         private void updateActors()
         {
@@ -128,10 +179,50 @@ namespace cougarsimulator2000
             {
                 actors.Remove(del);
             }
-            foreach (var actor in actors)
+            //We get the first element in our sorted list
+            Actor first = null;
+            if (actorTurns.Count > 0)
             {
-                actor.update(this);
+                //If there actually is an element
+                var kv = actorTurns.First();
+                first = kv.Value;
+                currentTurn = kv.Key;
             }
+            
+            //We do it while the first element isn't player
+            //or we've run out of elements
+            while (first != player && first != null)
+            {
+                //If it's already removed
+                if (first.isRemoved)
+                {
+                    //discard it
+                    actorTurns.RemoveAt(0);
+                }
+                else
+                {
+                    //Update it
+                    int add = first.update(this);
+                    if (add <= 0)
+                        add = 10;
+                    
+                    //Remove it from the first place
+                    actorTurns.RemoveAt(0);
+                    //And add it back
+                    actorTurns.Add(currentTurn + add, first);
+                }
+
+                //And get the new first element
+                Actor next = null;
+                if (actorTurns.Count > 0)
+                {
+                    var kv = actorTurns.First();
+                    next = kv.Value;
+                    currentTurn = kv.Key;
+                }
+                first = next;
+            }
+
             foreach (var del in actorsToDelete)
             {
                 actors.Remove(del);
@@ -236,17 +327,17 @@ namespace cougarsimulator2000
             {
                 if (actor.isEnemy)
                 {
-                    if (player.attack(this, actor))
-                    {
-                        updateActors();
-                        return;
-                    }
-                    break;
+                    int attack = player.attack(this, actor);
+                    updatePlayerTurn(attack);
+                    
+                    updateActors();
+                    return;
                 }
             }
             
             if (!isTileBlocking(trypos))
                 player.position += off;
+            updatePlayerTurn(player.moveSpeed);
             updateActors();
         }
 
@@ -256,6 +347,7 @@ namespace cougarsimulator2000
             //Clear the actors
             actors.Clear();
 
+            currentTurn = 0;
             Random rand = new Random();
             //Map size should be uneven, odd (11,13,15,17)
 
@@ -301,7 +393,9 @@ namespace cougarsimulator2000
                 }
             }
 
+
             actors.Add(player);
+            actorTurns.Add(currentTurn, player);
 
 
             //Create a bunch of cougars
@@ -315,14 +409,15 @@ namespace cougarsimulator2000
                 a.nameDefArticle = "The ";
                 a.postMortem = "Evil glow fades from the cougar's eyes.";
                 a.goryPostMortem = "The cougar is obliterated.";
+                a.moveSpeed = 4;
                 a.dodge = 3;
                 a.depth = 1;
                 
                 //TODO add check for tile collision here
                 a.position.x = r.Next(tileMap.size.x - 2) + 1;
                 a.position.y = r.Next(tileMap.size.y - 2) + 1;
-                
-                actors.Add(a);
+
+                addActor(a);
             }
 
             for (int i = 0; i < 24; i++)
@@ -335,9 +430,15 @@ namespace cougarsimulator2000
                 PickUp p = new PickUp(a);
                 p.position.x = r.Next(tileMap.size.x - 2) + 1;
                 p.position.y = r.Next(tileMap.size.y - 2) + 1;
-                actors.Add(p);
+                addActor(p);
             }
             updateLineOfSight();
+        }
+
+        public void addActor(Actor a)
+        {
+            actors.Add(a);
+            actorTurns.Add(currentTurn + 1, a);
         }
 
       
@@ -409,19 +510,15 @@ namespace cougarsimulator2000
             }
             if (a.isEnemy)
             {
-                if (player.attack(this, a))
-                {
-                    updateActors();
-                    return;
-                }
+                int pk = player.attack(this, a);
+                updatePlayerTurn(pk);
+                updateActors();
             }
             else if (a == player)
             {
-                if (player.attack(this, a))
-                {
-                    updateActors();
-                    return;
-                }
+                int pk = player.attack(this, a);
+                updatePlayerTurn(pk);
+                updateActors();
             }
 
 
