@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="MainWindow" x:Name="mainWindow" Height="500" Width="600" Closing="Window_Closing" Icon="{StaticResource ac_tex}"
+        Title="MainWindow" Height="500" Width="600" Closing="Window_Closing" Icon="{StaticResource ac_tex}"
         FontFamily="Papyrus" FontSize="20">
 
     <StackPanel>
@@ -33,5 +33,6 @@
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Image Source="{StaticResource ac_tex}" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         </StackPanel>
+        <MediaElement x:Name="mainMusic" Source="../../Sound/Cattails.mp3" LoadedBehavior="Manual" Visibility="Hidden" />
     </StackPanel>
 </Window>

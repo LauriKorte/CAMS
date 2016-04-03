@@ -37,7 +37,14 @@ namespace cougarsimulator2000
             gameView = new GameView(this, assets, gameLogic);
             controls = new Controls(this);
             settings = new Settings();
+            westernMainMusic();
         }
+
+        public void westernMainMusic()
+        {
+            mainMusic.Play();
+        }
+
 
         // start the game
         private void btnStartGame_Click(object sender, RoutedEventArgs e)
@@ -202,7 +209,6 @@ namespace cougarsimulator2000
         {
             settings = new Settings();
             settings.ShowDialog();
-            //logText("joo", "asd");
         }
 
         private void btnQuit_Click(object sender, RoutedEventArgs e)

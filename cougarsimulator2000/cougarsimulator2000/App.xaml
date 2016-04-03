@@ -13,6 +13,7 @@
         
         <BitmapImage x:Key="arrow" UriSource="pack://application:,,,/Resources/arrow.png" />
         <BitmapImage x:Key="sheriff_star" UriSource="pack://application:,,,/Resources/sheriff_star.png" />
+        
         <BitmapImage x:Key="M1860" UriSource="pack://application:,,,/Resources/M1860_colt.png" />
         <BitmapImage x:Key="M1873" UriSource="pack://application:,,,/Resources/M1873_colt.png" />
         <BitmapImage x:Key="Winchester" UriSource="pack://application:,,,/Resources/Winchester.png" />

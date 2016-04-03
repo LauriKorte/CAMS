@@ -18,7 +18,7 @@ namespace cougarsimulator2000
     /// Interaction logic for Settings.xaml
     /// </summary>
     public partial class Settings : Window
-    {
+    {    
         public Settings()
         {
             InitializeComponent();
@@ -31,7 +31,7 @@ namespace cougarsimulator2000
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void sldrVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

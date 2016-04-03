@@ -133,7 +133,9 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\box.png" />
@@ -160,6 +162,7 @@
     <Content Include="Content\items.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Sound\Cattails.mp3" />
     <Resource Include="Content\story.xml" />
     <Resource Include="Resources\wall.png" />
     <Resource Include="Resources\sand.png" />
@@ -168,6 +171,7 @@
     <Resource Include="Resources\M1873_colt.png" />
     <Resource Include="Resources\M1860_colt.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
