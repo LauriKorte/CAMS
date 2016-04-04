@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,6 +29,8 @@ namespace cougarsimulator2000
         private void btnSaveSettings_Click(object sender, RoutedEventArgs e)
         {
             // SAVE THE SETTINGS
+            SoundPlayer audio = new SoundPlayer(cougarsimulator2000.Properties.Resources.Cattails);
+            audio.Play();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

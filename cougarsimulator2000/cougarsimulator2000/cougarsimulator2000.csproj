@@ -165,6 +165,7 @@
     <Resource Include="Resources\44_cartridge.png" />
     <Resource Include="Resources\44_WCF.png" />
     <Resource Include="Resources\45_cartridge.png" />
+    <None Include="Sound\Cattails.wav" />
     <Content Include="Sound\shot1.mp3" />
     <Content Include="Sound\shot2.mp3" />
     <Content Include="Sound\shot3.mp3" />

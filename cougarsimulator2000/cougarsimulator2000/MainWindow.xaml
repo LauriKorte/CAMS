@@ -33,6 +33,5 @@
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <Image Source="{StaticResource ac_tex}" RenderOptions.BitmapScalingMode="NearestNeighbor"/>
         </StackPanel>
-        <MediaElement x:Name="mainMusic" Source="../../Sound/Cattails.mp3" LoadedBehavior="Manual" Visibility="Hidden" />
     </StackPanel>
 </Window>
