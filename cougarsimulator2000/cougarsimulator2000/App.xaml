@@ -17,5 +17,9 @@
         <BitmapImage x:Key="M1860" UriSource="pack://application:,,,/Resources/M1860_colt.png" />
         <BitmapImage x:Key="M1873" UriSource="pack://application:,,,/Resources/M1873_colt.png" />
         <BitmapImage x:Key="Winchester" UriSource="pack://application:,,,/Resources/Winchester.png" />
+
+        <BitmapImage x:Key="Revolver44_ammo" UriSource="pack://application:,,,/Resources/44_cartridge.png" />
+        <BitmapImage x:Key="Revolver45_ammo" UriSource="pack://application:,,,/Resources/45_cartridge.png" />
+        <BitmapImage x:Key="Rifle_ammo" UriSource="pack://application:,,,/Resources/44_WCF.png" />
     </Application.Resources>
 </Application>

@@ -29,18 +29,23 @@
 		<bonus>4</bonus>
     <accuracy>25</accuracy>
     <fireSpeed>15</fireSpeed>
-    <ammunition>.44 WCF cartridge</ammunition>
+    <ammunition>.44 WCF</ammunition>
     <icon>Winchester</icon>
 	</weapon>
 
   <other>
     <name>.44 paper cartridge</name>
     <description>A primitive form of ammunition.</description>
-    <icon>Revolver_ammo</icon>
+    <icon>Revolver44_ammo</icon>
   </other>
   <other>
     <name>.45 Long Colt</name>
     <description>Powerful revolver cartridge.</description>
-    <icon>Revolver_ammo</icon>
+    <icon>Revolver45_ammo</icon>
+  </other>
+  <other>
+    <name>.44 WCF</name>
+    <description>Central fire Winchester cartridge.</description>
+    <icon>Rifle_ammo</icon>
   </other>
 </items>
