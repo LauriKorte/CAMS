@@ -29,8 +29,6 @@ namespace cougarsimulator2000
         private void btnSaveSettings_Click(object sender, RoutedEventArgs e)
         {
             // SAVE THE SETTINGS
-            SoundPlayer audio = new SoundPlayer(cougarsimulator2000.Properties.Resources.Cattails);
-            audio.Play();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
