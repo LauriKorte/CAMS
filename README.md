@@ -1,2 +1,2 @@
 # CAMS
-Cougar ate my stallion!
+Cougar Ate My Stallion!
