@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="irrKlang.NET4, Version=1.0.5235.17346, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\irrKlang.NET4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -165,10 +169,18 @@
     <Resource Include="Resources\44_cartridge.png" />
     <Resource Include="Resources\44_WCF.png" />
     <Resource Include="Resources\45_cartridge.png" />
-    <Content Include="Sound\shot1.mp3" />
-    <Content Include="Sound\shot2.mp3" />
-    <Content Include="Sound\shot3.mp3" />
-    <Resource Include="Sound\Cattails.mp3" />
+    <Content Include="Sound\shot1.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\shot2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\shot3.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\Cattails.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Content\story.xml" />
     <Resource Include="Resources\wall.png" />
     <Resource Include="Resources\sand.png" />
