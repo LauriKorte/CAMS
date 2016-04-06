@@ -10,6 +10,10 @@
     <ammunition>.44 paper cartridge</ammunition>
     <icon>M1860</icon>
     <fireSound>m1860</fireSound>
+    <minimumLevel>1</minimumLevel>
+    <weight>100</weight>
+    <spawnCount>1</spawnCount>
+    <spawnCountVariation>0</spawnCountVariation>
 	</weapon>
   <weapon>
 		<name>Colt Peacemaker</name>
@@ -22,6 +26,10 @@
     <ammunition>.45 Long Colt</ammunition>
     <icon>M1873</icon>
     <fireSound>peacemaker</fireSound>
+    <minimumLevel>1</minimumLevel>
+    <weight>50</weight>
+    <spawnCount>1</spawnCount>
+    <spawnCountVariation>0</spawnCountVariation>
 	</weapon>
 	<weapon>
 		<name>Winchester M1873</name>
@@ -34,21 +42,37 @@
     <ammunition>.44 WCF</ammunition>
     <icon>Winchester</icon>
     <fireSound>winchester</fireSound>
+    <minimumLevel>2</minimumLevel>
+    <weight>20</weight>
+    <spawnCount>1</spawnCount>
+    <spawnCountVariation>0</spawnCountVariation>
 	</weapon>
 
   <other>
     <name>.44 paper cartridge</name>
     <description>A primitive form of ammunition.</description>
     <icon>Revolver44_ammo</icon>
+    <minimumLevel>1</minimumLevel>
+    <weight>200</weight>
+    <spawnCount>6</spawnCount>
+    <spawnCountVariation>4</spawnCountVariation>
   </other>
   <other>
     <name>.45 Long Colt</name>
     <description>Powerful revolver cartridge.</description>
     <icon>Revolver45_ammo</icon>
+    <minimumLevel>1</minimumLevel>
+    <weight>80</weight>
+    <spawnCount>4</spawnCount>
+    <spawnCountVariation>2</spawnCountVariation>
   </other>
   <other>
     <name>.44 WCF</name>
     <description>Central fire Winchester cartridge.</description>
     <icon>Rifle_ammo</icon>
+    <minimumLevel>1</minimumLevel>
+    <weight>60</weight>
+    <spawnCount>4</spawnCount>
+    <spawnCountVariation>2</spawnCountVariation>
   </other>
 </items>

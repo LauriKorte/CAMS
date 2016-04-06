@@ -93,6 +93,13 @@ namespace cougarsimulator2000
             get;
             set;
         }
+
+        public int level
+        {
+            get;
+            set;
+        }
+
         public TileMap tileMap
         {
             get;
@@ -132,6 +139,7 @@ namespace cougarsimulator2000
             actorTurns = new SortedList<int, Actor>(new DuplicateIntComparer());
 
             currentTurn = 0;
+            level = 0;
             assets = ass;
 
             gameDefinitions = assets.loadGameDefinitions();
@@ -240,7 +248,7 @@ namespace cougarsimulator2000
 
         private void updateLineOfSight()
         {
-            List<Vector2> points = LineOfSight.GetCellsOnRadius(player.position, 7);
+            List<Vector2> points = LineOfSight.GetCellsOnRadius(player.position, 12);
             
             foreach (var t in tileMap.tiles)
                 t.isVisible = false;
@@ -347,14 +355,14 @@ namespace cougarsimulator2000
             updatePlayerTurn(player.moveSpeed);
             updateActors();
         }
-
-        public void start()
+        private void newLevel()
         {
+            level++;
 
             //Clear the actors
             actors.Clear();
+            actorTurns.Clear();
 
-            currentTurn = 0;
             Random rand = new Random();
             //Map size should be uneven, odd (11,13,15,17)
 
@@ -365,42 +373,42 @@ namespace cougarsimulator2000
             //otherwise the maze generator makes a mess
             MazeGenerator.Generate(tileMap, 25, 25);
 
-            /*
-            //Fill with empty prairie
-            for (int i = 1; i < 15; i++)
-                for (int j = 1; j < 15; j++)
-                    tileMap.getTile(new Vector2(i,j)).type = 1;
-            */
-            //Make a new player
-            player = new Player();
-            player.name = gameDefinitions.playerName;
-            player.postMortem = gameDefinitions.playerDeathMessage;
-            player.nameArticle = "";
-            player.nameDefArticle = "";
-            player.goryPostMortem = gameDefinitions.playerGoryDeathMessage;
-            player.image =  gameDefinitions.playerImage; //give it a fancy hat
-
-            player.depth = 2;
-            player.position.x = 1;
-            player.position.y = 1;
+            //Make a new player... if we need to
             
-            ItemDefinition idef = items.getItemDefinition(gameDefinitions.defaultPlayerWeapon);
-            if (idef != null)
+            if (player == null || level == 1 || player.isDead)
             {
-                player.inventory.Add(new Item(idef));
-                WeaponDefinition wdef = idef as WeaponDefinition;
-                if (wdef != null)
+                player = new Player();
+                player.name = gameDefinitions.playerName;
+                player.postMortem = gameDefinitions.playerDeathMessage;
+                player.nameArticle = "";
+                player.nameDefArticle = "";
+                player.goryPostMortem = gameDefinitions.playerGoryDeathMessage;
+                player.image = gameDefinitions.playerImage; //give it a fancy hat
+                player.depth = 2;
+
+                ItemDefinition idef = items.getItemDefinition(gameDefinitions.defaultPlayerWeapon);
+                if (idef != null)
                 {
-                    player.weapon = wdef;
-                    ItemDefinition adef = items.getItemDefinition(wdef.ammunitionType);
-                    if (adef != null)
+                    player.inventory.Add(new Item(idef));
+                    WeaponDefinition wdef = idef as WeaponDefinition;
+                    if (wdef != null)
                     {
-                        player.inventory.Add(new Item(adef, gameDefinitions.defaultPlayerAmmo));
+                        player.weapon = wdef;
+                        ItemDefinition adef = items.getItemDefinition(wdef.ammunitionType);
+                        if (adef != null)
+                        {
+                            player.inventory.Add(new Item(adef, gameDefinitions.defaultPlayerAmmo));
+                        }
                     }
                 }
             }
 
 
+            //Then move the player to the starting position
+            player.position.x = 1;
+            player.position.y = 1;
+
+            //And register them
             actors.Add(player);
             actorTurns.Add(currentTurn, player);
 
@@ -408,32 +416,72 @@ namespace cougarsimulator2000
             //Create a bunch of cougars
             Random r = new Random();
             if (enemies.enemies.Count > 0)
-            for (int i = 0; i < 16; i++)
-            {
-                EnemyDefinition def = enemies.enemies[r.Next(enemies.enemies.Count)];
-                Enemy a = new Enemy(def);
+                for (int i = 0; i < 16; i++)
+                {
+                    EnemyDefinition def = enemies.enemies[r.Next(enemies.enemies.Count)];
+                    Enemy a = new Enemy(def);
 
-                a.depth = 1;
-                a.position.x = r.Next(tileMap.size.x - 2) + 1;
-                a.position.y = r.Next(tileMap.size.y - 2) + 1;
-                
-                if (!isTileBlocking(a.position))
-                    addActor(a);
-            }
-            if (items.all.Count > 0)
-            for (int i = 0; i < 24; i++)
-            {
-                ItemDefinition def = items.all[r.Next(items.all.Count)];
-                int cnt = 1;
-                if (def.itemType == ItemType.Other)
-                    cnt = r.Next(12)+1;
-                Item a = new Item(def, cnt);
-                PickUp p = new PickUp(a);
-                p.position.x = r.Next(tileMap.size.x - 2) + 1;
-                p.position.y = r.Next(tileMap.size.y - 2) + 1;
-                addActor(p);
-            }
+                    a.depth = 1;
+                    a.position.x = r.Next(tileMap.size.x - 2) + 1;
+                    a.position.y = r.Next(tileMap.size.y - 2) + 1;
+
+                    if (!isTileBlocking(a.position))
+                        addActor(a);
+                }
+
+            //Spawn loots!
+
+            //We get the total weight of all items available
+            //for the current level
+            int wt = items.getTotalItemWeightForLevel(level);
+
+            if (wt > 0)
+                for (int i = 0; i < 12; i++)
+                {
+                    //then we get a random value
+                    int rnd = r.Next(wt);
+
+                    ItemDefinition def = null;
+
+                    //And go through all the items...
+                    foreach (var item in items.all)
+                    {
+                        //...available for the current level
+                        if (item.minimumLevel <= level)
+                        {
+                            //And see if our random number
+                            //happens to hit this item
+                            rnd -= item.weight;
+                            if (rnd < 0)
+                            {
+                                def = item;
+                                break;
+                            }
+                        }
+                    }
+                    //If something went wrong...
+                    if (def == null)
+                        continue;  //(it shouldn't)
+
+                    int cnt = def.spawnCount;
+                    if (def.spawnCountVariation > 0)
+                        cnt += r.Next(def.spawnCountVariation * 2 + 1) - def.spawnCountVariation;
+
+                    Item a = new Item(def, cnt);
+                    PickUp p = new PickUp(a);
+                    p.position.x = r.Next(tileMap.size.x - 2) + 1;
+                    p.position.y = r.Next(tileMap.size.y - 2) + 1;
+                    addActor(p);
+                }
             updateLineOfSight();
+        }
+        public void start()
+        {
+            level = 0;
+            currentTurn = 0;
+
+            newLevel();
+
         }
 
         public void addActor(Actor a)

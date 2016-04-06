@@ -20,6 +20,19 @@ namespace cougarsimulator2000
     [XmlRoot("items")]
     public class ItemList
     {
+        public int totalItemWeight
+        { get; set;}
+
+        public int getTotalItemWeightForLevel(int level)
+        {
+            int wt = 0;
+            foreach (var i in all)
+            {
+                if (i.minimumLevel <= level)
+                    wt += i.weight;
+            }
+            return wt;
+        }
         public ItemList()
         {
             weapons = new List<WeaponDefinition>();
@@ -65,7 +78,11 @@ namespace cougarsimulator2000
             foreach (var i in weapons)
                 all.Add(i);
             foreach (var i in others)
-                all.Add(i); 
+                all.Add(i);
+            totalItemWeight = 0;
+
+            foreach (var i in all)
+                totalItemWeight += i.weight;
         }
     }
 
@@ -96,6 +113,24 @@ namespace cougarsimulator2000
             get;
             set;
         }
+
+        //Not literal weight, but rather a random weight
+        //used for loot spawning, greater means more abundant
+        [XmlElement("weight")]
+        public int weight { get; set; }
+
+        //Determines the minimum level, the item may be spawned as loot
+        [XmlElement("minimumLevel")]
+        public int minimumLevel { get; set; }
+
+
+        //The amount item will be spawned in one loot drop
+        [XmlElement("spawnCount")]
+        public int spawnCount { get; set; }
+
+        //Maximum variation in both directions to the above spawnCount
+        [XmlElement("spawnCountVariation")]
+        public int spawnCountVariation { get; set; }
 
         protected ItemType type;
         public ItemType itemType
