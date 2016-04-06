@@ -31,8 +31,8 @@ namespace cougarsimulator2000
 
         private void btnSaveSettings_Click(object sender, RoutedEventArgs e)
         {
-            Close();
             // SAVE THE SETTINGS
+            Close();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -48,7 +48,7 @@ namespace cougarsimulator2000
 
         private void sldrGameVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            // Possible game sound update will be added here
         }
     }
 }
