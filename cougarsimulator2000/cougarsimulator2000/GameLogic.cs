@@ -85,6 +85,7 @@ namespace cougarsimulator2000
     {
         public Player player;
         public ItemList items;
+        public EnemyList enemies;
         public GameDefinitions gameDefinitions;
         private Assets assets;
         public int currentTurn
@@ -136,6 +137,7 @@ namespace cougarsimulator2000
             gameDefinitions = assets.loadGameDefinitions();
 
             items = assets.loadItems();
+            enemies = assets.loadEnemies();
 
             start();
         }
@@ -405,17 +407,12 @@ namespace cougarsimulator2000
 
             //Create a bunch of cougars
             Random r = new Random();
+            if (enemies.enemies.Count > 0)
             for (int i = 0; i < 16; i++)
             {
-                Enemy a = new Enemy();
-                a.image = "ac_cougar";
-                a.name = "cougar";
-                a.nameArticle = "a ";
-                a.nameDefArticle = "The ";
-                a.postMortem = "Evil glow fades from the cougar's eyes.";
-                a.goryPostMortem = "The cougar is obliterated.";
-                a.moveSpeed = 4;
-                a.dodge = 3;
+                EnemyDefinition def = enemies.enemies[r.Next(enemies.enemies.Count)];
+                Enemy a = new Enemy(def);
+
                 a.depth = 1;
                 a.position.x = r.Next(tileMap.size.x - 2) + 1;
                 a.position.y = r.Next(tileMap.size.y - 2) + 1;
@@ -429,7 +426,7 @@ namespace cougarsimulator2000
                 ItemDefinition def = items.all[r.Next(items.all.Count)];
                 int cnt = 1;
                 if (def.itemType == ItemType.Other)
-                    cnt = r.Next(12);
+                    cnt = r.Next(12)+1;
                 Item a = new Item(def, cnt);
                 PickUp p = new PickUp(a);
                 p.position.x = r.Next(tileMap.size.x - 2) + 1;

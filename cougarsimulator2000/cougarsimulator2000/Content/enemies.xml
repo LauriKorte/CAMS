@@ -1,0 +1,21 @@
+<enemies>
+	<enemy>
+		<image>ac_cougar</image>
+		<name>cougar</name>
+		<description>An infernal being with unnatural cravings for blood.</description>
+		<nameArticle>a </nameArticle>
+		<nameDefArticle>The </nameDefArticle>
+		<damageDieCount>2</damageDieCount>
+		<damageDieSize>3</damageDieSize>
+		<damageBonus>1</damageBonus>
+		<attackAccuracy>12</attackAccuracy>
+		<attackSpeed>13</attackSpeed>
+		<moveSpeed>4</moveSpeed>
+		<dodge>3</dodge>
+		<health>9</health>
+		<attackMessage>is struck by the cougar's fierce claws</attackMessage>
+		<attackDodgeMessage>skilfully evades the fierce blow</attackDodgeMessage>
+		<postMortem>Evil glow fades from the cougar's eyes.</postMortem>
+		<goryPostMortem>The cougar is obliterated.</goryPostMortem>
+	</enemy>
+</enemies>

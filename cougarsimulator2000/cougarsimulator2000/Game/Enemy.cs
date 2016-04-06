@@ -8,24 +8,43 @@ namespace cougarsimulator2000
 {
     public class Enemy : Actor
     {
+        EnemyDefinition definition;
+
         int spotTimer = 0;
-        public Enemy()
+        public Enemy(EnemyDefinition def)
         {
+            definition = def;
             this.isEnemy = true;
+
+            dodge = def.dodge;
+            postMortem = def.postMortem;
+            goryPostMortem = def.goryPostMortem;
+            image = def.image;
+
+            name = def.name;
+            nameArticle = def.nameArticle;
+            nameDefArticle = def.nameDefArticle;
+
+            moveSpeed = def.moveSpeed;
+            health = def.health;
         }
 
         public override int attack(GameLogic gl, Actor ac)
         {
             Random r = new Random();
-            int dam = 1 + r.Next(5);
             Attack ak = new Attack();
-            ak.damage = dam;
-            ak.accuracy = 12;
-            ak.damageMessage = "is struck by the cougar's fierce claws";
-            ak.dodgeMessage = "skilfully evades the fierce blow";
+
+            int damage = definition.damageBonus;
+            for (int i = 0; i < definition.damageDieCount; i++)
+                damage += r.Next(definition.damageDieSize) + 1;
+
+            ak.damage = damage;
+            ak.accuracy = definition.attackAccuracy;
+            ak.damageMessage = definition.attackMessage;
+            ak.dodgeMessage = definition.attackDodgeMessage;
 
             ac.damage(gl,ak);
-            return 14;
+            return definition.attackSpeed;
         }
 
         override public int update(GameLogic gl) 

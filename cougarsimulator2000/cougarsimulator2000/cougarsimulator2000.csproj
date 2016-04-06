@@ -91,6 +91,7 @@
     <Compile Include="Game\Attack.cs" />
     <Compile Include="Game\Enemy.cs" />
     <Compile Include="GameLogic.cs" />
+    <Compile Include="Game\EnemyDef.cs" />
     <Compile Include="Game\Item.cs" />
     <Compile Include="Game\PickUp.cs" />
     <Compile Include="Game\Player.cs" />
@@ -150,6 +151,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Content Include="Content\enemies.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sound\crappygun.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

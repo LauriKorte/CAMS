@@ -112,6 +112,25 @@ namespace cougarsimulator2000
             return new ItemList();
         }
 
+
+        public EnemyList loadEnemies()
+        {
+            try
+            {
+                XmlSerializer ser = new XmlSerializer(typeof(EnemyList));
+                using (var xmlReader = XmlReader.Create(Application.GetContentStream(new Uri("content/enemies.xml", UriKind.Relative)).Stream))
+                {
+                    var items = (EnemyList)ser.Deserialize(xmlReader);
+                    return items;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return new EnemyList();
+        }
+
         public GameDefinitions loadGameDefinitions()
         {
             try
