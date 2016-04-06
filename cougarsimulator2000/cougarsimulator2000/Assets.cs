@@ -28,9 +28,12 @@ namespace cougarsimulator2000
                 "bg_sand","bg_wall"
             };
 
-            musics["main"] = "Sound/MainMenuMusic.ogg";
+            // Make the music come alive
+            musics["main"] = "Sound/hyperfun.ogg";
 
             sounds["peacemaker"] = "Sound/peacemaker.ogg";
+            sounds["m1860"] = "Sound/crappygun.ogg";
+            sounds["winchester"] = "Sound/winchester.ogg";
 
             String dithered = "bg_dithered";
             BitmapSource ims = (BitmapSource)Application.Current.Resources[dithered];
@@ -42,6 +45,15 @@ namespace cougarsimulator2000
                 
             }
             soundEngine = new ISoundEngine();
+        }
+
+        public void setMusicVolume(double volume)
+        {
+            double vol = volume;
+            if (playingMusic != null)
+            {
+                playingMusic.Volume = (float)vol;
+            }
         }
 
         public void playMusic(string musicName)

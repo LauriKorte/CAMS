@@ -36,7 +36,7 @@ namespace cougarsimulator2000
             gameLogic = new GameLogic(assets, logText);
             gameView = new GameView(this, assets, gameLogic);
             controls = new Controls(this);
-            settings = new Settings();
+            settings = new Settings(assets);
             assets.playMusic("main");
         }
 
@@ -201,7 +201,7 @@ namespace cougarsimulator2000
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
-            settings = new Settings();
+            settings = new Settings(assets);
             settings.ShowDialog();
         }
 

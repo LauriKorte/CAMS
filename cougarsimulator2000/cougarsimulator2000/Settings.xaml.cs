@@ -20,14 +20,18 @@ namespace cougarsimulator2000
     /// Interaction logic for Settings.xaml
     /// </summary>
     public partial class Settings : Window
-    {    
-        public Settings()
+    {
+        Assets assets;
+
+        public Settings(Assets ass)
         {
+            assets = ass;
             InitializeComponent();
         }
 
         private void btnSaveSettings_Click(object sender, RoutedEventArgs e)
         {
+            Close();
             // SAVE THE SETTINGS
         }
 
@@ -36,9 +40,15 @@ namespace cougarsimulator2000
             Close();
         }
 
-        private void sldrVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void sldrMusicVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             // Possible game music update will be added here
+            assets.setMusicVolume(sldrMusicVolume.Value);
+        }
+
+        private void sldrGameVolume_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
         }
     }
 }
