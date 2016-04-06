@@ -28,7 +28,7 @@ namespace cougarsimulator2000
         {
             if (gl.player.position == position)
             {
-
+                gl.playSound("pickup");
                 if (item.count == 1)
                     gl.logGameMessage("Picked up one ", item.definition.name);
                 else
