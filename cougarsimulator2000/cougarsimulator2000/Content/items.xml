@@ -42,7 +42,7 @@
     <ammunition>.44 WCF</ammunition>
     <icon>Winchester</icon>
     <fireSound>winchester</fireSound>
-    <minimumLevel>2</minimumLevel>
+    <minimumLevel>1</minimumLevel>
     <weight>20</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
@@ -58,6 +58,10 @@
     <ammunition>Shotgun shell</ammunition>
     <icon>Shotgun</icon>
     <fireSound>shotgun</fireSound>
+    <minimumLevel>1</minimumLevel>
+    <weight>120</weight>
+    <spawnCount>4</spawnCount>
+    <spawnCountVariation>2</spawnCountVariation>
   </weapon>
 
   <other>
@@ -91,5 +95,9 @@
     <name>Shotgun shell</name>
     <description>It's a shotgun shell.</description>
     <icon>Shotgun_shell</icon>
+    <minimumLevel>1</minimumLevel>
+    <weight>120</weight>
+    <spawnCount>42</spawnCount>
+    <spawnCountVariation>2</spawnCountVariation>
   </other>
 </items>

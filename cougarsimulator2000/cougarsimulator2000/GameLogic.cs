@@ -436,7 +436,7 @@ namespace cougarsimulator2000
             int wt = items.getTotalItemWeightForLevel(level);
 
             if (wt > 0)
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 37; i++)
                 {
                     //then we get a random value
                     int rnd = r.Next(wt);
