@@ -47,6 +47,18 @@
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
 	</weapon>
+  <weapon>
+    <name>Shotgun M1880</name>
+    <description>It's an effective shotgun. It uses shotgun shells.</description>
+    <dieCount>3</dieCount>
+    <dieSize>6</dieSize>
+    <bonus>7</bonus>
+    <accuracy>17</accuracy>
+    <fireSpeed>14</fireSpeed>
+    <ammunition>Shotgun shell</ammunition>
+    <icon>Shotgun</icon>
+    <fireSound>shotgun</fireSound>
+  </weapon>
 
   <other>
     <name>.44 paper cartridge</name>
@@ -74,5 +86,10 @@
     <weight>60</weight>
     <spawnCount>4</spawnCount>
     <spawnCountVariation>2</spawnCountVariation>
+  </other>
+  <other>
+    <name>Shotgun shell</name>
+    <description>It's a shotgun shell.</description>
+    <icon>Shotgun_shell</icon>
   </other>
 </items>
