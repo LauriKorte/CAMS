@@ -34,6 +34,7 @@ namespace cougarsimulator2000
             sounds["peacemaker"] = "Sound/peacemaker.ogg";
             sounds["m1860"] = "Sound/crappygun.ogg";
             sounds["winchester"] = "Sound/winchester_load.ogg";
+            sounds["shotgun"] = "Sound/shotgun_shot.ogg";
             sounds["pickup"] = "Sound/pickup.ogg";
 
             String dithered = "bg_dithered";
