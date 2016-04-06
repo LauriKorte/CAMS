@@ -424,7 +424,7 @@ namespace cougarsimulator2000
 
                 addActor(a);
             }
-
+            if (items.all.Count > 0)
             for (int i = 0; i < 24; i++)
             {
                 ItemDefinition def = items.all[r.Next(items.all.Count)];
