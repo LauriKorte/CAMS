@@ -9,6 +9,7 @@
     <fireSpeed>9</fireSpeed>
     <ammunition>.44 paper cartridge</ammunition>
     <icon>M1860</icon>
+    <fireSound>m1860</fireSound>
 	</weapon>
   <weapon>
 		<name>Colt Peacemaker</name>
@@ -20,6 +21,7 @@
     <fireSpeed>9</fireSpeed>
     <ammunition>.45 Long Colt</ammunition>
     <icon>M1873</icon>
+    <fireSound>peacemaker</fireSound>
 	</weapon>
 	<weapon>
 		<name>Winchester M1873</name>
@@ -31,6 +33,7 @@
     <fireSpeed>15</fireSpeed>
     <ammunition>.44 WCF</ammunition>
     <icon>Winchester</icon>
+    <fireSound>winchester</fireSound>
 	</weapon>
 
   <other>

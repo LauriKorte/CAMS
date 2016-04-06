@@ -156,6 +156,13 @@ namespace cougarsimulator2000
             set;
         }
 
+        [XmlElement("fireSound")]
+        public string fireSound
+        {
+            get;
+            set;
+        }
+
         [XmlIgnore]
         public ItemDefinition ammunitionDefinition
         {

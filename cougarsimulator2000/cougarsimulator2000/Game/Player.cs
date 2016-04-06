@@ -115,6 +115,8 @@ namespace cougarsimulator2000
                 dam += r.Next(weapon.damageDieSize)+1;
             }
 
+            gl.playSound(weapon.fireSound);
+
             Attack ak = new Attack();
             ak.damage = dam;
             ak.accuracy = accuracy;

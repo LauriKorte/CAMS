@@ -37,6 +37,7 @@ namespace cougarsimulator2000
             gameView = new GameView(this, assets, gameLogic);
             controls = new Controls(this);
             settings = new Settings();
+            assets.playMusic("main");
         }
 
         // start the game

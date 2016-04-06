@@ -8,22 +8,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml;
 using System.Xml.Serialization;
+using IrrKlang;
 
 namespace cougarsimulator2000
 {
 
     public class Assets
     {
-        private Dictionary<string, BitmapSource> textures = new Dictionary<string, BitmapSource>();
+        private ISoundEngine soundEngine;
+        private ISound playingMusic;
+        private Dictionary<String, BitmapSource> textures = new Dictionary<String, BitmapSource>();
+        private Dictionary<String, String> musics = new Dictionary<String, String>();
+        private Dictionary<String, String> sounds = new Dictionary<String, String>();
 
         public Assets()
         {
-            string[] maptex = new string[]
+            String[] maptex = new String[]
             {
                 "bg_sand","bg_wall"
             };
 
-            string dithered = "bg_dithered";
+            musics["main"] = "Sound/MainMenuMusic.ogg";
+
+            sounds["peacemaker"] = "Sound/peacemaker.ogg";
+
+            String dithered = "bg_dithered";
             BitmapSource ims = (BitmapSource)Application.Current.Resources[dithered];
 
             foreach (var v in maptex)
@@ -32,15 +41,38 @@ namespace cougarsimulator2000
                 textures[v] = bms;
                 
             }
+            soundEngine = new ISoundEngine();
         }
 
+        public void playMusic(string musicName)
+        {
+            if (playingMusic != null)
+            {
+                playingMusic.Stop();
+                playingMusic = null;
+            }
+            if (musics.ContainsKey(musicName))
+            {
+                String music = musics[musicName];
+                playingMusic = soundEngine.Play2D(music, true);
+            }
+        }
+
+        public void playSound(string soundName)
+        {
+            if (sounds.ContainsKey(soundName))
+            {
+                String snd = sounds[soundName];
+                soundEngine.Play2D(snd, false);
+            }
+        }
         public ImageSource getTileImageSource(Tile t)
         {
             if (t.type != 0)
                 return textures["bg_sand"];
             return textures["bg_wall"];
         }
-        public ImageSource getTextureImageSource(string t)
+        public ImageSource getTextureImageSource(String t)
         {
             if (t == null)
                 return null;

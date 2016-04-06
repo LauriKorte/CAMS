@@ -140,6 +140,11 @@ namespace cougarsimulator2000
             start();
         }
 
+        public void playSound(string snd)
+        {
+            assets.playSound(snd);
+        }
+
         public void equip(Item selitem)
         {
             if (player.isDead)
