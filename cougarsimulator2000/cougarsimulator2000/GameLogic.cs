@@ -417,12 +417,11 @@ namespace cougarsimulator2000
                 a.moveSpeed = 4;
                 a.dodge = 3;
                 a.depth = 1;
-                
-                //TODO add check for tile collision here
                 a.position.x = r.Next(tileMap.size.x - 2) + 1;
                 a.position.y = r.Next(tileMap.size.y - 2) + 1;
-
-                addActor(a);
+                
+                if (!isTileBlocking(a.position))
+                    addActor(a);
             }
             if (items.all.Count > 0)
             for (int i = 0; i < 24; i++)
