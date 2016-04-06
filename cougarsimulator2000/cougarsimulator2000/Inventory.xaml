@@ -8,8 +8,8 @@
         Title="Inventory" Height="500" Width="500" Icon="{StaticResource ac_tex}" FontFamily="Papyrus" FontSize="15">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
             <RowDefinition Height="2*" />
-            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -28,9 +28,15 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel  Grid.Row="1">
-            <Label FontFamily="Comic Sans MS" Content="{Binding name, Mode=TwoWay}"/>
-            <Label FontFamily="Comic Sans MS" Content="{Binding health , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Name: " FontFamily="Comic Sans MS" Margin="5"/>
+                <Label FontFamily="Comic Sans MS" Content="{Binding name, Mode=TwoWay}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Health: " FontFamily="Comic Sans MS" Margin="5"/>
+                <Label FontFamily="Comic Sans MS" Content="{Binding health , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            </StackPanel>
         </StackPanel>
         
         <Button x:Name="btnEquip" Content="Equip" Height="25" Width="75" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,100,10" Click="btnEquip_Click"/>

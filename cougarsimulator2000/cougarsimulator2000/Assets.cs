@@ -33,7 +33,7 @@ namespace cougarsimulator2000
 
             sounds["peacemaker"] = "Sound/peacemaker.ogg";
             sounds["m1860"] = "Sound/crappygun.ogg";
-            sounds["winchester"] = "Sound/winchester.ogg";
+            sounds["winchester"] = "Sound/winchester_load.ogg";
 
             String dithered = "bg_dithered";
             BitmapSource ims = (BitmapSource)Application.Current.Resources[dithered];
@@ -46,16 +46,15 @@ namespace cougarsimulator2000
             }
             soundEngine = new ISoundEngine();
         }
-
+        // Some music and sound stuff
         public void setMusicVolume(double volume)
-        {
+        { 
             double vol = volume;
             if (playingMusic != null)
             {
                 playingMusic.Volume = (float)vol;
             }
         }
-
         public void playMusic(string musicName)
         {
             if (playingMusic != null)
@@ -69,7 +68,6 @@ namespace cougarsimulator2000
                 playingMusic = soundEngine.Play2D(music, true);
             }
         }
-
         public void playSound(string soundName)
         {
             if (sounds.ContainsKey(soundName))
@@ -78,6 +76,7 @@ namespace cougarsimulator2000
                 soundEngine.Play2D(snd, false);
             }
         }
+
         public ImageSource getTileImageSource(Tile t)
         {
             if (t.type != 0)

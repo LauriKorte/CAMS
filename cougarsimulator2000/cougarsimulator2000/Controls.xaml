@@ -15,7 +15,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <ScrollViewer Grid.Row="1" x:Name="scrLog">
-            <TextBlock x:Name="txtLog" Text="" TextWrapping="Wrap" Grid.Row="1" />
+            <TextBlock x:Name="txtLog" Text="" TextWrapping="Wrap" Grid.Row="1" FontFamily="Comic Sans MS" FontSize="14"/>
         </ScrollViewer>
         <Grid>
         <Grid.RowDefinitions>
