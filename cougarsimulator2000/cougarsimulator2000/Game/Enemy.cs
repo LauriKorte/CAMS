@@ -27,6 +27,8 @@ namespace cougarsimulator2000
 
             moveSpeed = def.moveSpeed;
             health = def.health;
+
+            depth = 1;
         }
 
         public override int attack(GameLogic gl, Actor ac)

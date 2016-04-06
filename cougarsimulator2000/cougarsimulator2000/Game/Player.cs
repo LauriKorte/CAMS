@@ -60,6 +60,7 @@ namespace cougarsimulator2000
         public Player()
         {
             health = 25;
+            armorRating = 6;
             inventory = new ObservableCollection<Item>();
         }
 

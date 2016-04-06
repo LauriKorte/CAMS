@@ -11,6 +11,7 @@ namespace cougarsimulator2000
     {
         public bool isRemoved = false;
         public int moveSpeed = 10;
+        public int armorRating = 0;
         public Vector2 position;
         private int _health;
         private int _dodge;
@@ -101,8 +102,26 @@ namespace cougarsimulator2000
                 gl.logGameMessage(nameDefArticle, name, " ", ak.dodgeMessage);
                 return;
             }
-            gl.logGameMessage(nameDefArticle, name, " ", ak.damageMessage, " for ", ak.damage, " damage");
-            health -= ak.damage;
+
+            //Each armor rating point has 33% chance to remove a single point of damage
+
+            int armor = 0;
+            for (int i = 0; i < armorRating; i++)
+                if (r.Next(6) >= 4)
+                    armor += 1;
+            
+            ak.damage -= armor;
+
+            if (ak.damage > 0)
+            {
+                gl.logGameMessage(nameDefArticle, name, " ", ak.damageMessage, " for ", ak.damage, " damage");
+                health -= ak.damage;
+            }
+            else
+            {
+                gl.logGameMessage(nameDefArticle, name, " ", ak.damageMessage, ", but remains unscathed");
+                return;
+            }
             if (health <= 0)
             {
                 isDead = true;
