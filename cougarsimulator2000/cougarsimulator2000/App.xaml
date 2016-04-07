@@ -5,6 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <BitmapImage x:Key="ac_cougar" UriSource="pack://application:,,,/Resources/cougar.png" />
+        <BitmapImage x:Key="ac_infernalCougar" UriSource="pack://application:,,,/Resources/infernalCougar.png" />
         <BitmapImage x:Key="ac_tex" UriSource="pack://application:,,,/Resources/tex.png" />
         
         <BitmapImage x:Key="bg_wall" UriSource="pack://application:,,,/Resources/wall.png" />

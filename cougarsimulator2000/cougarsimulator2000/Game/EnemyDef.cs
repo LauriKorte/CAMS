@@ -55,6 +55,8 @@ namespace cougarsimulator2000
         public int dodge { get; set; }
         [XmlElement("health")]
         public int health { get; set; }
+        [XmlElement("killScore")]
+        public int killScore { get; set; }
 
         [XmlElement("description")]
         public string description

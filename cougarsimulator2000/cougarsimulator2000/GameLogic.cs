@@ -100,6 +100,12 @@ namespace cougarsimulator2000
             set;
         }
 
+        public int score
+        {
+            get;
+            set;
+        }
+
         public TileMap tileMap
         {
             get;
@@ -167,6 +173,14 @@ namespace cougarsimulator2000
 
         private void updatePlayerTurn(int time)
         {
+            //Check if the player is at the level end position
+            if (player.position == tileMap.exitPos)
+            {
+                addScore(125);
+                newLevel();
+                return;
+            }
+
             //This function assumes the player is next in the turn queue
             //and updates it's position in the queue accordingly
             Actor first = null;
@@ -436,7 +450,7 @@ namespace cougarsimulator2000
             int wt = items.getTotalItemWeightForLevel(level);
 
             if (wt > 0)
-                for (int i = 0; i < 37; i++)
+                for (int i = 0; i < 24; i++)
                 {
                     //then we get a random value
                     int rnd = r.Next(wt);
@@ -471,13 +485,17 @@ namespace cougarsimulator2000
                     PickUp p = new PickUp(a);
                     p.position.x = r.Next(tileMap.size.x - 2) + 1;
                     p.position.y = r.Next(tileMap.size.y - 2) + 1;
-                    addActor(p);
+
+                    if (!isTileBlocking(p.position))
+                        addActor(p);
                 }
             updateLineOfSight();
         }
+
         public void start()
         {
             level = 0;
+            score = 0;
             currentTurn = 0;
 
             newLevel();
@@ -488,6 +506,11 @@ namespace cougarsimulator2000
         {
             actors.Add(a);
             actorTurns.Add(currentTurn + 1, a);
+        }
+
+        public void addScore(int score)
+        {
+            this.score += score;
         }
 
       

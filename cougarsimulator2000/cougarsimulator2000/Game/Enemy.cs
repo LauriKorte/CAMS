@@ -49,6 +49,11 @@ namespace cougarsimulator2000
             return definition.attackSpeed;
         }
 
+        public override void onDeath(GameLogic gl)
+        {
+            gl.addScore(definition.killScore);
+        }
+
         override public int update(GameLogic gl) 
         {
 

@@ -88,8 +88,16 @@ namespace cougarsimulator2000
             return 1999;
         }
 
+        virtual public void onDeath(GameLogic gl)
+        {
+
+        }
+
         virtual public void damage(GameLogic gl, Attack ak)
         {
+            if (isDead)
+                return;
+
             Random r = new Random();
             int dodgeDice = 1;
             dodgeDice += r.Next(6);
@@ -124,6 +132,7 @@ namespace cougarsimulator2000
             }
             if (health <= 0)
             {
+                onDeath(gl);
                 isDead = true;
                 if (health <= -10)
                     gl.logGameMessage(goryPostMortem);

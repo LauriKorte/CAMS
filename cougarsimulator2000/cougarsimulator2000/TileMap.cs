@@ -59,7 +59,7 @@ namespace cougarsimulator2000
             private set;
         }
         public List<Tile> tiles;
-        
+        public Vector2 exitPos;
 
         public void initialize(Vector2 size)
         {
