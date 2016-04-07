@@ -8,8 +8,8 @@
         Title="Controls" Height="450" Width="350" Icon="{StaticResource ac_tex}">
 <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="4*" />
             <RowDefinition Height="3*" />
-            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />

@@ -150,5 +150,10 @@ namespace cougarsimulator2000
                 weapon = selitem.definition as WeaponDefinition;
             } 
         }
+
+        override public void onDeath(GameLogic gl)
+        {
+            gl.addNewScore(gl.score);
+        }
     }
 }

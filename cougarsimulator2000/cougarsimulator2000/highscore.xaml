@@ -1,0 +1,22 @@
+﻿<Window x:Class="cougarsimulator2000.Highscore"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:cougarsimulator2000"
+        mc:Ignorable="d"
+        Title="Highest scores" Height="300" Width="300" Icon="{StaticResource ac_tex}" FontFamily="Papyrus" FontSize="14">
+    <Grid>
+        <Grid.DataContext>
+            <XmlDataProvider x:Name="highScoreXML" Source="Content/highscore.xml" XPath="/highscores/highscore" />
+        </Grid.DataContext>
+        <ScrollViewer>
+            <DataGrid x:Name="lbHighScore" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nickname" Binding="{Binding XPath=nickname}" Width="*"/>
+                    <local:DataGridNumericColumn Header="Score" Binding="{Binding XPath=score}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+    </Grid>
+</Window>

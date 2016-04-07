@@ -33,11 +33,18 @@ namespace cougarsimulator2000
             InitializeComponent();
             assets = new Assets();
 
-            gameLogic = new GameLogic(assets, logText);
+            gameLogic = new GameLogic(assets, logText, this);
             gameView = new GameView(this, assets, gameLogic);
             controls = new Controls(this);
             settings = new Settings(assets);
             assets.playMusic("main");
+        }
+
+        public void addNewScore(int score)
+        {
+            Highscore hs = new Highscore();
+            hs.Show();
+            hs.addPlayerScore(score);
         }
 
         // start the game

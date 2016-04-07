@@ -83,6 +83,7 @@ namespace cougarsimulator2000
 
     public class GameLogic
     {
+        public MainWindow mw;
         public Player player;
         public ItemList items;
         public EnemyList enemies;
@@ -136,9 +137,9 @@ namespace cougarsimulator2000
             actorsToDelete.Add(actor);
         }
 
-        public GameLogic(Assets ass, GameLogDelegate logger)
+        public GameLogic(Assets ass, GameLogDelegate logger, MainWindow mw)
         {
-
+            this.mw = mw;
             this.logger = logger;
             actors = new List<Actor>();
             tileMap = new TileMap();
@@ -594,6 +595,11 @@ namespace cougarsimulator2000
             }
 
 
+        }
+
+        public void addNewScore(int score)
+        {
+            mw.addNewScore(score);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,29 +15,18 @@ using System.Windows.Shapes;
 namespace cougarsimulator2000
 {
     /// <summary>
-    /// Interaction logic for Inventory.xaml
+    /// Interaction logic for PlayerNameDialog.xaml
     /// </summary>
-    public partial class Inventory : Window
+    public partial class PlayerNameDialog : Window
     {
-        MainWindow mainWindow;
-        public Inventory(MainWindow mw)
+        public PlayerNameDialog()
         {
-            mainWindow = mw;
             InitializeComponent();
         }
 
-        private void btnReturn_Click(object sender, RoutedEventArgs e)
+        private void btnDone_Click(object sender, RoutedEventArgs e)
         {
             Close();
-        }
-
-        private void btnEquip_Click(object sender, RoutedEventArgs e)
-        {
-            Item selitem = lbWeapons.SelectedItem as Item;
-            if (selitem != null)
-            {
-                mainWindow.passEquip(selitem);     
-            }
         }
     }
 }
