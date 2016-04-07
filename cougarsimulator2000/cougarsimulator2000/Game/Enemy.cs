@@ -27,6 +27,7 @@ namespace cougarsimulator2000
 
             moveSpeed = def.moveSpeed;
             health = def.health;
+            maxHealth = def.health;
 
             depth = 1;
         }

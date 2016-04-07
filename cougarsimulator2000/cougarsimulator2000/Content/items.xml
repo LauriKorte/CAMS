@@ -100,4 +100,15 @@
     <spawnCount>4</spawnCount>
     <spawnCountVariation>2</spawnCountVariation>
   </other>
+  <consumable>
+    <name>Medkit</name>
+    <description>It sort of heals or something.</description>
+    <icon>medkit</icon>
+    <minimumLevel>1</minimumLevel>
+    <weight>300</weight>
+    <spawnCount>1</spawnCount>
+    <spawnCountVariation>0</spawnCountVariation>
+    <effect>healing</effect>
+    <amount>10</amount>
+  </consumable>
 </items>

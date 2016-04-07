@@ -31,6 +31,11 @@ namespace cougarsimulator2000
             set { _health = value; NotifyPropertyChanged("health"); }
         }
 
+        public int maxHealth
+        {
+            get;set;
+        }
+
         public int depth = 0;
         public bool isDead = false;
         public string image;
