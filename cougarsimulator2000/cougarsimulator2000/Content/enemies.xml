@@ -18,6 +18,9 @@
 		<attackDodgeMessage>skilfully evades the fierce blow</attackDodgeMessage>
 		<postMortem>Evil glow fades from the cougar's eyes.</postMortem>
 		<goryPostMortem>The cougar is obliterated.</goryPostMortem>
+    <minimumLevel>1</minimumLevel>
+    <danger>2</danger>
+    <weight>170</weight>
 	</enemy>
   <enemy>
     <image>ac_infernalCougar</image>
@@ -38,5 +41,8 @@
     <attackDodgeMessage>barely dodges the dreadful bite</attackDodgeMessage>
     <postMortem>With malignant screams, the infernal cougar's soul is put back to rest.</postMortem>
     <goryPostMortem>The infernal cougar is banished back to hell.</goryPostMortem>
+    <minimumLevel>2</minimumLevel>
+    <danger>3</danger>
+    <weight>60</weight>
   </enemy>
 </enemies>

@@ -77,6 +77,14 @@ namespace cougarsimulator2000
                 gl.logGameMessage("Ya got no wappet son!");
                 return 0;
             }
+
+            //Chebyshev distance is used for range check
+            int cbdist = Math.Max(Math.Abs(position.x - ac.position.x),Math.Abs(position.y - ac.position.y));
+            if (cbdist > weapon.range)
+            {
+                gl.logGameMessage("Your target is too far away!");
+                return 0;
+            }
             if (weapon.ammunitionDefinition != null)
             {
                 Item it = getItemByDef(weapon.ammunitionDefinition);
@@ -126,16 +134,43 @@ namespace cougarsimulator2000
             //If the player is shooting themselves
             if (ac == this)
             {
-                ak.damageMessage = "shot himself";
-                ak.dodgeMessage = "dodges the bullet. Maybe he isn't ready to leave this world.";
+                ak.damageMessage = "hits himself";
+                ak.dodgeMessage = "dodges his own attack. Maybe he isn't ready to leave this world.";
             }
             else
             {
-                ak.damageMessage = "was shot";
-                ak.dodgeMessage = "dodges the bullet";
+                ak.damageMessage = "was hit";
+                ak.dodgeMessage = "dodges the attack";
             }
             ac.damage(gl, ak);
             return weapon.fireSpeed;
+        }
+
+        public void use(GameLogic gl, Item selitem)
+        {
+            if (selitem.definition.itemType != ItemType.Consumable)
+            {
+                gl.logGameMessage("Ya can't use that!");
+            }
+            else
+            {
+                ConsumableDefinition idef = selitem.definition as ConsumableDefinition;
+                changeItemCount(selitem, -1);
+
+                if (idef.effect == "healing")
+                {
+                    int healAmount = idef.amount;
+                    if (healAmount + health >= maxHealth)
+                        healAmount = maxHealth - health;
+                    if (healAmount == 0)
+                        gl.logGameMessage("You used the medkit, but with no effect.");
+                    else
+                        gl.logGameMessage("You used the medkit, and gained ",healAmount," HP");
+
+                    health += healAmount;
+                }
+
+            }
         }
 
         public void equip(GameLogic gl, Item selitem)
