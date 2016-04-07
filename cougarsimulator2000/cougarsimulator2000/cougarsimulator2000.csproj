@@ -154,6 +154,7 @@
     <Content Include="Content\enemies.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\medkit.png" />
     <Content Include="Sound\shotgun_shot.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
