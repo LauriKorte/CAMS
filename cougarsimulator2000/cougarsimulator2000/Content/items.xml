@@ -14,7 +14,25 @@
     <weight>35</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
+    <range>12</range>
 	</weapon>
+  <weapon>
+    <name>Knife</name>
+    <description>It's a big knife.</description>
+    <dieCount>3</dieCount>
+    <dieSize>5</dieSize>
+    <bonus>3</bonus>
+    <accuracy>12</accuracy>
+    <fireSpeed>14</fireSpeed>
+    <ammunition></ammunition>
+    <icon>knife</icon>
+    <fireSound>knife_slash</fireSound>
+    <minimumLevel>1</minimumLevel>
+    <weight>25</weight>
+    <spawnCount>1</spawnCount>
+    <spawnCountVariation>0</spawnCountVariation>
+    <range>1</range>
+  </weapon>
   <weapon>
 		<name>Colt Peacemaker</name>
 		<description>The greatest handgun ever made. The Colt Single Action Army.</description>
@@ -30,6 +48,7 @@
     <weight>28</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
+    <range>16</range>
 	</weapon>
 	<weapon>
 		<name>Winchester M1873</name>
@@ -46,6 +65,7 @@
     <weight>10</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
+    <range>24</range>
 	</weapon>
   <weapon>
     <name>Shotgun M1880</name>
@@ -62,6 +82,7 @@
     <weight>20</weight>
     <spawnCount>4</spawnCount>
     <spawnCountVariation>2</spawnCountVariation>
+    <range>7</range>
   </weapon>
 
   <other>

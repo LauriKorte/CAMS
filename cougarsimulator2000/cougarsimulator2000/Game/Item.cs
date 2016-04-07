@@ -204,6 +204,13 @@ namespace cougarsimulator2000
             set;
         }
 
+        [XmlElement("range")]
+        public int range
+        {
+            get;
+            set;
+        }
+
         [XmlIgnore]
         public ItemDefinition ammunitionDefinition
         {

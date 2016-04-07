@@ -77,6 +77,14 @@ namespace cougarsimulator2000
                 gl.logGameMessage("Ya got no wappet son!");
                 return 0;
             }
+
+            //Chebyshev distance is used for range check
+            int cbdist = Math.Max(Math.Abs(position.x - ac.position.x),Math.Abs(position.y - ac.position.y));
+            if (cbdist > weapon.range)
+            {
+                gl.logGameMessage("Your target is too far away!");
+                return 0;
+            }
             if (weapon.ammunitionDefinition != null)
             {
                 Item it = getItemByDef(weapon.ammunitionDefinition);
@@ -126,13 +134,13 @@ namespace cougarsimulator2000
             //If the player is shooting themselves
             if (ac == this)
             {
-                ak.damageMessage = "shot himself";
-                ak.dodgeMessage = "dodges the bullet. Maybe he isn't ready to leave this world.";
+                ak.damageMessage = "hits himself";
+                ak.dodgeMessage = "dodges his own attack. Maybe he isn't ready to leave this world.";
             }
             else
             {
-                ak.damageMessage = "was shot";
-                ak.dodgeMessage = "dodges the bullet";
+                ak.damageMessage = "was hit";
+                ak.dodgeMessage = "dodges the attack";
             }
             ac.damage(gl, ak);
             return weapon.fireSpeed;

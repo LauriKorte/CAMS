@@ -10,6 +10,18 @@ namespace cougarsimulator2000
     [XmlRoot("enemies")]
     public class EnemyList
     {
+
+        public int getTotalItemWeightForLevel(int level)
+        {
+            int wt = 0;
+            foreach (var i in enemies)
+            {
+                if (i.minimumLevel <= level)
+                    wt += i.weight;
+            }
+            return wt;
+        }
+
         public EnemyList()
         {
             enemies = new List<EnemyDefinition>();
@@ -57,6 +69,16 @@ namespace cougarsimulator2000
         public int health { get; set; }
         [XmlElement("killScore")]
         public int killScore { get; set; }
+
+        
+        [XmlElement("weight")]
+        public int weight { get; set; }
+        
+        [XmlElement("minimumLevel")]
+        public int minimumLevel { get; set; }
+        
+        [XmlElement("danger")]
+        public int danger { get; set; }
 
         [XmlElement("description")]
         public string description

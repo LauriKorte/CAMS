@@ -160,6 +160,7 @@
     </Content>
     <Resource Include="Resources\medkit.png" />
     <Resource Include="Resources\infernalCougar.png" />
+    <Resource Include="Resources\knife.png" />
     <Content Include="Sound\shotgun_shot.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

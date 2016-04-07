@@ -435,10 +435,34 @@ namespace cougarsimulator2000
 
             //Create a bunch of cougars
             Random r = new Random();
-            if (enemies.enemies.Count > 0)
-                for (int i = 0; i < 16; i++)
+
+            int maxDanger = 15 + 5 * level;
+
+            int ewt = enemies.getTotalItemWeightForLevel(level);
+            if (ewt > 0)
+                for (int i = 0; i < maxDanger;)
                 {
-                    EnemyDefinition def = enemies.enemies[r.Next(enemies.enemies.Count)];
+                    int rnd = r.Next(ewt);
+
+                    EnemyDefinition def = null;
+
+                    //look at the item spawning algorithm
+                    //for more comments
+                    foreach (var enemy in enemies.enemies)
+                    {
+                        if (enemy.minimumLevel <= level)
+                        {
+                            rnd -= enemy.weight;
+                            if (rnd < 0)
+                            {
+                                def = enemy;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (def == null)
+                        break;
                     Enemy a = new Enemy(def);
 
                     a.depth = 1;
@@ -447,6 +471,10 @@ namespace cougarsimulator2000
 
                     if (!isTileBlocking(a.position))
                         addActor(a);
+                    if (def.danger > 0)
+                        i += def.danger;
+                    else
+                        i += 1;
                 }
 
             //Spawn loots!
