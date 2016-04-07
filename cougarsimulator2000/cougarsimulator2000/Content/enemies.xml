@@ -13,9 +13,30 @@
 		<moveSpeed>4</moveSpeed>
 		<dodge>3</dodge>
 		<health>9</health>
+    <killScore>100</killScore>
 		<attackMessage>is struck by the cougar's fierce claws</attackMessage>
 		<attackDodgeMessage>skilfully evades the fierce blow</attackDodgeMessage>
 		<postMortem>Evil glow fades from the cougar's eyes.</postMortem>
 		<goryPostMortem>The cougar is obliterated.</goryPostMortem>
 	</enemy>
+  <enemy>
+    <image>ac_infernalCougar</image>
+    <name>infernal cougar</name>
+    <description>Some malevolent force has corrupted this cougar.</description>
+    <nameArticle>an </nameArticle>
+    <nameDefArticle>The </nameDefArticle>
+    <damageDieCount>2</damageDieCount>
+    <damageDieSize>4</damageDieSize>
+    <damageBonus>2</damageBonus>
+    <attackAccuracy>10</attackAccuracy>
+    <attackSpeed>13</attackSpeed>
+    <moveSpeed>8</moveSpeed>
+    <dodge>2</dodge>
+    <health>15</health>
+    <killScore>160</killScore>
+    <attackMessage>is bit by the infernal cougar</attackMessage>
+    <attackDodgeMessage>barely dodges the dreadful bite</attackDodgeMessage>
+    <postMortem>With malignant screams, the infernal cougar's soul is put back to rest.</postMortem>
+    <goryPostMortem>The infernal cougar is banished back to hell.</goryPostMortem>
+  </enemy>
 </enemies>

@@ -67,6 +67,10 @@ namespace cougarsimulator2000
         [XmlElement("weapon")]
         public List<WeaponDefinition> weapons { get; set; }
 
+        
+        [XmlElement("consumable")]
+        public List<ConsumableDefinition> consumables { get; set; }
+
         [XmlElement("other")]
         public List<ItemDefinition> others { get; set; }
 
@@ -78,6 +82,8 @@ namespace cougarsimulator2000
             foreach (var i in weapons)
                 all.Add(i);
             foreach (var i in others)
+                all.Add(i);
+            foreach (var i in consumables)
                 all.Add(i);
             totalItemWeight = 0;
 
@@ -211,12 +217,37 @@ namespace cougarsimulator2000
         }
     }
 
+    public class ConsumableDefinition : ItemDefinition
+    {
+
+        [XmlElement("effect")]
+        public string effect
+        {
+            get;
+            set;
+        }
+
+        [XmlElement("amount")]
+        public int amount
+        {
+            get;
+            set;
+        }
+        
+        public ConsumableDefinition()
+        {
+            type = ItemType.Consumable;
+        }
+    }
+
     public class Item : INotifyPropertyChanged
     {
         public ItemDefinition definition
         {
             get;
         }
+
+
       
 
         public Item(ItemDefinition def, int cnt = 1)

@@ -11,7 +11,7 @@
     <icon>M1860</icon>
     <fireSound>m1860</fireSound>
     <minimumLevel>1</minimumLevel>
-    <weight>100</weight>
+    <weight>35</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
 	</weapon>
@@ -27,7 +27,7 @@
     <icon>M1873</icon>
     <fireSound>peacemaker</fireSound>
     <minimumLevel>1</minimumLevel>
-    <weight>50</weight>
+    <weight>28</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
 	</weapon>
@@ -43,7 +43,7 @@
     <icon>Winchester</icon>
     <fireSound>winchester</fireSound>
     <minimumLevel>1</minimumLevel>
-    <weight>20</weight>
+    <weight>10</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
 	</weapon>
@@ -59,7 +59,7 @@
     <icon>Shotgun</icon>
     <fireSound>shotgun</fireSound>
     <minimumLevel>1</minimumLevel>
-    <weight>120</weight>
+    <weight>20</weight>
     <spawnCount>4</spawnCount>
     <spawnCountVariation>2</spawnCountVariation>
   </weapon>
@@ -69,9 +69,9 @@
     <description>A primitive form of ammunition.</description>
     <icon>Revolver44_ammo</icon>
     <minimumLevel>1</minimumLevel>
-    <weight>200</weight>
-    <spawnCount>6</spawnCount>
-    <spawnCountVariation>4</spawnCountVariation>
+    <weight>140</weight>
+    <spawnCount>5</spawnCount>
+    <spawnCountVariation>3</spawnCountVariation>
   </other>
   <other>
     <name>.45 Long Colt</name>
@@ -96,8 +96,8 @@
     <description>It's a shotgun shell.</description>
     <icon>Shotgun_shell</icon>
     <minimumLevel>1</minimumLevel>
-    <weight>120</weight>
-    <spawnCount>42</spawnCount>
+    <weight>65</weight>
+    <spawnCount>4</spawnCount>
     <spawnCountVariation>2</spawnCountVariation>
   </other>
 </items>
