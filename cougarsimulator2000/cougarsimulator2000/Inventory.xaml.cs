@@ -37,14 +37,7 @@ namespace cougarsimulator2000
             Item selitem = lbWeapons.SelectedItem as Item;
             if (selitem != null)
             {
-                if (selitem.definition.itemType != ItemType.Weapon)
-                {
-                    MessageBox.Show("Ya dun know how to equip dat!");
-                }
-                else
-                {
-                    mainWindow.passEquip(selitem);
-                }
+                mainWindow.passEquip(selitem);
             }
         }
     }

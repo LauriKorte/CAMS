@@ -165,10 +165,16 @@ namespace cougarsimulator2000
         {
             if (player.isDead)
             {
-                logGameMessage("Ya ain't equippin' nuthin, son, 'cos ya dead!");
+                logGameMessage("Ya ain't doin' nuthin, son, 'cos ya dead!");
                 return;
             }
-            player.equip(this,selitem);
+
+            if (selitem.definition.itemType == ItemType.Weapon)
+                player.equip(this, selitem);
+            else if (selitem.definition.itemType == ItemType.Consumable)
+                player.use(this, selitem);
+            else
+                logGameMessage("You can't use that!");
         }
 
         private void updatePlayerTurn(int time)

@@ -138,6 +138,33 @@ namespace cougarsimulator2000
             return weapon.fireSpeed;
         }
 
+        public void use(GameLogic gl, Item selitem)
+        {
+            if (selitem.definition.itemType != ItemType.Consumable)
+            {
+                gl.logGameMessage("Ya can't use that!");
+            }
+            else
+            {
+                ConsumableDefinition idef = selitem.definition as ConsumableDefinition;
+                changeItemCount(selitem, -1);
+
+                if (idef.effect == "healing")
+                {
+                    int healAmount = idef.amount;
+                    if (healAmount + health >= maxHealth)
+                        healAmount = maxHealth - health;
+                    if (healAmount == 0)
+                        gl.logGameMessage("You used the medkit, but with no effect.");
+                    else
+                        gl.logGameMessage("You used the medkit, and gained ",healAmount," HP");
+
+                    health += healAmount;
+                }
+
+            }
+        }
+
         public void equip(GameLogic gl, Item selitem)
         {
             if (selitem.definition.itemType != ItemType.Weapon)
