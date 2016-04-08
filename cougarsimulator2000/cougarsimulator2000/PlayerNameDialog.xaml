@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cougarsimulator2000"
         mc:Ignorable="d"
-        Title="PlayerNameDialog" Height="300" Width="300">
+        Title="Enter your nickname" Height="300" Width="300" FontFamily="Papyrus" FontSize="16">
     <Grid>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0">
+            <Label Content="GAME OVER" FontSize="30" Foreground="Red" BorderBrush="Red" BorderThickness="0,1"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20">
             <Label Content="Give thy naime, ye noble warriore!" Margin="10"/>
-            <TextBox x:Name="tbPlayerName" />
-            <Button x:Name="btnDone" Content="OK" Margin="10" Click="btnDone_Click"/>
+            <TextBox x:Name="tbPlayerName" Margin="20,0,20,0"/>
+            <Button x:Name="btnDone" Content="OK" Margin="10" Width="100" Click="btnDone_Click"/>
         </StackPanel>
     </Grid>
 </Window>

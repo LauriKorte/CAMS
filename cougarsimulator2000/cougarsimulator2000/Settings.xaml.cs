@@ -50,10 +50,5 @@ namespace cougarsimulator2000
         {
             // Possible game sound update will be added here
         }
-
-        private void btnHighScore_Click(object sender, RoutedEventArgs e)
-        {
-            (new Highscore()).ShowDialog();
-        }
     }
 }

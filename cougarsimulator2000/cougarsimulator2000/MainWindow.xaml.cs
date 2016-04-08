@@ -212,6 +212,11 @@ namespace cougarsimulator2000
             settings.ShowDialog();
         }
 
+        private void btnHighScore_Click(object sender, RoutedEventArgs e)
+        {
+            (new Highscore()).ShowDialog();
+        }
+
         private void btnQuit_Click(object sender, RoutedEventArgs e)
         {
             Close();
