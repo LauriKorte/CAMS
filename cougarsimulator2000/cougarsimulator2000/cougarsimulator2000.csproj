@@ -159,6 +159,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Sound\swing.ogg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Resource Include="tex.ico" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -174,7 +177,7 @@
     </Content>
     <Resource Include="Resources\medkit.png" />
     <Resource Include="Resources\infernalCougar.png" />
-	<Resource Include="Resources\knife.png" />
+    <Resource Include="Resources\knife.png" />
     <Content Include="Content\highscore.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

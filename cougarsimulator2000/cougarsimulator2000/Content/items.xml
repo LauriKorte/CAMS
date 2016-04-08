@@ -11,7 +11,7 @@
     <icon>M1860</icon>
     <fireSound>m1860</fireSound>
     <minimumLevel>1</minimumLevel>
-    <weight>35</weight>
+    <weight>65</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
     <range>12</range>
@@ -26,7 +26,7 @@
     <fireSpeed>14</fireSpeed>
     <ammunition></ammunition>
     <icon>knife</icon>
-    <fireSound>knife_slash</fireSound>
+    <fireSound>knife</fireSound>
     <minimumLevel>1</minimumLevel>
     <weight>25</weight>
     <spawnCount>1</spawnCount>
@@ -80,8 +80,8 @@
     <fireSound>shotgun</fireSound>
     <minimumLevel>1</minimumLevel>
     <weight>20</weight>
-    <spawnCount>4</spawnCount>
-    <spawnCountVariation>2</spawnCountVariation>
+    <spawnCount>1</spawnCount>
+    <spawnCountVariation>1</spawnCountVariation>
     <range>7</range>
   </weapon>
 

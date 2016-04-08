@@ -36,6 +36,7 @@ namespace cougarsimulator2000
             sounds["winchester"] = "Sound/winchester_load.ogg";
             sounds["shotgun"] = "Sound/shotgun_shot.ogg";
             sounds["pickup"] = "Sound/pickup.ogg";
+            sounds["knife"] = "Sound/swing.ogg";
 
             String dithered = "bg_dithered";
             BitmapSource ims = (BitmapSource)Application.Current.Resources[dithered];
@@ -75,7 +76,13 @@ namespace cougarsimulator2000
             if (sounds.ContainsKey(soundName))
             {
                 String snd = sounds[soundName];
-                soundEngine.Play2D(snd, false);
+                ISound isnd = soundEngine.Play2D(snd, false, true);
+
+                Random r = new Random();
+                float pitch = ((float)(85 + r.Next(30))) / 100.0f;
+                isnd.PlaybackSpeed = pitch;
+
+                isnd.Paused = false;
             }
         }
 

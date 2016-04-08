@@ -1,5 +1,5 @@
 <game>
-	<defaultPlayerWeapon>Knife</defaultPlayerWeapon>
+	<defaultPlayerWeapon>Colt M1860</defaultPlayerWeapon>
   <defaultPlayerAmmo>24</defaultPlayerAmmo>
   <playerName>Gunpowder Tex</playerName>
   <playerDeathMessage>Gunpowder Tex lies dead.</playerDeathMessage>
