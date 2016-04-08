@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace cougarsimulator2000
 {
@@ -61,9 +62,9 @@ namespace cougarsimulator2000
             XmlDocument doc = highScoreXML.Document;
             XmlNode node = doc.SelectSingleNode("/highscores");
 
-            XmlNode newScore = doc.CreateElement("highscore");
+            XmlNode newScore = doc.CreateElement("score");
             XmlNode name = doc.CreateElement("nickname");
-            XmlNode s = doc.CreateElement("score");
+            XmlNode s = doc.CreateElement("highscore");
             name.InnerText = pnd.tbPlayerName.Text;
 
             newScore.InnerText = score.ToString();
@@ -71,7 +72,30 @@ namespace cougarsimulator2000
             s.AppendChild(name);
 
             node.AppendChild(s);
-            highScoreXML.Document.Save(scoreStr);
+            
+
+            //Sort the highscore
+            //Using some LINQ XML magic
+            var xdoc = XDocument.Load(new XmlNodeReader(doc));
+            var sortedRoot = xdoc.Element("highscores");
+            //Get array of all scores ordered by descending score
+            var ord = sortedRoot.Elements("highscore").OrderBy(sc => -(int)sc.Element("score")).ToArray();
+
+            //Clear the scores
+            sortedRoot.RemoveAll();
+            
+            //And add them back sorted
+            foreach (var x in ord)
+                sortedRoot.Add(x);
+
+            //Save the linq document
+            xdoc.Save(scoreStr);
+
+            //And reload our regular one
+            doc.Load(scoreStr);
+
+            
+
         }
     }
 }
