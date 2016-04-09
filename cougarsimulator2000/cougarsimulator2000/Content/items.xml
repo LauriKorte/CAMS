@@ -80,7 +80,7 @@
     <description>It's an effective shotgun. It uses shotgun shells.</description>
     <dieCount>1</dieCount>
     <dieSize>4</dieSize>
-    <bonus>1</bonus>
+    <bonus>2</bonus>
     <accuracy>17</accuracy>
     <fireSpeed>19</fireSpeed>
     <ammunition>Shotgun shell</ammunition>

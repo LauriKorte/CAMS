@@ -10,7 +10,7 @@
 		<damageBonus>1</damageBonus>
 		<attackAccuracy>12</attackAccuracy>
 		<attackSpeed>13</attackSpeed>
-		<moveSpeed>4</moveSpeed>
+		<moveSpeed>6</moveSpeed>
 		<dodge>3</dodge>
     <armor>1</armor>
 		<health>9</health>

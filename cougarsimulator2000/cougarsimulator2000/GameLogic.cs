@@ -477,7 +477,7 @@ namespace cougarsimulator2000
             //Create a bunch of cougars
             Random r = new Random();
 
-            int maxDanger = 75 + 5 * level;
+            int maxDanger = 15 + 5 * level;
 
             int ewt = enemies.getTotalItemWeightForLevel(level);
             if (ewt > 0)

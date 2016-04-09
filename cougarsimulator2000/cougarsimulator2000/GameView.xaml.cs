@@ -156,6 +156,8 @@ namespace cougarsimulator2000
 
         private void updateActors()
         {
+            int gridCellW = 32;
+            int gridCellH = 32;
             //Remove the actor images
             gridActors.Children.Clear();
 
@@ -172,6 +174,8 @@ namespace cougarsimulator2000
                 //Load correct image
                 im.Source = assets.getTextureImageSource(a.image);
                 im.ToolTip = a.nameArticle+a.name;
+
+                im.RenderTransform = new RotateTransform(a.imageAngle, gridCellW / 2, gridCellH / 2);
 
                 gridActors.Children.Add(gr);
 

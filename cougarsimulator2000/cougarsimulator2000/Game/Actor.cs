@@ -16,6 +16,7 @@ namespace cougarsimulator2000
         private int _health;
         private int _dodge;
         public bool isVisible = true;
+        public double imageAngle = 0.0;
 
         public int dodge
         {
@@ -125,6 +126,17 @@ namespace cougarsimulator2000
             return dam;
         }
 
+        virtual protected void spawnBlood(GameLogic gl)
+        {
+
+            Random r = new Random();
+            if (r.Next(3) == 1)
+                return;
+            Prop p = new Prop("blood1");
+            gl.addActor(p);
+            p.position = position;
+        }
+
         virtual protected void handleDamage(GameLogic gl, Attack ak, int dam)
         {
             if (dam == -1)
@@ -143,9 +155,10 @@ namespace cougarsimulator2000
                 gl.logGameMessage(nameDefArticle, name, " ", ak.damageMessage, ", but remains unscathed");
                 return;
             }
-
+            spawnBlood(gl);
             if (health <= 0)
             {
+
                 onDeath(gl);
                 isDead = true;
                 if (health <= -10)

@@ -27,5 +27,6 @@
         <BitmapImage x:Key="Shotgun_shell" UriSource="pack://application:,,,/Resources/shotgun_shell.png" />
 
         <BitmapImage x:Key="medkit" UriSource="pack://application:,,,/Resources/medkit.png" />
+        <BitmapImage x:Key="blood1" UriSource="pack://application:,,,/Resources/blood1.png" />
     </Application.Resources>
 </Application>

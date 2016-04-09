@@ -26,6 +26,12 @@ namespace cougarsimulator2000
             isBlocking = false;
         }
 
+        protected override void spawnBlood(GameLogic gl)
+        {
+            //We don't spawn blood for pickups
+            return;
+        }
+
         public override int update(GameLogic gl)
         {
             if (gl.player.position == position)
