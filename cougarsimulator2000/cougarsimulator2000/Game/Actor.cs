@@ -130,9 +130,7 @@ namespace cougarsimulator2000
         {
 
             Random r = new Random();
-            if (r.Next(3) == 1)
-                return;
-            Prop p = new Prop("blood1");
+            Prop p = new Prop("blood1","blood");
             gl.addActor(p);
             p.position = position;
         }

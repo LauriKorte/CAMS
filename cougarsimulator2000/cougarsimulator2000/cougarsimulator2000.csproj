@@ -161,6 +161,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Resource Include="Resources\blood1.png" />
+    <Resource Include="Resources\snake.png" />
     <Content Include="Sound\swing.ogg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

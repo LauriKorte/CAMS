@@ -24,6 +24,30 @@
     <weight>170</weight>
 	</enemy>
   <enemy>
+    <image>ac_snake</image>
+    <name>rattlesnake</name>
+    <description>It's an extremely agitated snake.</description>
+    <nameArticle>a </nameArticle>
+    <nameDefArticle>The </nameDefArticle>
+    <damageDieCount>3</damageDieCount>
+    <damageDieSize>3</damageDieSize>
+    <damageBonus>2</damageBonus>
+    <attackAccuracy>16</attackAccuracy>
+    <attackSpeed>15</attackSpeed>
+    <moveSpeed>30</moveSpeed>
+    <dodge>0</dodge>
+    <armor>2</armor>
+    <health>8</health>
+    <killScore>50</killScore>
+    <attackMessage>is bit by the rattlesnake</attackMessage>
+    <attackDodgeMessage>dodges the menacing bite</attackDodgeMessage>
+    <postMortem>The snake rattles no more.</postMortem>
+    <goryPostMortem>The snake crumbles to dust.</goryPostMortem>
+    <minimumLevel>1</minimumLevel>
+    <danger>1</danger>
+    <weight>140</weight>
+  </enemy>
+  <enemy>
     <image>ac_infernalCougar</image>
     <name>infernal cougar</name>
     <description>Some malevolent force has corrupted this cougar.</description>

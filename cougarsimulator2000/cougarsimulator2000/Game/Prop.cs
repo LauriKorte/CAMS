@@ -9,8 +9,11 @@ namespace cougarsimulator2000
     class Prop : Actor
     {
 
-        public Prop(string propName)
+        public Prop(string propName, string propDescription)
         {
+            name = propDescription;
+            nameArticle = "";
+            nameDefArticle = "";
             image = propName;
             Random r = new Random();
             imageAngle = r.NextDouble() * 360.0;

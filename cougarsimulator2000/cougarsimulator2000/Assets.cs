@@ -108,7 +108,9 @@ namespace cougarsimulator2000
         {
             if (t == null)
                 return null;
-            return (BitmapSource)Application.Current.Resources[t];
+            if (Application.Current.Resources.Contains(t))
+                return (BitmapSource)Application.Current.Resources[t];
+            return null;
         }
 
         public ItemList loadItems()
