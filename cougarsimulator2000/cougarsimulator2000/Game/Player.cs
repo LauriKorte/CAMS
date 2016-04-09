@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace cougarsimulator2000
 {
@@ -95,6 +96,9 @@ namespace cougarsimulator2000
                 }
                 changeItemCount(it, -1);
             }
+            Random r = new Random();
+
+
 
             //We calculate the base weapon accuracy
             //Every Actor (including the player)
@@ -113,36 +117,118 @@ namespace cougarsimulator2000
             //  accuracy = weapon.accuracy - (distance - 2) / 2
 
             int accuracy = weapon.accuracy;
-            int distance = (int)Math.Sqrt(Math.Pow(position.x - ac.position.x,2) + Math.Pow(position.y - ac.position.y, 2));
+            int distance = (int)Math.Sqrt(Math.Pow(position.x - ac.position.x, 2) + Math.Pow(position.y - ac.position.y, 2));
             if (distance >= 2)
                 accuracy -= (distance - 2) / 2;
-            
-            //Add the weapon dice up
-            int dam = weapon.damageBonus;
-            Random r = new Random();
-            for (int i = 0; i < weapon.damageDieCount; i++)
-            {
-                dam += r.Next(weapon.damageDieSize)+1;
-            }
 
+            //Fire the wappet
             gl.playSound(weapon.fireSound);
 
-            Attack ak = new Attack();
-            ak.damage = dam;
-            ak.accuracy = accuracy;
-
-            //If the player is shooting themselves
-            if (ac == this)
+            //If we have weapon using pelleted firing algorithm
+            if (weapon.pellets > 0)
             {
-                ak.damageMessage = "hits himself";
-                ak.dodgeMessage = "dodges his own attack. Maybe he isn't ready to leave this world.";
+                accuracy += 8;
+                Vector2 delta = ac.position - position;
+                double angle = Math.Atan2(delta.y, delta.x) * 180.0 / Math.PI;
+                double spread = weapon.pelletSpread;
+                int pelletCount = weapon.pellets;
+
+                //We bunch up all the hit pellets
+                //so we can avoid filling the game log with attack messages
+                var dict = new Dictionary<Actor, List<Attack>>();
+                for (int i = 0; i < pelletCount; i++)
+                {
+                    double ang = angle - spread / 2 + r.NextDouble() * spread;
+                    var actors = gl.castRay(position, ang);
+
+                    foreach (Actor v in actors)
+                    {
+                        //In case the player isn't trying to kill themselves
+                        //We assume the PC is skillful enough to not shoot 
+                        //themselves
+                        if (this == v && ac != this)
+                            continue;
+                        //Check if the hit target is beyond the range
+                        int chbdist = Math.Max(Math.Abs(position.x - v.position.x), Math.Abs(position.y - v.position.y));
+                        if (chbdist > weapon.range)
+                            break;
+
+                        
+                        //Each pellet has chance to miss the first target
+                        bool dodgeCheck = false;
+                        for (int d = 0; d < v.dodge; d++)
+                        {
+                            if (r.Next(10) == 0)
+                            {
+                                dodgeCheck = true;
+                                break;
+                            }
+                        }
+
+                        if (dodgeCheck)
+                            continue;
+
+                        //Add the weapon dice up
+                        int dammage = weapon.damageBonus;
+                        for (int i2 = 0; i2 < weapon.damageDieCount; i2++)
+                        {
+                            dammage += r.Next(weapon.damageDieSize) + 1;
+                        }
+
+                        Attack atk = new Attack();
+                        atk.damage = dammage;
+                        atk.accuracy = accuracy;
+
+                        atk.damageMessage = "was hit";
+                        atk.dodgeMessage = "dodges the attack";
+                        if (!dict.ContainsKey(v))
+                            dict[v] = new List<Attack>();
+                        dict[v].Add(atk);
+
+                        //Random pellet penetration
+                        if (r.Next(4) == 0)
+                            continue;
+                        break;
+                    }
+                }
+                bool anyHit = false;
+                foreach (var v in dict)
+                {
+                    anyHit = v.Key.damageMultiple(gl, v.Value) || anyHit;
+                }
+                if (!anyHit)
+                {
+                    gl.logGameMessage("You miss");
+                }
             }
             else
             {
-                ak.damageMessage = "was hit";
-                ak.dodgeMessage = "dodges the attack";
+                //Single shot weapon
+                
+                //Add the weapon dice up
+                int dam = weapon.damageBonus;
+                for (int i = 0; i < weapon.damageDieCount; i++)
+                {
+                    dam += r.Next(weapon.damageDieSize) + 1;
+                }
+
+                Attack ak = new Attack();
+                ak.damage = dam;
+                ak.accuracy = accuracy;
+
+                //If the player is shooting themselves
+                if (ac == this)
+                {
+                    ak.damageMessage = "hits himself";
+                    ak.dodgeMessage = "dodges his own attack. Maybe he isn't ready to leave this world.";
+                }
+                else
+                {
+                    ak.damageMessage = "was hit";
+                    ak.dodgeMessage = "dodges the attack";
+                }
+                ac.damage(gl, ak);
             }
-            ac.damage(gl, ak);
             return weapon.fireSpeed;
         }
 

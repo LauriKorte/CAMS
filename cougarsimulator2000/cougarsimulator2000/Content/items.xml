@@ -14,6 +14,8 @@
     <weight>65</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
+    <pellets>0</pellets>
+    <pelletSpread>0</pelletSpread>
     <range>12</range>
 	</weapon>
   <weapon>
@@ -31,6 +33,8 @@
     <weight>25</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
+    <pellets>0</pellets>
+    <pelletSpread>0</pelletSpread>
     <range>1</range>
   </weapon>
   <weapon>
@@ -48,6 +52,8 @@
     <weight>28</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
+    <pellets>0</pellets>
+    <pelletSpread>0</pelletSpread>
     <range>16</range>
 	</weapon>
 	<weapon>
@@ -65,16 +71,18 @@
     <weight>10</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
+    <pellets>0</pellets>
+    <pelletSpread>0</pelletSpread>
     <range>24</range>
 	</weapon>
   <weapon>
     <name>Shotgun M1880</name>
     <description>It's an effective shotgun. It uses shotgun shells.</description>
-    <dieCount>3</dieCount>
-    <dieSize>6</dieSize>
-    <bonus>7</bonus>
+    <dieCount>1</dieCount>
+    <dieSize>4</dieSize>
+    <bonus>1</bonus>
     <accuracy>17</accuracy>
-    <fireSpeed>14</fireSpeed>
+    <fireSpeed>19</fireSpeed>
     <ammunition>Shotgun shell</ammunition>
     <icon>Shotgun</icon>
     <fireSound>shotgun</fireSound>
@@ -82,7 +90,10 @@
     <weight>20</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>1</spawnCountVariation>
-    <range>7</range>
+    
+    <pellets>9</pellets>
+    <pelletSpread>25</pelletSpread>
+    <range>9</range>
   </weapon>
 
   <other>

@@ -98,11 +98,8 @@ namespace cougarsimulator2000
 
         }
 
-        virtual public void damage(GameLogic gl, Attack ak)
+        virtual protected int doAttack(GameLogic gl, Attack ak)
         {
-            if (isDead)
-                return;
-
             Random r = new Random();
             int dodgeDice = 1;
             dodgeDice += r.Next(6);
@@ -112,8 +109,7 @@ namespace cougarsimulator2000
             int accuracy = ak.accuracy - dodge;
             if (dodgeDice > accuracy)
             {
-                gl.logGameMessage(nameDefArticle, name, " ", ak.dodgeMessage);
-                return;
+                return -1;
             }
 
             //Each armor rating point has 33% chance to remove a single point of damage
@@ -122,19 +118,32 @@ namespace cougarsimulator2000
             for (int i = 0; i < armorRating; i++)
                 if (r.Next(6) >= 4)
                     armor += 1;
-            
-            ak.damage -= armor;
+            int dam = ak.damage;
+            dam -= armor;
+            if (dam <= 0)
+                dam = 0;
+            return dam;
+        }
 
-            if (ak.damage > 0)
+        virtual protected void handleDamage(GameLogic gl, Attack ak, int dam)
+        {
+            if (dam == -1)
             {
-                gl.logGameMessage(nameDefArticle, name, " ", ak.damageMessage, " for ", ak.damage, " damage");
-                health -= ak.damage;
+                gl.logGameMessage(nameDefArticle, name, " ", ak.dodgeMessage);
+                return;
+            }
+
+            if (dam > 0)
+            {
+                gl.logGameMessage(nameDefArticle, name, " ", ak.damageMessage, " for ", dam, " damage");
+                health -= dam;
             }
             else
             {
                 gl.logGameMessage(nameDefArticle, name, " ", ak.damageMessage, ", but remains unscathed");
                 return;
             }
+
             if (health <= 0)
             {
                 onDeath(gl);
@@ -145,6 +154,47 @@ namespace cougarsimulator2000
                     gl.logGameMessage(postMortem);
                 gl.removeActor(this);
             }
+        }
+
+        virtual public bool damageMultiple(GameLogic gl, List<Attack> ak)
+        {
+            if (isDead)
+                return false;
+            if (ak.Count == 0)
+                return false;
+
+            int dam = 0;
+            int hitCount = 0;
+            bool dodged = true;
+            foreach (var atk in ak)
+            {
+                int tdam = doAttack(gl, atk);
+                if (tdam >= 0)
+                {
+                    dam += tdam;
+                    hitCount++;
+                    dodged = false;
+                }
+            }
+            if (!dodged)
+            {
+                if (hitCount == 1)
+                    gl.logGameMessage("A pellet hits ", nameDefArticle, name);
+                else
+                    gl.logGameMessage(hitCount, " pellets strike ", nameDefArticle, name);
+                handleDamage(gl, ak[0], dam);
+                return true;
+            }
+            return false;
+        }
+
+        virtual public void damage(GameLogic gl, Attack ak)
+        {
+            if (isDead)
+                return;
+
+            int dam = doAttack(gl, ak);
+            handleDamage(gl, ak, dam);
         }
     }
 }

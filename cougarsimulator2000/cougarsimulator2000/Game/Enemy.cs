@@ -29,6 +29,8 @@ namespace cougarsimulator2000
             health = def.health;
             maxHealth = def.health;
 
+            armorRating = def.armor;
+
             depth = 1;
         }
 

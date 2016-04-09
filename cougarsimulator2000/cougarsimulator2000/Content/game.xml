@@ -1,6 +1,6 @@
 <game>
-	<defaultPlayerWeapon>Colt M1860</defaultPlayerWeapon>
-  <defaultPlayerAmmo>24</defaultPlayerAmmo>
+	<defaultPlayerWeapon>Shotgun M1880</defaultPlayerWeapon>
+  <defaultPlayerAmmo>124</defaultPlayerAmmo>
   <playerName>Gunpowder Tex</playerName>
   <playerDeathMessage>Gunpowder Tex lies dead.</playerDeathMessage>
   <playerGoryDeathMessage>Gunpowder Tex is torn to pieces.</playerGoryDeathMessage>

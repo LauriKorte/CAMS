@@ -210,6 +210,22 @@ namespace cougarsimulator2000
             get;
             set;
         }
+        //Count of pellets to use in pellet firing algorithm
+        //Set to 0 to use the single shot firing algorithm
+        [XmlElement("pellets")]
+        public int pellets
+        {
+            get;
+            set;
+        }
+
+        //Maximum spread cone in degrees
+        [XmlElement("pelletSpread")]
+        public int pelletSpread
+        {
+            get;
+            set;
+        }
 
         [XmlIgnore]
         public ItemDefinition ammunitionDefinition

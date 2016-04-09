@@ -12,6 +12,8 @@ namespace cougarsimulator2000
         
         public PickUp(Item it)
         {
+            //Give pickups some dodge skill
+            dodge = 12;
             item = it;
             image = it.definition.icon;
             health = 5;

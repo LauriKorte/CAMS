@@ -12,6 +12,7 @@
 		<attackSpeed>13</attackSpeed>
 		<moveSpeed>4</moveSpeed>
 		<dodge>3</dodge>
+    <armor>1</armor>
 		<health>9</health>
     <killScore>100</killScore>
 		<attackMessage>is struck by the cougar's fierce claws</attackMessage>
@@ -35,6 +36,7 @@
     <attackSpeed>13</attackSpeed>
     <moveSpeed>8</moveSpeed>
     <dodge>2</dodge>
+    <armor>5</armor>
     <health>15</health>
     <killScore>160</killScore>
     <attackMessage>is bit by the infernal cougar</attackMessage>

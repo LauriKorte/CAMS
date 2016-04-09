@@ -267,6 +267,30 @@ namespace cougarsimulator2000
             updateLineOfSight();
         }
 
+        public List<Actor> castRay(Vector2 begin, double angle)
+        {
+            List<Actor> actors = new List<Actor>();
+            IsBlockingCellDelegate ibcd = (x) =>
+            {
+                
+                if (isTileBlockingNoActors(x))
+                    return true;
+                var v = tileContainsActor(x);
+                actors.AddRange(v);
+                return false;
+            };
+            double cx = begin.x;
+            double cy = begin.y;
+            //Sufficiently large to combat integer imprecision
+            double rayDistance = 32000;
+            cx += Math.Cos(angle * Math.PI / 180.0) * rayDistance;
+            cy += Math.Sin(angle * Math.PI / 180.0) * rayDistance;
+
+            Vector2 p = new Vector2((int)cx, (int)cy);
+            LineOfSight.GetDiamondLineOfSight(ibcd,begin, p);
+            return actors;
+        }
+
         private void updateLineOfSight()
         {
             //List<Vector2> points = LineOfSight.GetCellsOnRadius(player.position, 12);
@@ -274,14 +298,15 @@ namespace cougarsimulator2000
             foreach (var t in tileMap.tiles)
                 t.isVisible = false;
 
-            for (double angle = 0.0; angle < 360.0; angle += 2.0)
+            for (double angle = 0.0; angle < 360.0; angle += 5.0)
             {
                 IsBlockingCellDelegate ibcd = (x) =>
                 {
-                    if (x.x <= 0 || x.y <= 0)
+                    if (x.x < 0 || x.y < 0)
                         return true;
                     if (x.x >= tileMap.size.x || x.y >= tileMap.size.y)
                         return true;
+                    
 
                     try
                     {
@@ -300,7 +325,7 @@ namespace cougarsimulator2000
                 };
                 double cx = player.position.x;
                 double cy = player.position.y;
-                double viewDistance = 12.0;
+                double viewDistance = 16.0;
                 cx += Math.Sin(angle * Math.PI / 180.0) * viewDistance;
                 cy += Math.Cos(angle * Math.PI / 180.0) * viewDistance;
 
@@ -452,7 +477,7 @@ namespace cougarsimulator2000
             //Create a bunch of cougars
             Random r = new Random();
 
-            int maxDanger = 15 + 5 * level;
+            int maxDanger = 75 + 5 * level;
 
             int ewt = enemies.getTotalItemWeightForLevel(level);
             if (ewt > 0)

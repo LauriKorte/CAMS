@@ -65,6 +65,8 @@ namespace cougarsimulator2000
         public int moveSpeed { get; set; }
         [XmlElement("dodge")]
         public int dodge { get; set; }
+        [XmlElement("armor")]
+        public int armor { get; set; }
         [XmlElement("health")]
         public int health { get; set; }
         [XmlElement("killScore")]
