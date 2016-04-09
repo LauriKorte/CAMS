@@ -38,15 +38,14 @@ namespace cougarsimulator2000
             sounds["pickup"] = "Sound/pickup.ogg";
             sounds["knife"] = "Sound/swing.ogg";
 
-            String dithered = "bg_dithered";
-            BitmapSource ims = (BitmapSource)Application.Current.Resources[dithered];
-
+            
+            //Get all the map textures
             foreach (var v in maptex)
             {
                 BitmapSource bms = (BitmapSource)Application.Current.Resources[v];
-                textures[v] = bms;
-                
+                textures[v] = bms;    
             }
+
             soundEngine = new ISoundEngine();
         }
         // Some music and sound stuff
@@ -75,13 +74,25 @@ namespace cougarsimulator2000
         {
             if (sounds.ContainsKey(soundName))
             {
+                //Get the filename of the sound
                 String snd = sounds[soundName];
+
+                //Get the irrklang handle for the sound
+                //(start it not looping and paused)
                 ISound isnd = soundEngine.Play2D(snd, false, true);
 
                 Random r = new Random();
+                //Get a random float in the range of 0.85 - 1.15
                 float pitch = ((float)(85 + r.Next(30))) / 100.0f;
+
+                //Set the sound pitch
                 isnd.PlaybackSpeed = pitch;
 
+                //Set the sound volume
+                //this can be used to alter sound volume
+                isnd.Volume = 1.0f;
+
+                //Play it
                 isnd.Paused = false;
             }
         }
@@ -92,6 +103,7 @@ namespace cougarsimulator2000
                 return textures["bg_sand"];
             return textures["bg_wall"];
         }
+
         public ImageSource getTextureImageSource(String t)
         {
             if (t == null)

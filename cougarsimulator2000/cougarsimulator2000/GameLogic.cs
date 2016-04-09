@@ -269,18 +269,26 @@ namespace cougarsimulator2000
 
         private void updateLineOfSight()
         {
-            List<Vector2> points = LineOfSight.GetCellsOnRadius(player.position, 12);
+            //List<Vector2> points = LineOfSight.GetCellsOnRadius(player.position, 12);
             
             foreach (var t in tileMap.tiles)
                 t.isVisible = false;
-            foreach (var p in points)
+
+            for (double angle = 0.0; angle < 360.0; angle += 2.0)
             {
                 IsBlockingCellDelegate ibcd = (x) =>
                 {
+                    if (x.x <= 0 || x.y <= 0)
+                        return true;
+                    if (x.x >= tileMap.size.x || x.y >= tileMap.size.y)
+                        return true;
+
                     try
                     {
+                        
                         Tile t = tileMap.getTile(x);
                         t.isVisible = true;
+                        t.isDiscovered = true;
                     }
                     catch (Exception)
                     {
@@ -290,6 +298,13 @@ namespace cougarsimulator2000
                         return true;
                     return false;
                 };
+                double cx = player.position.x;
+                double cy = player.position.y;
+                double viewDistance = 12.0;
+                cx += Math.Sin(angle * Math.PI / 180.0) * viewDistance;
+                cy += Math.Cos(angle * Math.PI / 180.0) * viewDistance;
+
+                Vector2 p = new Vector2((int)cx, (int)cy);
                 LineOfSight.GetDiamondLineOfSight(
                     ibcd,
                     player.position, p);

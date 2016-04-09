@@ -42,8 +42,9 @@ namespace cougarsimulator2000
 
             SizeToContent = SizeToContent.WidthAndHeight;
 
-            //Hard coded darkness image
+            //Hard coded darkness image,
             ImageSource darkened = assets.getTextureImageSource("bg_dithering");
+            
 
             //If our tilemap has been resized...
             if (gridTileMap.ColumnDefinitions.Count != tileMapWidth
@@ -96,7 +97,10 @@ namespace cougarsimulator2000
                         //Create the overlaid darkness
                         Image dkim = new Image();
                         dkim.Source = darkened;
+
+                        //Don't darken stuff too much
                         dkim.Opacity = 0.5;
+
                         imContainer.Children.Add(dkim);
                         Grid.SetZIndex(dkim, 0);
                         if (t.isVisible == true)
@@ -110,7 +114,8 @@ namespace cougarsimulator2000
                         //Every cell in the tilemap/grid has a single image
                         Image im = new Image();
                         im.Source = assets.getTileImageSource(t);
-                        
+                        if (t.isDiscovered == false)
+                            im.Visibility = Visibility.Hidden;
 
                         imContainer.Children.Add(im);
                         Grid.SetZIndex(im, -1);
@@ -140,6 +145,11 @@ namespace cougarsimulator2000
                         tileMapVisibility[t.tileIndex].Visibility = Visibility.Visible;
                     else
                         tileMapVisibility[t.tileIndex].Visibility = Visibility.Hidden;
+                    if (t.isDiscovered)
+                        tileMapTiles[t.tileIndex].Visibility = Visibility.Visible;
+                    else
+                        tileMapTiles[t.tileIndex].Visibility = Visibility.Hidden;
+
                 }
             }
         }

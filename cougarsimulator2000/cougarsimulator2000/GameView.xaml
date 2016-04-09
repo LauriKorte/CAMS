@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="GameView" Height="350" Width="525" Icon="{StaticResource ac_tex}">
 
-    <Grid>
+    <Grid Background="Black">
         <Grid x:Name="gridTileMap" Panel.ZIndex="-10">
         </Grid>
         <Grid x:Name="gridActors">
