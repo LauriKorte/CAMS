@@ -87,9 +87,9 @@
     <icon>Shotgun</icon>
     <fireSound>shotgun</fireSound>
     <minimumLevel>1</minimumLevel>
-    <weight>20</weight>
+    <weight>15</weight>
     <spawnCount>1</spawnCount>
-    <spawnCountVariation>1</spawnCountVariation>
+    <spawnCountVariation>0</spawnCountVariation>
     
     <pellets>9</pellets>
     <pelletSpread>25</pelletSpread>
@@ -137,7 +137,7 @@
     <description>It sort of heals or something.</description>
     <icon>medkit</icon>
     <minimumLevel>1</minimumLevel>
-    <weight>300</weight>
+    <weight>55</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
     <effect>healing</effect>
