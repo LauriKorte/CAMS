@@ -46,7 +46,14 @@ namespace cougarsimulator2000
                 textures[v] = bms;    
             }
 
-            soundEngine = new ISoundEngine();
+            try
+            {
+                soundEngine = new ISoundEngine();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Couldn't initialize irrKlang: " + ex.Message);
+            }
         }
         // Some music and sound stuff
         public void setMusicVolume(double volume)
@@ -59,6 +66,8 @@ namespace cougarsimulator2000
         }
         public void playMusic(string musicName)
         {
+            if (soundEngine == null)
+                return;
             if (playingMusic != null)
             {
                 playingMusic.Stop();
@@ -72,6 +81,9 @@ namespace cougarsimulator2000
         }
         public void playSound(string soundName)
         {
+            if (soundEngine == null)
+                return;
+
             if (sounds.ContainsKey(soundName))
             {
                 //Get the filename of the sound

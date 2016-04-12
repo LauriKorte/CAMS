@@ -1,7 +1,7 @@
 <items>
 	<weapon>
 		<name>Colt M1860</name>
-		<description>Colt Army Model 1860. It fires a .44 cartridge.</description>
+		<description>Colt Army Model 1860. It fires a .44 cartridge. Damage 2+2d6, Accuracy 15, Range 12</description>
 		<dieCount>2</dieCount>
 		<dieSize>6</dieSize>
 		<bonus>2</bonus>
@@ -20,7 +20,7 @@
 	</weapon>
   <weapon>
     <name>Knife</name>
-    <description>It's a big knife.</description>
+    <description>It's a big knife. Damage 3+3d5, Accuracy 12, Range 1</description>
     <dieCount>3</dieCount>
     <dieSize>5</dieSize>
     <bonus>3</bonus>
@@ -39,7 +39,7 @@
   </weapon>
   <weapon>
 		<name>Colt Peacemaker</name>
-		<description>The greatest handgun ever made. The Colt Single Action Army.</description>
+		<description>The greatest handgun ever made. The Colt Single Action Army. It fires .45 Long Colt. Damage 8+3d4, Accuracy 20, Range 16</description>
 		<dieCount>3</dieCount>
 		<dieSize>4</dieSize>
 		<bonus>6</bonus>
@@ -58,7 +58,7 @@
 	</weapon>
 	<weapon>
 		<name>Winchester M1873</name>
-		<description>Winchester Model 1873. It fires a .44 rifle cartridge.</description>
+		<description>Winchester Model 1873. It fires a .44 rifle cartridge. Damage 4+3d6, Accuracy 25, Range 24</description>
 		<dieCount>3</dieCount>
 		<dieSize>6</dieSize>
 		<bonus>4</bonus>
@@ -67,7 +67,7 @@
     <ammunition>.44 WCF</ammunition>
     <icon>Winchester</icon>
     <fireSound>winchester</fireSound>
-    <minimumLevel>1</minimumLevel>
+    <minimumLevel>2</minimumLevel>
     <weight>10</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
@@ -77,7 +77,7 @@
 	</weapon>
   <weapon>
     <name>Shotgun M1880</name>
-    <description>It's an effective shotgun. It uses shotgun shells.</description>
+    <description>It's an effective shotgun. It uses shotgun shells. Damage (2+1d4)*9, Accuracy 17, Range 9</description>
     <dieCount>1</dieCount>
     <dieSize>4</dieSize>
     <bonus>2</bonus>
@@ -86,7 +86,7 @@
     <ammunition>Shotgun shell</ammunition>
     <icon>Shotgun</icon>
     <fireSound>shotgun</fireSound>
-    <minimumLevel>1</minimumLevel>
+    <minimumLevel>2</minimumLevel>
     <weight>15</weight>
     <spawnCount>1</spawnCount>
     <spawnCountVariation>0</spawnCountVariation>
